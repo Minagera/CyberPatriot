@@ -1,5 +1,5 @@
 # 🛡️ CyberPatriot Training Repository
-## Grissom High School JROTC Teams: 17-3197, 17-3200, 17-3201
+## Grissom High School JROTC Teams
 
 Welcome to the CyberPatriot training repository! This resource is designed to help high school students learn and practice cybersecurity skills through the CyberPatriot competition program.
 
