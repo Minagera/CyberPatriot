@@ -195,7 +195,7 @@ True or False
 ## Additional Information
 
 - Google Forms Version: [Windows Security Fundamentals Quiz](https://forms.gle/f16ZbJ46zwMdES6Y8)
-- PDF Version: [Download PDF Version](../Resources/Windows_Security_Fundamentals_Quiz.pdf)
+- PDF Version: [Download PDF Version](../Quiz-Files/Windows_Security_Fundamentals_Quiz.pdf)
 
 ## For Mentors
 
