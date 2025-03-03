@@ -1,156 +1,61 @@
-# 🛡️ CyberPatriot Training Repository
-## Grissom High School JROTC Teams
+# CyberPatriot Training Program
 
-Welcome to the CyberPatriot training repository! This resource is designed to help high school students learn and practice cybersecurity skills through the CyberPatriot competition program.
+A comprehensive training program for CyberPatriot competition, covering Windows 11, Windows Server 2025, Ubuntu 22.04/Linux Mint, and Cisco networking with Packet Tracer.
 
-## 📋 Table of Contents
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Training Materials](#training-materials)
-- [Competition Resources](#competition-resources)
-- [Tools and Scripts](#tools-and-scripts)
-- [Practice Environments](#practice-environments)
-- [Safety and Best Practices](#safety-and-best-practices)
+## Overview
 
-## 🎯 Introduction
+This repository contains practical, hands-on training materials for the CyberPatriot competition, including:
 
-This repository contains training materials, scripts, and resources for CyberPatriot competitors. Our curriculum covers:
-- Windows System Security
-- Linux System Security
-- Cisco Packet Tracer Networking
-- Security Best Practices
-- Competition Strategies
+- Markdown guides and step-by-step walkthroughs
+- Hands-on exercises with varying difficulty levels
+- Practice quizzes and assessments
+- PowerShell and Bash scripting exercises
+- Packet Tracer networking scenarios
+- VM setup guides and scripts
 
-## 🚀 Getting Started
+## Repository Structure
 
-### Prerequisites
-- Basic computer knowledge
-- Willingness to learn
-- Access to practice systems:
-  - Windows 10/11 VM
-  - Ubuntu Linux VM
-  - Cisco Packet Tracer
-
-### Initial Setup
-1. Clone this repository:
-```bash
-git clone https://github.com/Minagera/CyberPatriot.git
+```
+CyberPatriot/
+├── Windows/                  # Windows 11 and Server 2025 materials
+├── Linux/                    # Ubuntu 22.04 and Linux Mint materials
+├── Cisco/                    # Cisco networking materials
+├── Checklists/               # Security checklists for all platforms
+├── Curriculum/               # Weekly curriculum plans
+├── VM-Setup/                 # VM image scripts and setup guides
+└── Resources/                # Additional resources and references
 ```
 
-2. Review the documentation in each section
-3. Set up your practice environment
-4. Start with the basic tutorials
+## Getting Started
 
-## 📚 Training Materials
+1. Clone this repository:
+   ```
+   git clone https://github.com/YourUsername/CyberPatriot.git
+   ```
 
-### Windows Security
-- Windows security script documentation
-- Group policy guides
-- User management tutorials
-- System hardening checklists
+2. Explore the platform-specific folders (Windows, Linux, Cisco) for training materials
 
-### Linux Security
-- Ubuntu hardening scripts (20.04, 22.04, 24.04)
-- User and group management guides
-- Firewall configuration
-- Service security
+3. Follow the VM setup guides to create your practice environment
 
-### Networking
-- Cisco Packet Tracer exercises
-- Network security fundamentals
-- Router and switch configuration
-- Security protocols and practices
+4. Use the curriculum guides to progress through the materials in order
 
-## 🏆 Competition Resources
+## For Mentors
 
-### Practice Images
-- Windows 10/11 practice scenarios
-- Ubuntu Linux challenges
-- Network configuration exercises
+- Solution files and answer keys are provided in the respective `/Solutions` directories
+- Curriculum guides include teaching notes and expected timelines
+- Quizzes can be administered via Google Forms (links provided) or printed from the Markdown files
 
-### Checklists
-- Competition preparation guides
-- System security checklists
-- Time management strategies
-- Scoring tracking sheets
+## For Cadets
 
-## 🛠️ Tools and Scripts
+- Start with the basic guides before moving to more advanced topics
+- Complete the hands-on exercises for each section
+- Use the checklists during practice rounds
+- Practice writing and using automation scripts
 
-### Windows Tools
-- Security configuration scripts
-- User management utilities
-- System audit tools
-- Group policy templates
+## Contributing
 
-### Linux Tools
-- System hardening scripts
-- Security audit tools
-- Automated configuration tools
-- Log analysis utilities
+Contributions to this repository are welcome. Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
 
-### Documentation
-- Script usage guides
-- Tool documentation
-- Best practices
-- Troubleshooting guides
+## License
 
-## 💻 Practice Environments
-
-### Setup Instructions
-1. Virtual Machine Requirements
-2. Software Installation
-3. Network Configuration
-4. Testing Environment
-
-### Recommended Practice Schedule
-- Weekly practice sessions
-- Monthly assessments
-- Team competitions
-- Skill evaluations
-
-## ⚠️ Safety and Best Practices
-
-### General Guidelines
-- Always backup before making changes
-- Document all modifications
-- Test in safe environments
-- Follow competition rules
-
-### Security Practices
-- Proper password management
-- System backup procedures
-- Safe scripting practices
-- Documentation requirements
-
-## 📝 Contributing
-
-Want to contribute to this repository?
-1. Fork the repository
-2. Create your feature branch
-2. Commit your changes
-3. Push to your branch
-4. Create a Pull Request
-
-## 🤝 Support
-
-Need help? Here's how to get support:
-- Create an issue in the repository
-- Contact your team mentor
-- Review the documentation
-- Check the CyberPatriot website
-
-## 🙏 Acknowledgments
-
-- CyberPatriot Program
-- Air Force Association
-- Grissom High School JROTC
-- Contributing mentors and students
-
-## 📞 Contact
-
-For questions or support:
-- Create an issue in this repository
-- Contact your team mentor
-- Email: [Your contact email]
-
-Remember: The goal is to learn and improve your cybersecurity skills while having fun in the competition!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
