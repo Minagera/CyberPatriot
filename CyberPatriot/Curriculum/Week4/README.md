@@ -1,229 +1,122 @@
-# Week 3: Networking Fundamentals & Cisco Basics
+# Week 4: Security Principles & User Account Management
 
 ## Learning Objectives
 By the end of this session, cadets will be able to:
-- Explain fundamental networking concepts and protocols
-- Understand the OSI and TCP/IP models
-- Configure basic network settings in Windows and Linux
-- Navigate the Cisco IOS command line interface
-- Configure basic router and switch settings
-- Identify common network security vulnerabilities
-- Implement basic network security measures
+- Explain core cybersecurity principles and best practices
+- Implement user account security across Windows and Linux
+- Configure password policies and security settings
+- Identify unauthorized or suspicious user accounts
+- Manage user privileges and permissions effectively
+- Apply the principle of least privilege
+- Audit and monitor user account activity
+- Implement user security templates in competition scenarios
 
 ## Pre-class Preparation
-- Install Cisco Packet Tracer on your system
-- Review [Cisco/README.md](../../Cisco/README.md) in the repository
-- Watch [Introduction to Networking video](https://www.youtube.com/watch?v=example) (placeholder link)
-- Read [Cisco IOS Command Basics](../../Cisco/Guides/Basic/Cisco_IOS_Fundamentals.md)
+- Review [Windows User Management Guide](../../Windows/Guides/Basic/Windows_User_Management.md)
+- Review [Linux User Management Guide](../../Linux/Guides/Basic/Linux_User_Management.md)
+- Watch [User Account Security video](https://www.youtube.com/watch?v=example) (placeholder link)
+- Read [Core Cybersecurity Principles](../../Resources/Core_Security_Principles.md)
 
 ## Lesson Plan
 
-### 1. Networking Fundamentals (30 minutes)
-- Network types and topologies
-- OSI and TCP/IP models
-- IP addressing and subnetting basics
-- Common network protocols (HTTP, FTP, SSH, Telnet)
-- Network hardware (routers, switches, firewalls)
-- DNS and DHCP concepts
-- Network security principles
+### 1. Cybersecurity Fundamentals (30 minutes)
+- Core security principles:
+  - Confidentiality, Integrity, Availability (CIA triad)
+  - Defense in depth
+  - Principle of least privilege
+  - Separation of duties
+  - Need to know
+- Common attack vectors and threats
+- Security controls (preventive, detective, corrective)
+- Risk assessment basics
+- Security compliance and standards
+- Relevance to CyberPatriot competition
 
-### 2. Network Configuration in Windows and Linux (30 minutes)
-- Viewing network configuration
-  - Windows: `ipconfig`, Network settings
-  - Linux: `ifconfig`/`ip`, Network Manager
-- Configuring IP addresses
-- Testing connectivity (`ping`, `tracert`/`traceroute`)
-- Network troubleshooting tools
-- DNS configuration
-- Network security settings
+### 2. Windows User Account Management (40 minutes)
+- Windows user account types and security contexts
+- Built-in accounts (Administrator, Guest, etc.)
+- Local users vs. domain users
+- User account properties and security settings
+- User groups and their security implications
+- Password policies and account lockout
+- User rights assignment
+- Auditing user account activity
+- Common user security misconfigurations in Windows
 
-### 3. Introduction to Cisco Networking (30 minutes)
-- Cisco hardware overview
-- Router and switch basics
-- Cisco IOS operating system
-- Network device roles and functions
-- Cisco device security concerns
-- Common configurations in CyberPatriot
+### 3. Linux User Account Management (40 minutes)
+- Linux user account fundamentals
+- Understanding `/etc/passwd`, `/etc/shadow`, and `/etc/group`
+- User and group creation, modification, and deletion
+- User privileges and sudo access
+- PAM (Pluggable Authentication Modules)
+- Password aging and complexity
+- Login restrictions
+- User environment security
+- Common user security misconfigurations in Linux
 
-### 4. Cisco IOS Command Line Interface (40 minutes)
-- Accessing the Cisco CLI
-- IOS command modes (User EXEC, Privileged EXEC, Configuration)
-- Command syntax and help features
-- Basic navigation commands
-- Viewing and saving configurations
-- IOS file system
-- Password recovery and security
+### 4. Cross-Platform User Security Strategies (25 minutes)
+- Similarities and differences in Windows and Linux user security
+- Unified approach to user management
+- Identifying authorized vs. unauthorized accounts
+- User security baselines
+- Password policy standardization
+- Account lifecycle management
+- Administrative access control
+- User security documentation
 
-### 5. Basic Router and Switch Configuration (40 minutes)
-- Initial device setup
-- Setting hostnames and banners
-- Configuring interfaces
-- Setting passwords and access restrictions
-- Basic routing configuration
-- Basic switching concepts
-- VLAN fundamentals
-- Saving and backing up configurations
+### 5. Hands-on Exercise (60 minutes)
+- **Exercise**: [User Security Challenge](../../Exercises/User_Security_Challenge.md)
+  - Identify and remediate user account vulnerabilities
+  - Implement proper password policies
+  - Configure appropriate user rights and permissions
+  - Audit user account settings
+  - Document user security changes
 
-### 6. Hands-on Exercise (60 minutes)
-- **Exercise**: [Basic Packet Tracer Network Security](../../Cisco/Exercises/Basic_Network_Security_Exercise.md)
-  - Create a basic network in Packet Tracer
-  - Configure router and switch security settings
-  - Implement basic security measures
-  - Test connectivity and security
-  - Document configurations
+### 6. Team Challenge (25 minutes)
+- Split into teams of 2-3
+- Each team receives a system with user security issues
+- Teams compete to identify and fix all user-related vulnerabilities
+- Present findings and solutions to the class
 
 ### 7. Assessment (20 minutes)
-- [Networking and Cisco Basics Quiz](../../Cisco/Quizzes/Quiz-Files/Cisco_Networking_Basics_Quiz.md)
-- Group review of answers
-- Clarification of concepts
+- [User Account Security Quiz](../../Quizzes/Quiz-Files/User_Account_Security_Quiz.md)
+- Discussion of user security scenarios
+- Review of common mistakes
 
 ### 8. Wrap-up and Preview (10 minutes)
-- Recap networking and Cisco concepts
+- Recap user security concepts
 - Assign homework (see below)
-- Preview next week (Security Principles & User Account Management)
+- Preview next week (Windows System Hardening)
 - Q&A session
 
 ## Homework Assignment
-1. Complete the [Cisco IOS Fundamentals practice lab](../../Cisco/PacketTracer/Scenarios/IOS_Fundamentals_Lab.pkt)
-2. Create a network diagram of a simple home network with security features
-3. Practice 10 essential Cisco IOS commands and document their security uses
-4. Research common network vulnerabilities in CyberPatriot competitions
+1. Create a comprehensive user security checklist for both Windows and Linux
+2. Research and document three advanced user security features for each platform
+3. Practice implementing user security controls on your VMs
+4. Review user security items from past CyberPatriot competition scenarios
 
 ## Additional Resources
-- [Cisco Networking Academy](https://www.netacad.com/)
-- [Packet Tracer Tutorials](https://example.com/packet-tracer) (placeholder link)
-- [CyberPatriot Cisco Security Checklist](../../Checklists/Cisco/Cisco_Security_Checklist.md)
-- [Networking Security Best Practices](https://example.com/network-security) (placeholder link)
-- [Cisco Command Reference](https://www.cisco.com/c/en/us/support/ios-nx-os-software/ios-software-releases-listing.html)
+- [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/)
+- [CIS Benchmarks for User Security](https://www.cisecurity.org/cis-benchmarks/)
+- [Windows User Security Best Practices](https://example.com/windows-user-security) (placeholder link)
+- [Linux User Security Best Practices](https://example.com/linux-user-security) (placeholder link)
+- [User Account Management Scripts](../../Scripts/Templates/)
 
 ## Materials Needed
-- Cisco Packet Tracer installed on all systems
-- Sample Packet Tracer topology files
-- Cisco IOS command reference
+- Windows and Linux VMs for each cadet
+- User security scenario worksheets
+- User account templates and examples
+- Security baseline documents
 - Projection system for demonstrations
-- Network diagram templates
 - Access to repository materials
+- Quiz handouts or online quiz system
 
 ## Instructor Notes
-- Adjust networking concepts based on team's prior knowledge
-- Have students work in pairs for Packet Tracer exercises if helpful
-- Ensure all students can access and use Packet Tracer before class
-- Focus on concepts commonly tested in CyberPatriot Cisco challenges
-- Prepare simple analogies for complex networking concepts
-- Use visual aids to explain network topologies and architecture
-- Consider bringing in physical networking equipment for demonstration if available
-- Be ready to troubleshoot Packet Tracer installation issues# Week 3: Networking Fundamentals & Cisco Basics
-
-## Learning Objectives
-By the end of this session, cadets will be able to:
-- Explain fundamental networking concepts and protocols
-- Understand the OSI and TCP/IP models
-- Configure basic network settings in Windows and Linux
-- Navigate the Cisco IOS command line interface
-- Configure basic router and switch settings
-- Identify common network security vulnerabilities
-- Implement basic network security measures
-
-## Pre-class Preparation
-- Install Cisco Packet Tracer on your system
-- Review [Cisco/README.md](../../Cisco/README.md) in the repository
-- Watch [Introduction to Networking video](https://www.youtube.com/watch?v=example) (placeholder link)
-- Read [Cisco IOS Command Basics](../../Cisco/Guides/Basic/Cisco_IOS_Fundamentals.md)
-
-## Lesson Plan
-
-### 1. Networking Fundamentals (30 minutes)
-- Network types and topologies
-- OSI and TCP/IP models
-- IP addressing and subnetting basics
-- Common network protocols (HTTP, FTP, SSH, Telnet)
-- Network hardware (routers, switches, firewalls)
-- DNS and DHCP concepts
-- Network security principles
-
-### 2. Network Configuration in Windows and Linux (30 minutes)
-- Viewing network configuration
-  - Windows: `ipconfig`, Network settings
-  - Linux: `ifconfig`/`ip`, Network Manager
-- Configuring IP addresses
-- Testing connectivity (`ping`, `tracert`/`traceroute`)
-- Network troubleshooting tools
-- DNS configuration
-- Network security settings
-
-### 3. Introduction to Cisco Networking (30 minutes)
-- Cisco hardware overview
-- Router and switch basics
-- Cisco IOS operating system
-- Network device roles and functions
-- Cisco device security concerns
-- Common configurations in CyberPatriot
-
-### 4. Cisco IOS Command Line Interface (40 minutes)
-- Accessing the Cisco CLI
-- IOS command modes (User EXEC, Privileged EXEC, Configuration)
-- Command syntax and help features
-- Basic navigation commands
-- Viewing and saving configurations
-- IOS file system
-- Password recovery and security
-
-### 5. Basic Router and Switch Configuration (40 minutes)
-- Initial device setup
-- Setting hostnames and banners
-- Configuring interfaces
-- Setting passwords and access restrictions
-- Basic routing configuration
-- Basic switching concepts
-- VLAN fundamentals
-- Saving and backing up configurations
-
-### 6. Hands-on Exercise (60 minutes)
-- **Exercise**: [Basic Packet Tracer Network Security](../../Cisco/Exercises/Basic_Network_Security_Exercise.md)
-  - Create a basic network in Packet Tracer
-  - Configure router and switch security settings
-  - Implement basic security measures
-  - Test connectivity and security
-  - Document configurations
-
-### 7. Assessment (20 minutes)
-- [Networking and Cisco Basics Quiz](../../Cisco/Quizzes/Quiz-Files/Cisco_Networking_Basics_Quiz.md)
-- Group review of answers
-- Clarification of concepts
-
-### 8. Wrap-up and Preview (10 minutes)
-- Recap networking and Cisco concepts
-- Assign homework (see below)
-- Preview next week (Security Principles & User Account Management)
-- Q&A session
-
-## Homework Assignment
-1. Complete the [Cisco IOS Fundamentals practice lab](../../Cisco/PacketTracer/Scenarios/IOS_Fundamentals_Lab.pkt)
-2. Create a network diagram of a simple home network with security features
-3. Practice 10 essential Cisco IOS commands and document their security uses
-4. Research common network vulnerabilities in CyberPatriot competitions
-
-## Additional Resources
-- [Cisco Networking Academy](https://www.netacad.com/)
-- [Packet Tracer Tutorials](https://example.com/packet-tracer) (placeholder link)
-- [CyberPatriot Cisco Security Checklist](../../Checklists/Cisco/Cisco_Security_Checklist.md)
-- [Networking Security Best Practices](https://example.com/network-security) (placeholder link)
-- [Cisco Command Reference](https://www.cisco.com/c/en/us/support/ios-nx-os-software/ios-software-releases-listing.html)
-
-## Materials Needed
-- Cisco Packet Tracer installed on all systems
-- Sample Packet Tracer topology files
-- Cisco IOS command reference
-- Projection system for demonstrations
-- Network diagram templates
-- Access to repository materials
-
-## Instructor Notes
-- Adjust networking concepts based on team's prior knowledge
-- Have students work in pairs for Packet Tracer exercises if helpful
-- Ensure all students can access and use Packet Tracer before class
-- Focus on concepts commonly tested in CyberPatriot Cisco challenges
-- Prepare simple analogies for complex networking concepts
-- Use visual aids to explain network topologies and architecture
-- Consider bringing in physical networking equipment for demonstration if available
-- Be ready to troubleshoot Packet Tracer installation issues
+- This session bridges Windows and Linux concepts - highlight similarities
+- Use real examples of user security issues from past competitions
+- Have cadets work in pairs for the hands-on portions if helpful
+- Create realistic user scenarios that might be encountered in competition
+- Prepare a "cheat sheet" of essential user management commands
+- Be ready to demonstrate proper user security techniques
+- Emphasize documentation of user security changes
+- Consider creating a virtual "hall of fame" for well-secured user environments
