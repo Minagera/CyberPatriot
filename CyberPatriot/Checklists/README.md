@@ -1,150 +1,79 @@
-# Windows Security Hardening Checklist
+# Security Checklists
 
-Use this checklist during CyberPatriot competitions to ensure you've covered the essential security hardening steps for Windows 11 and Windows Server 2025.
+This directory contains comprehensive security checklists for Windows, Linux, and Cisco systems that will help cadets secure systems during CyberPatriot competitions. These checklists are designed to be practical, thorough, and easy to follow under competition time constraints.
 
-## Initial Assessment
+## Overview
 
-- [ ] Document initial state of the system
-- [ ] Take note of any scoring changes already showing
-- [ ] Read the competition README file for specific requirements
+Security checklists are essential tools in cybersecurity competitions like CyberPatriot. They provide:
 
-## User Account Management
+- A systematic approach to securing systems
+- A way to ensure critical security issues aren't overlooked
+- Documentation of completed security tasks
+- A reference for common vulnerabilities and fixes
 
-- [ ] Check all user accounts (`net user`)
-- [ ] Identify and remove unauthorized accounts
-- [ ] Verify Administrator group membership (`net localgroup Administrators`)
-- [ ] Disable Guest account (`net user Guest /active:no`)
-- [ ] Set strong passwords for all accounts
-- [ ] Rename the Administrator account
-- [ ] Check for accounts with password never expires
+## How to Use These Checklists
 
-## Password Policy
+1. **Before the competition:**
+   - Review all checklists to become familiar with the security measures
+   - Practice implementing the security measures on test systems
+   - Understand the reasoning behind each checklist item
+   - Customize the checklists based on team preferences and strategies
 
-- [ ] Set minimum password length (12+ characters)
-- [ ] Enable password complexity requirements
-- [ ] Set maximum password age (90 days or less)
-- [ ] Set account lockout threshold (5 or less attempts)
-- [ ] Set account lockout duration (30 minutes)
+2. **During the competition:**
+   - Use the appropriate checklist for each system (Windows, Linux, Cisco)
+   - Check off items as they are completed
+   - Document points earned for each security fix
+   - Note any unusual issues or custom configurations needed
 
-## Windows Updates
+3. **After the competition:**
+   - Review which checklist items earned points
+   - Identify missed vulnerabilities
+   - Update checklists with new findings for future competitions
 
-- [ ] Check Windows Update settings
-- [ ] Configure automatic updates
-- [ ] Install all available updates
-- [ ] Enable automatic updates for Microsoft products
+## Checklist Categories
 
-## Windows Defender & Security
+### Windows Security Checklist
+Comprehensive checklist for securing Windows workstations and servers, covering user management, services, network security, and system policies.
 
-- [ ] Verify Windows Defender is enabled
-- [ ] Update virus definitions
-- [ ] Run a full system scan
-- [ ] Enable real-time protection
-- [ ] Enable cloud-delivered protection
-- [ ] Enable tamper protection
-- [ ] Configure controlled folder access
+### Linux Security Checklist
+Detailed checklist for securing Linux systems (Ubuntu, Debian, CentOS), covering user accounts, permissions, services, and system hardening.
 
-## Windows Firewall
+### Cisco Security Checklist
+Complete checklist for securing Cisco network devices, covering authentication, services, interfaces, and network protocols.
 
-- [ ] Enable Windows Firewall for all profiles (Domain, Private, Public)
-- [ ] Review and disable unnecessary inbound rules
-- [ ] Review and disable unnecessary outbound rules
-- [ ] Enable logging for Windows Firewall
+## Checklist Format
 
-## Services
+Each checklist follows a consistent format:
 
-- [ ] Disable unnecessary services:
-  - [ ] Remote Registry
-  - [ ] Telnet
-  - [ ] FTP
-  - [ ] Print Spooler (if not needed)
-  - [ ] SNMP (if not needed)
-  - [ ] Xbox services (if not needed)
-  - [ ] Other unnecessary services
+- **Category headers** for logical grouping of related items
+- **Actionable items** with specific commands or steps where appropriate
+- **Verification steps** to confirm security measures are working
+- **Reference notes** for additional information
+- **Priority indicators** for high-impact security measures
 
-## Features and Roles
+## Best Practices for Using Checklists
 
-- [ ] Remove unnecessary Windows features
-- [ ] Remove or secure unnecessary server roles (Server only)
-- [ ] Configure server roles according to competition requirements
+1. **Divide and conquer:** Assign team members to specific sections of the checklists
+2. **Verify changes:** Always verify that security changes don't break functionality
+3. **Document everything:** Note all changes made, especially non-standard configurations
+4. **Prioritize high-impact items:** Focus on security measures that are likely to earn points
+5. **Follow the order:** The checklists are arranged to minimize system disruption
 
-## File System
+## Additional Resources
 
-- [ ] Check for prohibited files (specified in README)
-- [ ] Set appropriate permissions on sensitive files/folders
-- [ ] Enable BitLocker (if available)
-- [ ] Check for shared folders and remove unnecessary shares
+For more detailed information on implementing these security measures, refer to:
 
-## Group Policy (Local Security Policy)
+- The `Guides` directory in the repository
+- The `Exercises` directory for hands-on practice
+- The `Resources` directory for additional reference materials
 
-- [ ] Disable anonymous SID enumeration
-- [ ] Disable anonymous enumeration of shares
-- [ ] Enable UAC
-- [ ] Restrict remote access to the registry
-- [ ] Disable autorun for all drives
+## Customizing Checklists
 
-## Registry
+Teams are encouraged to customize these checklists based on:
 
-- [ ] Disable remote registry access
-- [ ] Verify secure registry settings
-- [ ] Check for unauthorized startup items
+- Team member expertise
+- Competition image specifics
+- Time management strategies
+- Point-earning effectiveness from past competitions
 
-## Event Logging
-
-- [ ] Configure security event logging
-- [ ] Set appropriate log sizes
-- [ ] Enable audit policies for account logon events
-- [ ] Enable audit policies for account management
-- [ ] Enable audit policies for system events
-
-## Network Configuration
-
-- [ ] Disable unnecessary network protocols
-- [ ] Disable NetBIOS over TCP/IP if not needed
-- [ ] Disable IPv6 if not needed
-- [ ] Disable SMB 1.0 protocol
-- [ ] Configure DNS settings properly
-
-## Internet Browser Security
-
-- [ ] Update all installed browsers
-- [ ] Configure enhanced security for Internet Explorer
-- [ ] Disable unnecessary browser extensions
-- [ ] Set appropriate security zones
-
-## Remote Access
-
-- [ ] Disable Remote Desktop if not needed
-- [ ] If RDP is required, enable Network Level Authentication
-- [ ] Disable remote assistance if not needed
-- [ ] Configure Windows Remote Management appropriately
-
-## Server-Specific (For Windows Server)
-
-- [ ] Check and secure Active Directory (if present)
-- [ ] Secure DNS server (if present)
-- [ ] Secure DHCP server (if present)
-- [ ] Secure IIS web server (if present)
-- [ ] Check Group Policy settings
-- [ ] Verify FSMO roles (if Domain Controller)
-
-## Final Verification
-
-- [ ] Check scoring engine for progress
-- [ ] Verify no critical services were disabled
-- [ ] Document all changes made
-- [ ] Look for any remaining vulnerabilities
-
-## Competition-Specific
-
-- [ ] Address any specific vulnerabilities mentioned in README
-- [ ] Answer all forensic questions
-- [ ] Complete any required tasks mentioned in README
-
----
-
-## Notes
-
-- Remember to check the scoring report frequently to see your progress
-- If you're unsure about a service or feature, research it before disabling
-- Document all significant changes you make to the system
-- When in doubt, consult your mentor or competition rules
+Remember to save any custom versions of these checklists for future use.
