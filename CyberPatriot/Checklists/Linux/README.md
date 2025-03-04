@@ -1,399 +1,289 @@
-# Linux Security Checklist for Ubuntu/Linux Mint
+# Linux Security Checklist for CyberPatriot
 
-This comprehensive checklist covers essential security configurations for Ubuntu and Linux Mint systems. Use it during CyberPatriot competitions to ensure you address all critical security aspects systematically.
+## CRITICAL FIRST STEP: Read the Competition README File!
+Before making any changes, thoroughly read the README file provided with the competition image. It contains:
+- Required services that must remain operational
+- User accounts that must be maintained
+- Prohibited actions that could cause penalties
+- Answers to forensics questions (worth points!)
+- Competition-specific requirements that override general security practices
 
-## User Account Security
+This checklist covers essential security settings for Ubuntu and Linux Mint systems commonly tested in CyberPatriot competitions. Focus on these items to quickly secure your Linux system and gain points, but always follow README instructions when they conflict with general security practices.
 
-### Password and Authentication
-- [ ] Set strong password for root account
-  ```bash
-  sudo passwd root
-  ```
-- [ ] Install password quality checking library
-  ```bash
-  sudo apt install libpam-pwquality
-  ```
-- [ ] Enforce password policies through PAM
-  ```bash
-  sudo nano /etc/pam.d/common-password
-  # Add: password requisite pam_pwquality.so retry=3 minlen=12 difok=3 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1
-  ```
-- [ ] Configure password aging
-  ```bash
-  sudo nano /etc/login.defs
-  # Set: PASS_MAX_DAYS 90
-  # Set: PASS_MIN_DAYS 10
-  # Set: PASS_WARN_AGE 7
-  ```
-- [ ] Apply password aging to existing users
-  ```bash
-  sudo chage -M 90 -m 10 -W 7 <username>
-  ```
-- [ ] Lock default accounts not requiring login
-  ```bash
-  sudo passwd -l <username>
-  ```
+## User Account Management
 
-### User Management
-- [ ] Review all user accounts
+### Critical User Settings
+- [ ] Change all user passwords to strong passwords
   ```bash
-  cat /etc/passwd
+  sudo passwd username
   ```
-- [ ] Remove unauthorized or unnecessary users
+- [ ] Remove unauthorized user accounts
   ```bash
-  sudo userdel -r <username>
-  ```
-- [ ] Review all groups
-  ```bash
-  cat /etc/group
-  ```
-- [ ] Remove unnecessary groups
-  ```bash
-  sudo groupdel <groupname>
-  ```
-- [ ] Check sudo configuration
-  ```bash
-  sudo visudo
-  # or
-  sudo cat /etc/sudoers
-  sudo cat /etc/sudoers.d/*
-  ```
-- [ ] Ensure only authorized users have sudo access
-  ```bash
-  sudo gpasswd -d <username> sudo
-  ```
-- [ ] Check for users with empty passwords
-  ```bash
-  sudo grep -E "^[^:]+::.*$" /etc/shadow
+  sudo userdel -r username
   ```
 - [ ] Check for users with UID 0 (root privileges)
   ```bash
   sudo awk -F: '($3 == 0) {print}' /etc/passwd
   ```
-
-## File System Security
-
-### Permissions
-- [ ] Find and secure world-writable files
+- [ ] Check sudo access list
   ```bash
-  sudo find / -type f -perm -o+w -not -path "/proc/*" -not -path "/sys/*" -not -path "/run/*" -not -path "/dev/*" -exec ls -l {} \;
+  sudo cat /etc/sudoers
+  sudo ls /etc/sudoers.d/
   ```
-- [ ] Find and secure world-writable directories
+- [ ] Remove unauthorized users from sudo group
   ```bash
-  sudo find / -type d -perm -o+w -not -path "/proc/*" -not -path "/sys/*" -not -path "/run/*" -not -path "/dev/*" -not -path "/tmp/*" -exec ls -ld {} \;
+  sudo deluser username sudo
   ```
-- [ ] Find and remove unowned files
+- [ ] Disable user accounts that should not be active
   ```bash
-  sudo find / -nouser -o -nogroup -exec ls -l {} \;
-  ```
-- [ ] Check/set appropriate permissions for sensitive files
-  ```bash
-  sudo chmod 600 /etc/shadow
-  sudo chmod 644 /etc/passwd
-  sudo chmod 644 /etc/group
-  sudo chmod 600 /etc/gshadow
-  sudo chmod 644 /etc/ssh/sshd_config
-  ```
-- [ ] Check for SUID/SGID binaries
-  ```bash
-  sudo find / -type f \( -perm -4000 -o -perm -2000 \) -exec ls -l {} \;
+  sudo passwd -l username
   ```
 
-### Temporary Files
-- [ ] Secure /tmp directory
+### Password Policy
+- [ ] Install password quality checking library
   ```bash
-  sudo mount -o remount,noexec,nosuid,rw /tmp
+  sudo apt install libpam-pwquality
   ```
-- [ ] Add to /etc/fstab for persistence
+- [ ] Configure basic password policy (minimum length, complexity)
   ```bash
-  echo "tmpfs /tmp tmpfs defaults,noexec,nosuid 0 0" | sudo tee -a /etc/fstab
+  sudo nano /etc/pam.d/common-password
+  # Add or modify this line:
+  password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1
+  ```
+- [ ] Set password aging policy
+  ```bash
+  sudo nano /etc/login.defs
+  # Change these values:
+  PASS_MAX_DAYS 90
+  PASS_MIN_DAYS 7
+  PASS_WARN_AGE 14
+  ```
+- [ ] Apply password policy to existing users
+  ```bash
+  sudo chage -m 7 -M 90 -W 14 username
   ```
 
 ## System Security
 
 ### Firewall (UFW)
-- [ ] Install UFW if not already installed
+- [ ] Install UFW if not present
   ```bash
   sudo apt install ufw
   ```
-- [ ] Enable and configure firewall
+- [ ] Enable UFW
+  ```bash
+  sudo ufw enable
+  ```
+- [ ] Set default policies
   ```bash
   sudo ufw default deny incoming
   sudo ufw default allow outgoing
+  ```
+- [ ] Allow needed services (ssh, http if needed)
+  ```bash
   sudo ufw allow ssh
-  sudo ufw enable
   ```
 - [ ] Check firewall status
   ```bash
   sudo ufw status verbose
   ```
 
-### Service Management
-- [ ] List all running services
-  ```bash
-  sudo systemctl list-units --type=service --state=active
-  ```
-- [ ] Disable unnecessary services
-  ```bash
-  sudo systemctl disable <service>
-  sudo systemctl stop <service>
-  ```
-- [ ] Remove unnecessary packages/applications
-  ```bash
-  sudo apt purge <package>
-  sudo apt autoremove
-  ```
-
-### SSH Configuration
-- [ ] Secure SSH configuration
-  ```bash
-  sudo nano /etc/ssh/sshd_config
-  ```
-  
-  Edit these settings:
-  ```
-  PermitRootLogin no
-  Protocol 2
-  PasswordAuthentication yes  # Set to 'no' if using key authentication
-  X11Forwarding no
-  MaxAuthTries 3
-  PubkeyAuthentication yes
-  PermitEmptyPasswords no
-  ClientAliveInterval 300
-  ClientAliveCountMax 0
-  LoginGraceTime 60
-  ```
-- [ ] Restart SSH service
-  ```bash
-  sudo systemctl restart ssh
-  ```
-
-### Network Configuration
-- [ ] Disable IPv6 if not needed
-  ```bash
-  sudo nano /etc/sysctl.conf
-  # Add:
-  # net.ipv6.conf.all.disable_ipv6 = 1
-  # net.ipv6.conf.default.disable_ipv6 = 1
-  # net.ipv6.conf.lo.disable_ipv6 = 1
-  
-  sudo sysctl -p
-  ```
-- [ ] Disable IP forwarding if not a router
-  ```bash
-  sudo nano /etc/sysctl.conf
-  # Add: net.ipv4.ip_forward = 0
-  
-  sudo sysctl -p
-  ```
-- [ ] Harden TCP/IP stack
-  ```bash
-  sudo nano /etc/sysctl.conf
-  # Add:
-  # net.ipv4.conf.all.accept_redirects = 0
-  # net.ipv4.conf.all.accept_source_route = 0
-  # net.ipv4.conf.all.log_martians = 1
-  # net.ipv4.conf.all.rp_filter = 1
-  # net.ipv4.conf.all.send_redirects = 0
-  # net.ipv4.icmp_echo_ignore_broadcasts = 1
-  
-  sudo sysctl -p
-  ```
-
-### Scheduled Tasks
-- [ ] Review cron jobs (all users)
-  ```bash
-  for user in $(cut -f1 -d: /etc/passwd); do sudo crontab -u $user -l 2>/dev/null; done
-  ```
-- [ ] Check system-wide cron directories
-  ```bash
-  ls -la /etc/cron*
-  ```
-- [ ] Check user crontabs
-  ```bash
-  ls -la /var/spool/cron/crontabs/
-  ```
-
-## Software Security
-
 ### Updates
 - [ ] Update package lists
   ```bash
   sudo apt update
   ```
-- [ ] Install all available updates
+- [ ] Install system updates
   ```bash
   sudo apt upgrade -y
   ```
-- [ ] Install security updates only (alternative)
-  ```bash
-  sudo apt-get dist-upgrade -y
-  ```
-- [ ] Configure automatic updates
+- [ ] Enable automatic security updates
   ```bash
   sudo apt install unattended-upgrades
   sudo dpkg-reconfigure -plow unattended-upgrades
   ```
 
-### Package Verification
-- [ ] Verify installed packages
+### SSH Configuration
+- [ ] Secure SSH server (if SSH is needed)
   ```bash
-  sudo apt install debsums
-  sudo debsums -c
+  sudo nano /etc/ssh/sshd_config
   ```
-- [ ] Search for potentially compromised packages
-  ```bash
-  sudo apt-get --reinstall install <package-name>
-  ```
-
-## Logging and Auditing
-
-### System Logging
-- [ ] Ensure rsyslog is running
-  ```bash
-  sudo systemctl status rsyslog
-  ```
-- [ ] Configure log rotation
-  ```bash
-  sudo nano /etc/logrotate.conf
-  ```
-- [ ] Secure log files
-  ```bash
-  sudo chmod 640 /var/log/syslog
-  sudo chmod 640 /var/log/auth.log
-  ```
-- [ ] Check log files for suspicious activities
-  ```bash
-  sudo grep -i "failed password" /var/log/auth.log
-  ```
-
-### Audit Framework
-- [ ] Install auditd
-  ```bash
-  sudo apt install auditd
-  ```
-- [ ] Enable auditd service
-  ```bash
-  sudo systemctl enable auditd
-  sudo systemctl start auditd
-  ```
-- [ ] Configure basic audit rules
-  ```bash
-  sudo nano /etc/audit/rules.d/audit.rules
-  # Add rules to monitor sensitive files and commands
-  ```
-
-## Application Security
-
-### Web Server (if present)
-- [ ] Secure Apache configuration
-  ```bash
-  sudo nano /etc/apache2/apache2.conf
-  # Check for security directives
-  ```
-- [ ] Remove unnecessary Apache modules
-  ```bash
-  sudo a2dismod <module>
-  ```
-- [ ] Secure Nginx configuration (if used)
-  ```bash
-  sudo nano /etc/nginx/nginx.conf
-  # Check for security directives
-  ```
-
-### Database Server (if present)
-- [ ] Secure MySQL/MariaDB
-  ```bash
-  sudo mysql_secure_installation
-  ```
-- [ ] Check MySQL/MariaDB users and permissions
-  ```bash
-  sudo mysql -u root -p
-  SELECT user, host FROM mysql.user;
-  ```
-
-## System Hardening
-
-### AppArmor
-- [ ] Ensure AppArmor is installed and enabled
-  ```bash
-  sudo apt install apparmor apparmor-utils
-  sudo systemctl enable apparmor
-  sudo systemctl start apparmor
-  ```
-- [ ] Check AppArmor status
-  ```bash
-  sudo aa-status
-  ```
-- [ ] Enforce AppArmor profiles
-  ```bash
-  sudo aa-enforce /etc/apparmor.d/*
-  ```
-
-### Boot Security
-- [ ] Secure GRUB bootloader
-  ```bash
-  sudo nano /etc/grub.d/40_custom
-  # Add password protection
   
-  sudo update-grub
+  Key settings to change:
   ```
-- [ ] Review /etc/fstab for secure mount options
-  ```bash
-  sudo nano /etc/fstab
-  # Add noexec, nosuid, nodev where appropriate
+  PermitRootLogin no
+  PasswordAuthentication yes  # Unless using key authentication
+  X11Forwarding no
+  MaxAuthTries 3
   ```
-
-## Common Ubuntu/Linux Mint Vulnerabilities
-
-- [ ] Check for unauthorized repositories
+- [ ] Restart SSH service after changes
   ```bash
-  sudo cat /etc/apt/sources.list
-  ls -la /etc/apt/sources.list.d/
+  sudo systemctl restart ssh
   ```
-- [ ] Check for unauthorized startup applications
+- [ ] Disable SSH server if not needed
   ```bash
-  ls -la /etc/xdg/autostart/
-  ls -la ~/.config/autostart/
-  ```
-- [ ] Check for backdoor users in /etc/passwd
-- [ ] Verify sudoers configuration doesn't have NOPASSWD entries
-- [ ] Check for unauthorized SSH keys
-  ```bash
-  for user in $(cut -f1 -d: /etc/passwd); do 
-    if [ -d "/home/$user/.ssh" ]; then 
-      ls -la /home/$user/.ssh/; 
-    fi; 
-  done
+  sudo systemctl stop ssh
+  sudo systemctl disable ssh
   ```
 
-## CyberPatriot-Specific Checks
+## Services and Applications
 
-- [ ] Check for prohibited software (games, hacking tools, etc.)
+### Disable Unnecessary Services
+- [ ] List all running services
   ```bash
+  sudo systemctl list-units --type=service --state=active
+  ```
+- [ ] Disable unnecessary services (examples)
+  ```bash
+  sudo systemctl stop servicename
+  sudo systemctl disable servicename
+  ```
+  
+  Common services to check:
+  - [ ] Telnet server
+  - [ ] FTP server
+  - [ ] Web server (if not needed)
+  - [ ] Print server (if not needed)
+  - [ ] Samba/Windows file sharing (if not needed)
+
+### Remove Unauthorized Software
+- [ ] Check for prohibited software
+  ```bash
+  # Look for games
   dpkg -l | grep -i game
-  dpkg -l | grep -i torrent
+  
+  # Look for hacking tools
   dpkg -l | grep -i nmap
+  dpkg -l | grep -i wireshark
+  
+  # Look for media software
+  dpkg -l | grep -i media
   ```
-- [ ] Look for "forensics questions" files
+- [ ] Remove unauthorized packages
   ```bash
-  find /home -name "*.txt" -o -name "README*" 2>/dev/null
+  sudo apt purge packagename
   ```
-- [ ] Check for unauthorized media files
+- [ ] Clean up dependencies
   ```bash
-  find /home -name "*.mp3" -o -name "*.mp4" -o -name "*.avi" 2>/dev/null
-  ```
-- [ ] Look for unauthorized user management
-  ```bash
-  grep -i "useradd\|userdel\|usermod" /var/log/auth.log
+  sudo apt autoremove
   ```
 
-## Verification Commands
+## File System Security
 
-- `sudo cat /etc/shadow` - Check user password complexity (encrypted strings)
-- `sudo systemctl list-units --type=service` - List all services
-- `sudo ufw status` - Check firewall status
-- `sudo netstat -tulnp` or `sudo ss -tulnp` - List open ports and services
-- `sudo ps aux` - List running processes
-- `ls -la /etc/apt/sources.list.d/` - Check custom repositories
-- `cat /var/log/auth.log | grep -i "fail"` - Check for failed logins
+### Critical File Permissions
+- [ ] Set correct permissions for critical files
+  ```bash
+  sudo chmod 644 /etc/passwd
+  sudo chmod 640 /etc/shadow
+  sudo chmod 644 /etc/group
+  sudo chmod 640 /etc/gshadow
+  ```
+- [ ] Check for world-writable files (potential security issue)
+  ```bash
+  sudo find / -type f -perm -o+w -not -path "/proc/*" -not -path "/sys/*" -not -path "/run/*" -not -path "/dev/*" -exec ls -l {} \;
+  ```
+- [ ] Check for SUID/SGID files (potential security issue)
+  ```bash
+  sudo find / -type f -perm /6000 -ls
+  ```
+
+### Check for Unauthorized Files
+- [ ] Search for media files in home directories
+  ```bash
+  sudo find /home -name "*.mp3" -o -name "*.mp4" -o -name "*.avi" 2>/dev/null
+  ```
+- [ ] Look for suspicious scripts
+  ```bash
+  sudo find /home -name "*.sh" 2>/dev/null
+  ```
+
+## Network Security
+
+### Network Configuration
+- [ ] Check for listening services/ports
+  ```bash
+  sudo ss -tulpn
+  ```
+- [ ] Check active network connections
+  ```bash
+  sudo netstat -ano
+  ```
+
+## Search for Forensics Questions
+
+- [ ] Check for README files
+  ```bash
+  find /home -name "README*" 2>/dev/null
+  find / -name "*.txt" -not -path "/proc/*" 2>/dev/null
+  ```
+- [ ] Check for files with "answer" in the name
+  ```bash
+  find / -name "*answer*" -not -path "/proc/*" 2>/dev/null
+  ```
+- [ ] Check common locations for competition files
+  ```bash
+  ls -la /home/*/Desktop
+  ls -la /root/Desktop
+  ls -la /home/*/Documents
+  ```
+
+## Common CyberPatriot Scoring Items
+
+- [ ] Unauthorized users removed
+- [ ] Strong passwords set for all accounts
+- [ ] Root/sudo access properly restricted
+- [ ] Password policies configured
+- [ ] Updates installed
+- [ ] Firewall enabled and configured
+- [ ] SSH server secured or disabled
+- [ ] Unnecessary services disabled
+- [ ] Malware removed
+- [ ] Unauthorized software removed
+- [ ] Critical file permissions set properly
+- [ ] Prohibited media files removed
+- [ ] Finding and answering forensics questions
+
+## Quick Status Check Commands
+
+### User and Group Management
+```bash
+# List all users
+cat /etc/passwd | cut -d: -f1,3,6
+
+# List all sudo users
+grep -Po '^sudo.+:\K.*$' /etc/group
+cat /etc/sudoers
+
+# List logged-in users
+who
+```
+
+### Service Status
+```bash
+# Check running services
+systemctl list-units --type=service --state=active
+
+# Check service listening on network
+ss -tulpn
+```
+
+### System Security Checks
+```bash
+# Check firewall status
+sudo ufw status
+
+# Check SSH configuration
+grep -v '^#' /etc/ssh/sshd_config | grep -v '^$'
+
+# Check for SUID binaries
+find / -perm -4000 -type f -exec ls -la {} \; 2>/dev/null
+```
+
+### Package Management
+```bash
+# Check recently installed packages
+grep -i installed /var/log/dpkg.log | tail -20
+
+# Check for specific categories of software
+dpkg -l | grep -i game
+```
