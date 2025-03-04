@@ -2,6 +2,17 @@
 
 This directory contains a script to set up a realistic Linux incident response training environment for CyberPatriot competition preparation. The scenario simulates a compromised corporate server with multiple backdoors, persistence mechanisms, vulnerable services, and forensic artifacts.
 
+## Understanding the Competition
+
+CyberPatriot is best defined as an **incident response and remediation competition** where teams inherit a business computer network that has been compromised. Teams must:
+
+1. Identify unauthorized changes and security issues
+2. Find and analyze forensic artifacts
+3. Remove attacker persistence mechanisms
+4. Apply security hardening to prevent future attacks
+
+Rather than simply collecting and applying security fixes, successful teams develop a comprehensive approach to understanding and responding to security incidents.
+
 ## Overview
 
 The `corporate-server-breach.sh` script transforms a clean Ubuntu installation into a compromised server that exhibits signs of a successful attack with established persistence. Cadets must investigate the breach, identify unauthorized access methods, remove backdoors, and secure the system according to security requirements.
@@ -17,6 +28,7 @@ The `corporate-server-breach.sh` script transforms a clean Ubuntu installation i
 - Vulnerable service configurations
 - Leaked credentials and sensitive data
 - Automated scoring system
+- Competition-style README.txt file
 
 ## Requirements
 
@@ -26,14 +38,7 @@ The `corporate-server-breach.sh` script transforms a clean Ubuntu installation i
 - Internet connection during setup (for package installation)
 - Sudo/root access
 
-## Installation
-
-1. Create a new Ubuntu VM in your preferred virtualization software
-2. Install Ubuntu with minimal installation options
-3. Create a user named "sysadmin" during installation 
-4. Install VM guest additions if needed
-5. Take a snapshot labeled "Clean Ubuntu Install"
-6. Run the following commands:
+## Quick Start
 
 ```bash
 # Download the script
@@ -46,6 +51,14 @@ chmod +x corporate-server-breach.sh
 sudo ./corporate-server-breach.sh
 ```
 
+## Detailed Installation
+
+1. Create a new Ubuntu VM in your preferred virtualization software
+2. Install Ubuntu with minimal installation options
+3. Create a user named "sysadmin" during installation 
+4. Install VM guest additions if needed
+5. Take a snapshot labeled "Clean Ubuntu Install"
+6. Run the quick start commands above
 7. Take a snapshot labeled "Corporate Server Breach - Ready"
 
 ## Usage Instructions
@@ -58,15 +71,68 @@ sudo ./corporate-server-breach.sh
    - Command line: `check_score`
    - Web interface: http://localhost/score.php
 
-## Forensic Questions
+## Competition README
 
-The scenario includes several forensic questions that require investigation:
+The script creates a competition-style README.txt file in the home directory that includes:
 
-1. What IP address was used in the apparent brute force attack?
-2. How many failed login attempts were made during the brute force attack?
-3. What user account was eventually compromised in this attack?
-4. Identify all persistence mechanisms the attacker installed.
-5. What sensitive information may have been compromised?
+- A scenario description of a corporate server breach
+- Tasks for the incident response team
+- Company security policy requirements
+- Forensic questions that require investigation of log files and system artifacts
+
+This mimics the actual README files provided during CyberPatriot competition rounds.
+
+## Effective Training Approach
+
+Based on the experiences of national champions, here are key strategies for effective CyberPatriot training:
+
+### 1. Develop the Security Mindset
+Focus on understanding security principles that can be applied broadly, rather than just collecting specific fixes.
+
+### 2. Baselining Strategy
+Train cadets to compare the competition image with clean systems to identify:
+- Unauthorized user accounts
+- Unusual running services
+- Modified configuration files
+- Suspicious scheduled tasks/cron jobs
+- Unexpected network connections
+
+### 3. Operating System Familiarity
+Develop deep knowledge of operating system internals:
+- Authentication mechanisms
+- Service management
+- Logging systems
+- Permission models
+- Configuration file structures
+
+### 4. Structured Approach
+During competition, follow a methodical process:
+1. Review README and forensic questions
+2. Baseline the system against a clean reference
+3. Identify and remove unauthorized access methods
+4. Update and patch the system
+5. Secure configurations and services
+6. Implement proper user and permission policies
+
+## Training Session Structure
+
+For optimal learning, structure training sessions as follows:
+
+1. **Briefing** (10 minutes)
+   - Explain the scenario background
+   - Review previous lessons learned
+   - Set clear objectives
+
+2. **Investigation & Remediation** (90-120 minutes)
+   - Provide access to the scenario VM
+   - Allow cadets to work independently or in teams
+   - Encourage documentation of findings
+
+3. **Debrief** (30 minutes)
+   - Review scoring results
+   - Discuss challenges encountered
+   - Share effective solutions
+   - Identify knowledge gaps for future training
 
 ## Customization
 
