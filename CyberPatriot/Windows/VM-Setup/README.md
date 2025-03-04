@@ -4,7 +4,7 @@ This directory contains a PowerShell script to set up a realistic Windows incide
 
 ## Overview
 
-The `incident-response-windows-setup.ps1` script transforms a clean Windows installation into a compromised workstation that contains traces of a successful attack. Cadets must investigate the breach, identify how attackers gained and maintained access, remove malicious components, and implement proper security controls.
+The `enterprise-workstation-setup.ps1` script transforms a clean Windows installation into a compromised workstation that contains traces of a successful attack. Cadets must investigate the breach, identify how attackers gained and maintained access, remove malicious components, and implement proper security controls.
 
 ## Features
 
@@ -42,7 +42,7 @@ The `incident-response-windows-setup.ps1` script transforms a clean Windows inst
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
 # Download the script
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Minagera/CyberPatriot/main/CyberPatriot/Windows/VM-Setup/incident-response-windows-setup.ps1" -OutFile "setup.ps1"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Minagera/CyberPatriot/main/CyberPatriot/Windows/VM-Setup/enterprise-workstation-setup.ps1" -OutFile "setup.ps1"
 
 # Run the script
 .\setup.ps1
