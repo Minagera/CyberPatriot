@@ -1,207 +1,349 @@
-# Cisco Security Checklist
+# Cisco Security Checklist for CyberPatriot
 
-This comprehensive checklist covers essential security configurations for Cisco routers and switches. Use it during CyberPatriot competitions to ensure you address all critical security aspects of network devices.
+## CRITICAL FIRST STEP: Read the Competition README File!
+Before making any changes, thoroughly read the README file provided with the Cisco challenge. It contains:
+- Required network services that must remain operational
+- Existing network configurations that must be preserved
+- Prohibited actions that could cause penalties
+- Answers to forensics questions (worth points!)
+- Competition-specific requirements that override general security practices
+
+This checklist focuses on essential Cisco router and switch security configurations commonly tested in CyberPatriot competitions. Use this checklist to quickly identify and fix security issues, but always follow README instructions when they conflict with general security practices.
 
 ## Router Security Checklist
 
-### Authentication and Password Security
-- [ ] Set hostname (`hostname <name>`)
-- [ ] Configure strong enable secret password (`enable algorithm-type sha256 secret <password>`)
-- [ ] Enable password encryption (`service password-encryption`)
-- [ ] Set minimum password length (`security passwords min-length 10`)
-- [ ] Configure strong local user accounts (`username <name> privilege 15 algorithm-type sha256 secret <password>`)
-- [ ] Set login delay (`login delay 3`)
-- [ ] Configure login timeout (`login block-for 120 attempts 3 within 60`)
+### Basic Security Setup
+- [ ] Set hostname
+  ```cisco
+  Router(config)# hostname <secure-name>
+  ```
+- [ ] Set login banner with appropriate text
+  ```cisco
+  Router(config)# banner login #
+  AUTHORIZED ACCESS ONLY
+  Unauthorized access is prohibited.
+  #
+  ```
 
-### Console Access Security
-- [ ] Set console password (`line console 0` → `password <password>` → `login local`)
-- [ ] Configure console timeout (`exec-timeout 5 0`)
-- [ ] Enable console login authentication (`login local`)
+### Password Security
+- [ ] Set strong enable secret password
+  ```cisco
+  Router(config)# enable secret <strong-password>
+  ```
+- [ ] Remove any existing enable password (use secret instead)
+  ```cisco
+  Router(config)# no enable password
+  ```
+- [ ] Enable password encryption
+  ```cisco
+  Router(config)# service password-encryption
+  ```
+- [ ] Configure console line security
+  ```cisco
+  Router(config)# line console 0
+  Router(config-line)# password <console-password>
+  Router(config-line)# login
+  Router(config-line)# exec-timeout 5 0
+  Router(config-line)# exit
+  ```
 
-### VTY (Telnet/SSH) Access Security
-- [ ] Set VTY password (`line vty 0 4` → `password <password>`)
-- [ ] Configure VTY timeout (`exec-timeout 5 0`) 
-- [ ] Restrict VTY access to SSH only (`transport input ssh`)
-- [ ] Enable VTY login authentication (`login local`)
-- [ ] Apply access control list to VTY lines (`access-class <ACL-name> in`)
-
-### SSH Configuration
-- [ ] Set domain name (`ip domain name <domain>`)
-- [ ] Generate RSA keys (`crypto key generate rsa modulus 2048`)
-- [ ] Enable SSH version 2 (`ip ssh version 2`)
-- [ ] Set SSH timeout (`ip ssh time-out 60`)
-- [ ] Set SSH authentication retries (`ip ssh authentication-retries 3`)
+### Remote Access Security
+- [ ] Configure VTY lines with authentication
+  ```cisco
+  Router(config)# line vty 0 4
+  Router(config-line)# password <vty-password>
+  Router(config-line)# login
+  Router(config-line)# exec-timeout 5 0
+  Router(config-line)# exit
+  ```
+- [ ] Configure SSH (more secure than Telnet)
+  ```cisco
+  Router(config)# ip domain name example.com
+  Router(config)# crypto key generate rsa modulus 1024
+  Router(config)# ip ssh version 2
+  Router(config)# line vty 0 4
+  Router(config-line)# transport input ssh
+  Router(config-line)# login local
+  Router(config-line)# exit
+  Router(config)# username admin secret <strong-password>
+  ```
 
 ### Disable Unnecessary Services
-- [ ] Disable HTTP server (`no ip http server`)
-- [ ] Disable HTTPS server if not needed (`no ip http secure-server`)
-- [ ] Disable CDP if not needed (`no cdp run`)
-- [ ] Disable PAD service (`no service pad`)
-- [ ] Disable BOOTP server (`no ip bootp server`)
-- [ ] Disable small TCP servers (`no service tcp-small-servers`)
-- [ ] Disable small UDP servers (`no service udp-small-servers`)
-- [ ] Disable finger service (`no ip finger`)
-- [ ] Disable IP source routing (`no ip source-route`)
-- [ ] Disable gratuitous ARPs (`no ip gratuitous-arps`)
-- [ ] Disable proxy ARP on interfaces (`no ip proxy-arp`)
-
-### Access Control Lists (ACLs)
-- [ ] Create management access ACL (`ip access-list standard MGMT-ACCESS`)
-- [ ] Create inbound traffic filtering ACL (`ip access-list extended INBOUND-FILTER`)
-- [ ] Create anti-spoofing ACL (`ip access-list extended ANTI-SPOOF`)
-- [ ] Apply ACLs to appropriate interfaces (`ip access-group <name> in/out`)
-
-### Routing Protocol Security
-- [ ] Configure routing protocol authentication (OSPF, EIGRP, etc.)
-- [ ] Disable unused routing protocols
-- [ ] Filter routing updates
+- [ ] Disable HTTP server
+  ```cisco
+  Router(config)# no ip http server
+  Router(config)# no ip http secure-server
+  ```
+- [ ] Disable CDP if not needed
+  ```cisco
+  Router(config)# no cdp run
+  ```
+- [ ] Disable unused small servers
+  ```cisco
+  Router(config)# no service tcp-small-servers
+  Router(config)# no service udp-small-servers
+  ```
+- [ ] Disable finger service
+  ```cisco
+  Router(config)# no ip finger
+  ```
+- [ ] Disable IP source routing
+  ```cisco
+  Router(config)# no ip source-route
+  ```
 
 ### Interface Security
-- [ ] Add descriptions to interfaces (`description <text>`)
-- [ ] Disable unused interfaces (`shutdown`)
-- [ ] Disable CDP on external interfaces (`no cdp enable`)
-- [ ] Disable LLDP on external interfaces (`no lldp transmit`, `no lldp receive`)
-- [ ] Enable unicast reverse path forwarding where appropriate (`ip verify unicast source reachable-via rx`)
+- [ ] Add descriptions to interfaces
+  ```cisco
+  Router(config)# interface GigabitEthernet0/0
+  Router(config-if)# description WAN Connection
+  Router(config-if)# exit
+  ```
+- [ ] Disable unused interfaces
+  ```cisco
+  Router(config)# interface GigabitEthernet0/1
+  Router(config-if)# shutdown
+  Router(config-if)# exit
+  ```
+- [ ] Disable CDP on external interfaces
+  ```cisco
+  Router(config)# interface GigabitEthernet0/0
+  Router(config-if)# no cdp enable
+  Router(config-if)# exit
+  ```
 
-### Logging and Monitoring
-- [ ] Configure log timestamps (`service timestamps log datetime msec show-timezone`)
-- [ ] Configure debug timestamps (`service timestamps debug datetime msec show-timezone`)
-- [ ] Set appropriate logging levels (`logging console critical`, `logging buffered 16384`)
-- [ ] Configure logging host if available (`logging host <ip-address>`)
-- [ ] Enable NetFlow if available (`ip flow-export`)
+### Access Control Lists (Basic)
+- [ ] Create ACL to restrict management access
+  ```cisco
+  Router(config)# ip access-list standard MGMT-ACCESS
+  Router(config-std-nacl)# permit 192.168.1.0 0.0.0.255
+  Router(config-std-nacl)# deny any log
+  Router(config-std-nacl)# exit
+  Router(config)# line vty 0 4
+  Router(config-line)# access-class MGMT-ACCESS in
+  Router(config-line)# exit
+  ```
 
-### Miscellaneous
-- [ ] Configure a legal warning banner (`banner login #...#`)
-- [ ] Save configuration (`copy running-config startup-config`)
-- [ ] Document all changes made
+### Save Configuration
+- [ ] Save your changes
+  ```cisco
+  Router# write memory
+  ```
+  or
+  ```cisco
+  Router# copy running-config startup-config
+  ```
 
 ## Switch Security Checklist
 
-### Authentication and Password Security
-- [ ] Set hostname (`hostname <name>`)
-- [ ] Configure strong enable secret password (`enable algorithm-type sha256 secret <password>`)
-- [ ] Enable password encryption (`service password-encryption`)
-- [ ] Set minimum password length (`security passwords min-length 10`)
-- [ ] Configure strong local user accounts (`username <name> privilege 15 algorithm-type sha256 secret <password>`)
-- [ ] Set login delay (`login delay 3`)
-- [ ] Configure login timeout (`login block-for 120 attempts 3 within 60`)
+### Basic Security Setup
+- [ ] Set hostname
+  ```cisco
+  Switch(config)# hostname <secure-name>
+  ```
+- [ ] Set login banner with appropriate text
+  ```cisco
+  Switch(config)# banner login #
+  AUTHORIZED ACCESS ONLY
+  Unauthorized access is prohibited.
+  #
+  ```
 
-### Console Access Security
-- [ ] Set console password (`line console 0` → `password <password>` → `login local`)
-- [ ] Configure console timeout (`exec-timeout 5 0`)
-- [ ] Enable console login authentication (`login local`)
+### Password Security
+- [ ] Set strong enable secret password
+  ```cisco
+  Switch(config)# enable secret <strong-password>
+  ```
+- [ ] Remove any existing enable password (use secret instead)
+  ```cisco
+  Switch(config)# no enable password
+  ```
+- [ ] Enable password encryption
+  ```cisco
+  Switch(config)# service password-encryption
+  ```
+- [ ] Configure console line security
+  ```cisco
+  Switch(config)# line console 0
+  Switch(config-line)# password <console-password>
+  Switch(config-line)# login
+  Switch(config-line)# exec-timeout 5 0
+  Switch(config-line)# exit
+  ```
 
-### VTY (Telnet/SSH) Access Security
-- [ ] Set VTY password (`line vty 0 15` → `password <password>`)
-- [ ] Configure VTY timeout (`exec-timeout 5 0`) 
-- [ ] Restrict VTY access to SSH only (`transport input ssh`)
-- [ ] Enable VTY login authentication (`login local`)
-- [ ] Apply access control list to VTY lines (`access-class <ACL-name> in`)
-
-### SSH Configuration
-- [ ] Set domain name (`ip domain name <domain>`)
-- [ ] Generate RSA keys (`crypto key generate rsa modulus 2048`)
-- [ ] Enable SSH version 2 (`ip ssh version 2`)
-- [ ] Set SSH timeout (`ip ssh time-out 60`)
-- [ ] Set SSH authentication retries (`ip ssh authentication-retries 3`)
-
-### Management Interface Security
-- [ ] Create a management VLAN (`vlan <number>` → `name Management`)
-- [ ] Configure the management interface (`interface vlan <number>`) 
-- [ ] Apply appropriate security to management VLAN ports
-
-### Disable Unnecessary Services
-- [ ] Disable HTTP server (`no ip http server`)
-- [ ] Disable HTTPS server if not needed (`no ip http secure-server`)
-- [ ] Disable CDP if not needed (`no cdp run`)
-- [ ] Disable small TCP servers (`no service tcp-small-servers`)
-- [ ] Disable small UDP servers (`no service udp-small-servers`)
-- [ ] Disable IP source routing (`no ip source-route`)
-- [ ] Disable gratuitous ARPs (`no ip gratuitous-arps`)
-
-### Port Security
-- [ ] Enable port security on access ports (`switchport port-security`)
-- [ ] Set maximum MAC addresses (`switchport port-security maximum <number>`)
-- [ ] Configure violation mode (`switchport port-security violation {shutdown|restrict|protect}`)
-- [ ] Enable sticky MAC learning where appropriate (`switchport port-security mac-address sticky`)
-- [ ] Shut down unused ports (`shutdown`)
+### Remote Access Security
+- [ ] Configure VTY lines with authentication
+  ```cisco
+  Switch(config)# line vty 0 15
+  Switch(config-line)# password <vty-password>
+  Switch(config-line)# login
+  Switch(config-line)# exec-timeout 5 0
+  Switch(config-line)# exit
+  ```
+- [ ] Configure SSH (if supported by switch)
+  ```cisco
+  Switch(config)# ip domain name example.com
+  Switch(config)# crypto key generate rsa modulus 1024
+  Switch(config)# ip ssh version 2
+  Switch(config)# line vty 0 15
+  Switch(config-line)# transport input ssh
+  Switch(config-line)# login local
+  Switch(config-line)# exit
+  Switch(config)# username admin secret <strong-password>
+  ```
 
 ### VLAN Security
-- [ ] Create appropriate VLANs (`vlan <number>`)
-- [ ] Assign ports to appropriate VLANs (`switchport access vlan <number>`)
-- [ ] Configure trunk ports securely:
-  - [ ] Set trunk mode explicitly (`switchport mode trunk`)
-  - [ ] Specify allowed VLANs (`switchport trunk allowed vlan <list>`)
-  - [ ] Change native VLAN from default VLAN 1 (`switchport trunk native vlan <number>`)
-- [ ] Disable auto-trunking negotiation (`switchport nonegotiate`)
-- [ ] Disable unused VLAN 1
+- [ ] Check for and remove unnecessary VLANs
+  ```cisco
+  Switch# show vlan brief
+  ```
+- [ ] Configure native VLAN on trunk ports (not VLAN 1)
+  ```cisco
+  Switch(config)# interface GigabitEthernet0/1
+  Switch(config-if)# switchport trunk native vlan 999
+  Switch(config-if)# exit
+  ```
+- [ ] Configure trunk ports explicitly (no auto negotiation)
+  ```cisco
+  Switch(config)# interface GigabitEthernet0/1
+  Switch(config-if)# switchport mode trunk
+  Switch(config-if)# switchport nonegotiate
+  Switch(config-if)# exit
+  ```
 
-### Spanning Tree Protocol (STP) Security
-- [ ] Enable BPDU Guard on access ports (`spanning-tree bpduguard enable`)
-- [ ] Enable PortFast on access ports (`spanning-tree portfast`)
-- [ ] Configure Root Guard on appropriate ports (`spanning-tree guard root`)
-- [ ] Set bridge priority if this should be the root bridge (`spanning-tree vlan <vlan-id> priority <priority>`)
+### Port Security
+- [ ] Enable port security on access ports
+  ```cisco
+  Switch(config)# interface GigabitEthernet0/2
+  Switch(config-if)# switchport mode access
+  Switch(config-if)# switchport port-security
+  Switch(config-if)# switchport port-security maximum 1
+  Switch(config-if)# switchport port-security violation shutdown
+  Switch(config-if)# exit
+  ```
 
-### DHCP Snooping (if available)
-- [ ] Enable DHCP snooping globally (`ip dhcp snooping`)
-- [ ] Enable DHCP snooping on specific VLANs (`ip dhcp snooping vlan <vlan-list>`)
-- [ ] Configure trusted ports (`ip dhcp snooping trust`)
-- [ ] Set rate limits on untrusted ports (`ip dhcp snooping limit rate <rate>`)
+### Disable Unnecessary Services
+- [ ] Disable HTTP server
+  ```cisco
+  Switch(config)# no ip http server
+  Switch(config)# no ip http secure-server
+  ```
+- [ ] Disable CDP if not needed
+  ```cisco
+  Switch(config)# no cdp run
+  ```
 
-### Dynamic ARP Inspection (if available)
-- [ ] Enable DAI on VLANs (`ip arp inspection vlan <vlan-list>`)
-- [ ] Configure trusted interfaces (`ip arp inspection trust`)
-- [ ] Set rate limits (`ip arp inspection limit rate <rate>`)
+### Interface Security
+- [ ] Add descriptions to interfaces
+  ```cisco
+  Switch(config)# interface GigabitEthernet0/1
+  Switch(config-if)# description Uplink to Router
+  Switch(config-if)# exit
+  ```
+- [ ] Disable unused interfaces
+  ```cisco
+  Switch(config)# interface range GigabitEthernet0/5 - 24
+  Switch(config-if-range)# shutdown
+  Switch(config-if-range)# exit
+  ```
 
-### IP Source Guard (if available)
-- [ ] Enable IP Source Guard on untrusted ports (`ip verify source`)
+### Spanning Tree Security
+- [ ] Enable PortFast on access ports
+  ```cisco
+  Switch(config)# interface GigabitEthernet0/2
+  Switch(config-if)# spanning-tree portfast
+  Switch(config-if)# exit
+  ```
+- [ ] Enable BPDU Guard on access ports
+  ```cisco
+  Switch(config)# interface GigabitEthernet0/2
+  Switch(config-if)# spanning-tree bpduguard enable
+  Switch(config-if)# exit
+  ```
 
-### Logging and Monitoring
-- [ ] Configure log timestamps (`service timestamps log datetime msec show-timezone`)
-- [ ] Configure debug timestamps (`service timestamps debug datetime msec show-timezone`)
-- [ ] Set appropriate logging levels (`logging console critical`, `logging buffered 16384`)
-- [ ] Configure logging host if available (`logging host <ip-address>`)
-
-### Miscellaneous
-- [ ] Configure a legal warning banner (`banner login #...#`)
-- [ ] Save configuration (`copy running-config startup-config`)
-- [ ] Document all changes made
+### Save Configuration
+- [ ] Save your changes
+  ```cisco
+  Switch# write memory
+  ```
+  or
+  ```cisco
+  Switch# copy running-config startup-config
+  ```
 
 ## Verification Commands
 
 ### Router Verification
-- `show running-config` - View current configuration
-- `show version` - Check IOS version and system information
-- `show ip interface brief` - Check interface status
-- `show access-lists` - View configured ACLs
-- `show ip protocols` - View enabled routing protocols
-- `show users` - See who is logged in
-- `show ip ssh` - Verify SSH configuration
-- `show logging` - Check logging configuration
+- [ ] Check running configuration
+  ```cisco
+  Router# show running-config
+  ```
+- [ ] Check interface status
+  ```cisco
+  Router# show ip interface brief
+  ```
+- [ ] Verify SSH configuration
+  ```cisco
+  Router# show ip ssh
+  ```
+- [ ] Check access lists
+  ```cisco
+  Router# show access-lists
+  ```
+- [ ] Check users with access
+  ```cisco
+  Router# show users
+  ```
 
 ### Switch Verification
-- `show running-config` - View current configuration
-- `show version` - Check IOS version and system information
-- `show interfaces status` - Check port status
-- `show vlan brief` - View VLAN configuration
-- `show port-security interface <int>` - Check port security status
-- `show spanning-tree summary` - Verify STP configuration
-- `show ip dhcp snooping` - Check DHCP snooping configuration (if available)
-- `show ip arp inspection` - Check DAI status (if available)
+- [ ] Check running configuration
+  ```cisco
+  Switch# show running-config
+  ```
+- [ ] Check VLAN information
+  ```cisco
+  Switch# show vlan brief
+  ```
+- [ ] Check interface status
+  ```cisco
+  Switch# show interfaces status
+  ```
+- [ ] Check port security
+  ```cisco
+  Switch# show port-security
+  ```
+- [ ] Check spanning-tree status
+  ```cisco
+  Switch# show spanning-tree summary
+  ```
 
 ## Common CyberPatriot Cisco Findings
 
-These are commonly tested vulnerabilities in CyberPatriot competitions:
+These are frequently tested vulnerabilities in CyberPatriot competitions:
 
-1. Default or weak passwords
-2. Telnet enabled instead of SSH
-3. Unencrypted passwords in configuration
-4. HTTP/HTTPS servers enabled
-5. Unused interfaces not shut down
-6. No access lists restricting management access
-7. Default VLANs and trunking settings
-8. No port security configured
-9. No login banners configured
-10. CDP enabled on external interfaces
-11. Insecure routing protocol configurations
-12. Insufficient logging
+1. **Password Issues**
+   - Default passwords or no passwords
+   - Enable password used instead of enable secret
+   - Passwords not encrypted
+   - Weak passwords
+
+2. **Access Issues**
+   - Telnet enabled instead of SSH
+   - No console timeout set
+   - No VTY timeout set
+   - No access restrictions
+
+3. **Unnecessary Services**
+   - HTTP/HTTPS server enabled
+   - CDP running when not needed
+   - Unused interfaces not shut down
+
+4. **VLAN Issues (Switches)**
+   - Default VLAN 1 used for management
+   - Auto trunking enabled
+   - No port security configured
+
+5. **Configuration Management**
+   - No interface descriptions
+   - No login banners
+   - Configuration not saved
