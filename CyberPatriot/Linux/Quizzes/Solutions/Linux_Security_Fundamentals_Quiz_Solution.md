@@ -1,621 +1,126 @@
-# Linux Security Fundamentals Quiz - SOLUTION KEY
+# Linux Security Fundamentals Quiz - Solution Key (CyberPatriot Intermediate)
 
-## MENTOR ACCESS ONLY - Do Not Share With Cadets
+## Overview
 
-## Multiple Choice Questions (2 points each)
+This document provides the answers and explanations for the Linux Security Fundamentals Quiz (CyberPatriot Intermediate).
 
-### 1. Which file contains encrypted user passwords on Ubuntu/Linux Mint?
+---
 
-**Answer: B. /etc/shadow**
+## Section 1: Multiple Choice (2 points each)
 
-Explanation: In modern Linux systems, the encrypted password hashes are stored in /etc/shadow, which is only readable by root. The /etc/passwd file contains user information but not the actual password hashes.
+1.  **C. `/etc/shadow`**
+    *   Explanation: Modern Linux systems store the encrypted (hashed) passwords in `/etc/shadow`, which has restricted permissions, rather than the world-readable `/etc/passwd`.
 
-### 2. What command is used to change a user's password in Linux?
+2.  **C. `adduser jdoe sudo`**
+    *   Explanation: On Debian/Ubuntu systems, `adduser <user> <group>` is the common command-line utility to add an existing user to an existing group. `usermod -aG sudo jdoe` also works but `adduser` is often preferred for interactive use.
 
-**Answer: B. passwd**
+3.  **A. 751**
+    *   Explanation: Numeric permissions break down as Owner-roup-Other. 7 (rwx) = 4+2+1. 5 (r-x) = 4+0+1. 1 (--x) = 0+0+1. So, 751 matches Owner=rwx, Group=r-x, Other=--x.
 
-Explanation: The `passwd` command is used to change user passwords. It can be used by a user to change their own password or by root to change any user's password.
+4.  **C. `systemctl list-units --type=service --state=active`**
+    *   Explanation: This `systemctl` command specifically filters for unit files of type 'service' that are currently in the 'active' (running) state.
 
-### 3. Which of the following commands adds a user to the sudo group?
+5.  **C. `DENY`**
+    *   Explanation: A deny-by-default policy for incoming traffic is a core security principle. You explicitly allow only necessary traffic. `REJECT` sends a response, while `DENY` (or `DROP`) silently discards the packet. `DENY` is generally preferred for external interfaces.
 
-**Answer: C. usermod -aG sudo username**
+6.  **C. `PermitRootLogin no`**
+    *   Explanation: This specific directive within `sshd_config` controls whether the root user is allowed to log in directly via SSH. Setting it to `no` is a standard security practice.
 
-Explanation: The `usermod` command with the `-aG` option adds a user to a supplementary group without removing them from other groups. The `-a` option means "append" and must be used with `-G`.
+7.  **B. `apt upgrade`**
+    *   Explanation: `apt update` refreshes the list of available packages. `apt upgrade` actually downloads and installs the newer versions of packages already installed on the system based on the refreshed list.
 
-### 4. What is the correct permission notation (numeric) that gives read, write, and execute permissions to the owner, read and execute to the group, and no permissions to others?
+8.  **B. Allows anyone to execute the file with the permissions of the file's owner.**
+    *   Explanation: The SUID bit allows a user executing the file to temporarily gain the privileges of the file's owner (often root) *while the program is running*. This is used for specific tasks like `passwd` changing the password file, but can be dangerous if set on arbitrary scripts or programs.
 
-**Answer: B. 750**
+9.  **D. `/etc/login.defs`**
+    *   Explanation: This file contains system-wide default settings for user account creation and password aging policies like `PASS_MAX_DAYS`, `PASS_MIN_DAYS`, and `PASS_WARN_AGE`.
 
-Explanation: In numeric notation, 7 represents read (4) + write (2) + execute (1) for the owner, 5 represents read (4) + execute (1) for the group, and 0 represents no permissions for others.
+10. **C. SGID Bit**
+    *   Explanation: When the execute bit (`x`) is also present for the group, an `s` in the group permission field indicates the Set Group ID (SGID) bit is set. If set on a directory, new files/dirs created within it inherit the directory's group. If set on an executable, the process runs with the group privileges of the file's group owner.
 
-### 5. Which command displays currently running services on a systemd-based Linux system?
+## Section 2: True/False (1 point each)
 
-**Answer: C. systemctl list-units --type=service**
+11. **True**
+    *   Explanation: By convention and system design, the superuser (root) account always has UID 0.
 
-Explanation: The `systemctl list-units --type=service` command shows all active systemd services. Both Ubuntu and Linux Mint use systemd as their init system.
+12. **True**
+    *   Explanation: `6` (rw-) = 4+2+0. `0` (---) = 0+0+0. So `600` means only the owner has read and write permissions.
 
-### 6. What is the default UFW policy that should be set for incoming connections in a secure configuration?
+13. **False**
+    *   Explanation: Disabling the firewall significantly increases the system's exposure to network attacks and is strongly discouraged, especially during a competition.
 
-**Answer: C. deny**
+14. **False**
+    *   Explanation: `/etc/passwd` needs to be readable by all users so the system can look up user information (like UID, GID, shell). Correct permissions are typically `644` (rw-r--r--). `/etc/shadow` should be `640` or `600`.
 
-Explanation: In a secure configuration, the default UFW policy for incoming connections should be set to deny, which blocks all incoming connections unless explicitly allowed. This is set with `sudo ufw default deny incoming`.
+15. **True**
+    *   Explanation: `visudo` locks the sudoers file and performs syntax checking before saving, preventing errors that could lock users out of `sudo`.
 
-### 7. Which configuration file is used to secure the SSH server on Ubuntu/Linux Mint?
+16. **False**
+    *   Explanation: `disabled` means the service won't start automatically on boot, but it can still be started manually using `systemctl start <service_name>`.
 
-**Answer: B. /etc/ssh/sshd_config**
+17. **True**
+    *   Explanation: The sticky bit on a world-writable directory restricts file deletion/renaming so that only the file's owner (or the directory owner/root) can perform those actions.
 
-Explanation: The SSH server configuration is stored in `/etc/ssh/sshd_config`. This file contains all the settings that control SSH server behavior including security options.
+18. **False**
+    *   Explanation: `fail2ban` is an intrusion prevention tool that monitors log files for malicious patterns (like repeated failed logins) and temporarily bans offending IP addresses using firewall rules.
 
-### 8. Which command is used to check if the firewall is active in Ubuntu/Linux Mint?
+19. **True**
+    *   Explanation: SSH keys are much harder to brute-force than passwords and avoid issues with password complexity and reuse.
 
-**Answer: C. ufw status**
+20. **False**
+    *   Explanation: `apt update` only refreshes the package lists from the repositories. `apt upgrade` is needed to actually download and install the updates.
 
-Explanation: The `ufw status` command shows whether UFW (Uncomplicated Firewall) is active and what rules are configured. UFW is the default firewall configuration tool in Ubuntu and Linux Mint.
+## Section 3: Short Answer (3 points each)
 
-### 9. Which special permission, when set on a directory, ensures that only the file's owner can delete or rename files within that directory regardless of the directory's other permissions?
+21. **Commands to check logged-in users:** (Any two)
+    *   `who`: Shows basic information about logged-in users.
+    *   `w`: Shows who is logged in and what they are doing (more detail than `who`).
+    *   `last`: Shows history of recent logins (including current ones).
+    *   `users`: Lists usernames of currently logged-in users.
 
-**Answer: C. Sticky bit**
+22. **Why disable unnecessary services:**
+    *   Reduces the system's **attack surface**. Every running service is a potential entry point for attackers if it has vulnerabilities. Fewer services mean fewer potential weaknesses to exploit. It also simplifies system management and monitoring.
 
-Explanation: The sticky bit (`chmod +t` or mode 1000) prevents users from deleting or renaming files they don't own in directories that are writable by multiple users. It's commonly used on directories like /tmp.
+23. **Purpose and permissions of `/etc/shadow`:**
+    *   Purpose: Stores the **encrypted (hashed) passwords** and password aging information for user accounts.
+    *   Why restrictive permissions: It contains sensitive password hashes. If non-root users could read it, they could potentially run **offline brute-force or dictionary attacks** against the hashes to crack passwords. Permissions should be `640` (root readable, shadow group readable) or `600` (root readable/writable only).
 
-### 10. Which Linux file defines how often users must change their passwords?
+24. **Two SSH security settings (besides `PermitRootLogin no`):** (Any two)
+    *   `PasswordAuthentication no`: Disables password logins, forcing key-based authentication (more secure).
+    *   `Protocol 2`: Ensures only the more secure SSHv2 protocol is used.
+    *   `MaxAuthTries 3` (or lower): Limits the number of login attempts per connection, hindering brute-force attacks.
+    *   `AllowUsers user1 user2` / `AllowGroups groupname`: Restricts login only to specified users or groups (whitelisting).
+    *   `ClientAliveInterval 300` / `ClientAliveCountMax 0`: Helps terminate idle sessions.
+    *   `X11Forwarding no`: Disables X11 forwarding if not needed, reducing attack surface.
+    *   `PermitEmptyPasswords no`: Prevents login with empty passwords.
 
-**Answer: C. /etc/login.defs**
+25. **`find` command for user's files:**
+    *   `find /home -type f -user malicious_user`
+    *   Explanation: `find /home` starts searching in the /home directory. `-type f` looks only for files. `-user malicious_user` specifies the owner to match.
 
-Explanation: The `/etc/login.defs` file contains settings that control password aging, including PASS_MAX_DAYS (maximum password age), PASS_MIN_DAYS (minimum days between changes), and PASS_WARN_AGE (warning days before expiration).
+## Section 4: Scenario Analysis (5 points each)
 
-### 11. Which tool is commonly used to detect rootkits on Linux systems?
+26. **Meaning and Action:**
+    *   Meaning: The command lists all usernames from `/etc/passwd` that have a User ID (UID) of 0. UID 0 signifies the **root user (superuser)**. Seeing `root` is normal, but seeing `backup_admin` means this account **also has full root privileges**.
+    *   Action: This is a major security risk. The `backup_admin` account should be investigated immediately. Unless explicitly authorized and documented (highly unlikely for a non-root account name with UID 0), its password should be changed, the account locked (`passwd -l backup_admin` or `usermod -L backup_admin`), and ideally, its UID changed to a non-zero value or the account removed (`userdel backup_admin`) after verifying its purpose. The priority is to remove its root privileges.
 
-**Answer: B. chkrootkit**
+27. **Apache Checks and Restart:**
+    *   Check 1: **Review loaded modules.** Use `apache2ctl -M` or check configuration files (`/etc/apache2/mods-enabled/`) to see if unnecessary or potentially dangerous modules (like `mod_status` exposed publicly, `mod_userdir`, `mod_info`) are enabled. Disable unneeded ones using `a2dismod <module_name>`.
+    *   Check 2: **Examine Directory permissions/options.** Look in `/etc/apache2/apache2.conf` or site configuration files (`/etc/apache2/sites-enabled/`) for `<Directory>` blocks. Ensure `Options -Indexes` is set to prevent directory listing and check for overly permissive `AllowOverride` settings.
+    *   Restart Command: `sudo systemctl restart apache2`
 
-Explanation: `chkrootkit` is a widely used tool for scanning Linux systems for signs of rootkits and other malware. It checks for signs of known rootkits, suspicious processes, and modified system files.
+28. **Permission Risk and Fix:**
+    *   Risk: Permissions `-rwxrwxrwx` (numeric `777`) mean **anyone** on the system can read, write, and execute the `monitor.sh` script. A regular user could modify the script to contain malicious commands (e.g., delete files, create a reverse shell). If another user (or even root via a cron job) runs this script, the malicious code would execute with their privileges.
+    *   Fix Command: `chmod 754 /home/someuser/monitor.sh`
+        *   Explanation: `7` (rwx) for the owner, `5` (r-x) for the group, `4` (r--) for others. This allows the owner full control, the group to read/execute, and others only to read. Adjust group/other permissions based on actual need (e.g., `750` if others don't need read access).
 
-### 12. What command shows all user accounts on the system?
+---
 
-**Answer: A. cat /etc/passwd**
+## Bonus Question (4 points)
 
-Explanation: The `/etc/passwd` file contains the list of all system user accounts. While B (`getent passwd`) is also technically correct, option A is the most direct method to view all local user accounts.
+29. **`apt update` vs `apt upgrade`:**
+    *   `apt update`: **Does not install or upgrade any packages.** It downloads the latest package information (lists of packages, versions, dependencies) from the repositories defined in `/etc/apt/sources.list` and `/etc/apt/sources.list.d/`. It essentially synchronizes the local package index cache with the remote repositories.
+    *   `apt upgrade`: **Installs the newer versions** of packages that are already installed on the system, based on the information gathered by `apt update`. It will not remove packages or install new ones that weren't already present (unless they are new dependencies).
+    *   Why both: You must run `apt update` first so the system knows *what* newer versions are available. Then, `apt upgrade` uses that updated information to perform the actual installations/upgrades. Running `upgrade` without `update` first means you'll only upgrade based on potentially outdated package lists.
 
-### 13. Which is the most secure method for remote administration of Linux systems?
-
-**Answer: C. SSH with key-based authentication**
-
-Explanation: SSH with key-based authentication is generally considered the most secure option for remote administration because it doesn't rely on passwords that can be brute-forced. It requires possession of the private key, which should be protected by a passphrase.
-
-### 14. What is the correct command to find all SUID files on a system?
-
-**Answer: A. find / -perm /4000**
-
-Explanation: The `find / -perm /4000` command searches the entire filesystem for files with the SUID bit set. The `/4000` notation means "any file that has the SUID bit (4000) set."
-
-### 15. Which of these is NOT a common Linux security tool?
-
-**Answer: D. WindowsDefender**
-
-Explanation: WindowsDefender is Microsoft's security solution for Windows systems, not Linux. SELinux, AppArmor, and Fail2ban are all legitimate Linux security tools.
-
-## True/False Questions (1 point each)
-
-### 16. In Linux, the root user has the UID (User ID) of 0.
-
-**Answer: True**
-
-Explanation: The root user in Linux always has UID 0. This is how the system identifies the root user and grants it full administrative privileges.
-
-### 17. A SUID permission allows the user who executes a file to do so with the permissions of that file's group owner.
-
-**Answer: False**
-
-Explanation: SUID (Set User ID) permission allows a user to execute a file with the permissions of the file's owner, not the group owner. SGID (Set Group ID) allows execution with the permissions of the file's group.
-
-### 18. Files created in a directory with the SGID bit set will inherit the group ownership of that directory.
-
-**Answer: True**
-
-Explanation: When the SGID bit is set on a directory, any files created within that directory will inherit the group ownership of the directory, not the primary group of the user creating the file.
-
-### 19. The command "chmod 777 file.txt" is considered secure because it ensures all users can access the file.
-
-**Answer: False**
-
-Explanation: The permission 777 (rwxrwxrwx) gives full read, write, and execute permissions to everyone, which is highly insecure. It allows any user to modify or execute the file, creating significant security risks.
-
-### 20. In Linux, a normal user can listen on ports below 1024 without special privileges.
-
-**Answer: False**
-
-Explanation: On Linux systems, ports below 1024 are considered privileged ports. Only root (or processes with the CAP_NET_BIND_SERVICE capability) can bind to these ports.
-
-### 21. The /etc/passwd file on modern Linux systems contains encrypted password hashes.
-
-**Answer: False**
-
-Explanation: In modern Linux systems, the /etc/passwd file contains an 'x' in the password field, indicating that the encrypted password is stored in /etc/shadow. This separation improves security as the shadow file is only readable by root.
-
-### 22. When using SSH key-based authentication, it's best practice to protect the private key with a passphrase.
-
-**Answer: True**
-
-Explanation: Adding a passphrase to an SSH private key provides an additional layer of security. If the private key file is compromised, the attacker would still need the passphrase to use it.
-
-### 23. AppArmor and SELinux are both implementations of Mandatory Access Control (MAC).
-
-**Answer: True**
-
-Explanation: Both AppArmor and SELinux implement Mandatory Access Control (MAC) systems, which restrict how processes can access resources based on security policies defined by administrators, rather than traditional discretionary access controls.
-
-### 24. Setting "PermitRootLogin yes" in the SSH configuration file is a recommended security practice.
-
-**Answer: False**
-
-Explanation: Allowing direct root login via SSH is a security risk. Best practice is to set "PermitRootLogin no" and require users to log in with regular accounts and use sudo for privileged operations.
-
-### 25. Running services with the minimum required privileges is a core principle of Linux security.
-
-**Answer: True**
-
-Explanation: The principle of least privilege is a fundamental security concept that states that a process or user should only have the minimum privileges necessary to perform its function, limiting the potential damage from exploitation.
-
-## Short Answer Questions (3 points each)
-
-### 26. List three ways to check for unauthorized users on a Linux system.
-
-**Sample Answer:**
-1. Examine the `/etc/passwd` file to list all user accounts
-2. Check members of privileged groups: `getent group sudo` or `getent group wheel`
-3. Review login history with commands like `last` and `lastlog` to spot unusual accounts
-4. Look for accounts with UID 0 (root privileges): `awk -F: '$3 == 0 {print $1}' /etc/passwd`
-5. Check for accounts with valid login shells: `grep -v '/nologin\|/false' /etc/passwd`
-
-**Grading Notes:** Award 1 point for each valid method listed. The answer should demonstrate understanding of where user information is stored and how to access it.
-
-### 27. Explain the principle of least privilege and why it's important for Linux security.
-
-**Sample Answer:**
-The principle of least privilege states that users, processes, and systems should only have the minimum privileges necessary to perform their functions. In Linux, this means:
-
-- Users should only be granted access to the specific resources they need
-- Services should run with the minimum permissions required
-- Sudo access should be limited to only necessary commands
-- Root access should be used sparingly and only when required
-
-This principle is important because it limits the damage that can occur if a user account or service is compromised. If a service running as a limited user is exploited, the attacker gains only limited privileges, not full system access. This contains security breaches and prevents privilege escalation.
-
-**Grading Notes:** Award 1 point for correctly defining the principle, 1 point for explaining how it applies to Linux, and 1 point for explaining why it's important for security.
-
-### 28. What is the purpose of the "umask" and how does it affect file creation permissions?
-
-**Sample Answer:**
-Umask (user mask) is a value that determines the default permissions for newly created files and directories. It works by masking out (removing) specific permission bits from the maximum default permissions, which are 666 (rw-rw-rw-) for files and 777 (rwxrwxrwx) for directories.
-
-When a file or directory is created, the system:
-1. Starts with the maximum default permissions
-2. Removes (masks) the permission bits specified in the umask value
-3. Assigns the resulting permissions to the new file/directory
-
-For example, a umask of 022 removes write permissions for group and others, resulting in 644 (rw-r--r--) for files and 755 (rwxr-xr-x) for directories.
-
-Common umask values:
-- 022: rw-r--r-- for files, rwxr-xr-x for directories (typical for most systems)
-- 027: rw-r----- for files, rwxr-x--- for directories (more restrictive)
-- 077: rw------- for files, rwx------ for directories (highly restrictive)
-
-A secure umask ensures that newly created files don't inadvertently receive excessive permissions.
-
-**Grading Notes:** Award 1 point for explaining what umask is, 1 point for correctly describing how it works, and 1 point for demonstrating understanding of practical umask values.
-
-### 29. Describe three methods to secure SSH on a Linux server.
-
-**Sample Answer:**
-1. **Disable root login**: Add `PermitRootLogin no` to sshd_config to prevent direct root login, forcing users to log in as regular users and use sudo for privileged operations.
-
-2. **Implement key-based authentication**: Configure SSH to use public key authentication instead of passwords by setting `PasswordAuthentication no` and adding authorized keys to `~/.ssh/authorized_keys`. This prevents brute force attacks and is more secure than passwords.
-
-3. **Restrict access by IP address**: Use firewall rules (iptables or ufw) to allow SSH connections only from trusted IP addresses, or use the `AllowUsers` and `AllowGroups` directives in sshd_config to specify which users can access the system.
-
-Other valid methods include:
-- Changing the default port (22) to a non-standard port
-- Using fail2ban to block repeated failed login attempts
-- Limiting SSH protocol version to SSHv2 only
-- Configuring strong ciphers and MACs
-- Setting up two-factor authentication
-- Limiting connection attempts with `MaxAuthTries` and `MaxStartups`
-
-**Grading Notes:** Award 1 point for each valid method, with a focus on correctness and practicality. Each method should include both what to do and why it improves security.
-
-### 30. List three locations where an attacker might place a persistence mechanism (backdoor) on a Linux system.
-
-**Sample Answer:**
-1. **Startup scripts/services**: Creating malicious systemd service files in `/etc/systemd/system/` or init scripts in `/etc/init.d/` that run at boot time
-
-2. **Cron jobs**: Adding scheduled tasks in `/etc/cron.d/`, `/etc/crontab`, or user crontabs to periodically run malicious code
-
-3. **User profiles/bashrc**: Adding malicious code to shell profile files like `~/.bashrc`, `~/.bash_profile`, or `/etc/profile` that execute when users log in
-
-Other valid locations include:
-- SSH authorized_keys files for unauthorized access
-- Kernel modules and rootkits in the system
-- PAM configuration modifications
-- SUID/SGID binaries or modified system executables
-- Web server configuration files
-- Hidden files in user home directories
-- Unexpected user accounts with high privileges
-- Scheduled system tasks like anacron or at jobs
-
-**Grading Notes:** Award 1 point for each valid location. The answer should demonstrate understanding of Linux startup processes and persistence techniques.
-
-## Scenario Questions (5 points each)
-
-### 31. You're securing a Linux system and need to check who has sudo access. What commands would you use, and what files would you examine to get this information? Explain how you would interpret the results.
-
-**Sample Answer:**
-To check who has sudo access on a Linux system, I would use these commands and examine these files:
-
-1. **Check sudo group membership**:
-   ```bash
-   getent group sudo
-   # or
-   grep -Po '^sudo:.*:\K.*$' /etc/group
-   ```
-   This shows all users in the sudo group, who typically have full sudo privileges.
-
-2. **Examine the sudoers file**:
-   ```bash
-   sudo cat /etc/sudoers
-   # or safely with
-   sudo visudo -c
-   ```
-   The sudoers file contains rules defining who can use sudo and what commands they can run. I would look for lines like:
-   - `username ALL=(ALL:ALL) ALL` - User has full sudo access
-   - `%groupname ALL=(ALL:ALL) ALL` - Group has full sudo access
-   - `username ALL=(ALL:ALL) NOPASSWD: ALL` - User has passwordless sudo (security risk)
-   - Command-specific permissions like `username ALL=(ALL:ALL) /bin/ls, /usr/bin/apt`
-
-3. **Check sudoers.d directory**:
-   ```bash
-   sudo ls -la /etc/sudoers.d/
-   sudo cat /etc/sudoers.d/*
-   ```
-   This directory contains additional sudoers configurations that may grant sudo privileges.
-
-4. **Look for other administrator groups**:
-   ```bash
-   getent group admin
-   getent group wheel  # on some systems
-   ```
-   Some systems use other groups for administrative access.
-
-To interpret the results, I would:
-- Identify all users with full sudo access and verify they should have it
-- Check for passwordless sudo access (NOPASSWD), which is generally a security concern
-- Look for command-specific restrictions and verify they're appropriate
-- Cross-reference the list of sudo users against authorized system administrators
-- Document any unauthorized sudo access for removal
-
-**Grading Notes:** Award up to 5 points based on completeness and accuracy. Look for:
-- Commands to check sudo group membership (1 point)
-- Examination of sudoers file and directory (1 point)
-- Proper interpretation of sudoers syntax (1 point)
-- Looking for additional sources of privilege (1 point)
-- Logical interpretation of results (1 point)
-
-### 32. During a CyberPatriot competition, you discover several unfamiliar services running on your Ubuntu system. Describe the steps you would take to:
-   a) Identify these services
-   b) Determine if they are legitimate
-   c) Secure or remove them if necessary
-   Include specific commands you would use at each step.
-
-**Sample Answer:**
-
-**a) Identify the services:**
-1. List all running services:
-   ```bash
-   systemctl list-units --type=service --state=active
-   # or
-   service --status-all
-   ```
-
-2. Get detailed information about unfamiliar services:
-   ```bash
-   systemctl status service_name
-   ```
-
-3. Find out what executable the service is running:
-   ```bash
-   which service_name
-   ls -la /usr/sbin/service_name
-   ```
-
-4. Check service configuration:
-   ```bash
-   cat /lib/systemd/system/service_name.service
-   cat /etc/systemd/system/service_name.service
-   ```
-
-5. Check open network ports associated with services:
-   ```bash
-   ss -tulpn | grep service_name
-   ```
-
-**b) Determine if the services are legitimate:**
-1. Check if the service is mentioned in the competition README file as required
-   
-2. Research the service online:
-   ```bash
-   apt show package_name
-   ```
-
-3. Check when the service was installed:
-   ```bash
-   dpkg -l | grep service_name
-   ls -la /lib/systemd/system/service_name.service
-   ```
-
-4. Check process details and loaded files:
-   ```bash
-   ps aux | grep service_name
-   lsof -p process_id
-   ```
-
-5. Check service binary integrity:
-   ```bash
-   dpkg -V package_name
-   ```
-
-6. Look for suspicious behaviors:
-   - Services with obfuscated names
-   - Recently installed services not part of standard packages
-   - Services running from unusual locations (/tmp, /home)
-   - Services connecting to external IP addresses
-   - Services running under suspicious user accounts
-
-**c) Secure or remove the services if necessary:**
-1. For unnecessary services, disable and stop them:
-   ```bash
-   sudo systemctl stop service_name
-   sudo systemctl disable service_name
-   ```
-
-2. For required services that need securing:
-   - Modify the service configuration:
-     ```bash
-     sudo systemctl edit service_name
-     ```
-   - Restrict service permissions:
-     ```bash
-     sudo nano /lib/systemd/system/service_name.service
-     # Add directives like:
-     # PrivateTemp=true
-     # ProtectSystem=strict
-     # ReadOnlyDirectories=/etc /home
-     ```
-   - Apply least privilege principles (run as non-root user)
-   
-3. For potentially malicious services, remove completely:
-   ```bash
-   sudo systemctl stop service_name
-   sudo systemctl disable service_name
-   sudo apt purge package_name  # If installed via a package
-   sudo rm /etc/systemd/system/service_name.service  # If manually installed
-   sudo systemctl daemon-reload
-   ```
-
-4. Document all changes made for scoring report
-
-**Grading Notes:** Award up to 5 points based on the following:
-- Proper service identification methodology (1 point)
-- Thorough legitimacy assessment approach (2 points)
-- Appropriate remediation steps (1 point)
-- Proper command usage and accurate syntax (1 point)
-
-### 33. You've been assigned to secure an Ubuntu web server. List five specific security measures you would implement, explaining why each is important and how you would implement it.
-
-**Sample Answer:**
-
-1. **Implement a Firewall**
-   - **Why it's important**: Restricts network access to only necessary services, reducing attack surface and preventing unauthorized access attempts.
-   - **Implementation**:
-     ```bash
-     sudo apt install ufw
-     sudo ufw default deny incoming
-     sudo ufw default allow outgoing
-     sudo ufw allow ssh
-     sudo ufw allow http
-     sudo ufw allow https
-     sudo ufw enable
-     ```
-   - Regular auditing of firewall rules to ensure they remain appropriate.
-
-2. **Secure SSH Access**
-   - **Why it's important**: SSH is a primary administrative entry point and a common target for brute force attacks.
-   - **Implementation**:
-     ```bash
-     sudo nano /etc/ssh/sshd_config
-     # Add or modify:
-     PermitRootLogin no
-     PasswordAuthentication no
-     Protocol 2
-     AllowUsers admin webadmin
-     ```
-   - Set up key-based authentication:
-     ```bash
-     # On client:
-     ssh-keygen -t ed25519 -a 100
-     ssh-copy-id user@server
-     ```
-   - Install and configure fail2ban to block repeated failed login attempts.
-
-3. **Harden Web Server Configuration (Apache/Nginx)**
-   - **Why it's important**: Prevents common web application attacks and information disclosure.
-   - **Implementation** (for Apache):
-     ```bash
-     sudo nano /etc/apache2/conf-available/security.conf
-     # Add or modify:
-     ServerTokens Prod
-     ServerSignature Off
-     TraceEnable Off
-     Header always set X-XSS-Protection "1; mode=block"
-     Header always set X-Content-Type-Options "nosniff"
-     Header always set X-Frame-Options "SAMEORIGIN"
-     Header always set Content-Security-Policy "default-src 'self';"
-     ```
-   - Enable HTTP Strict Transport Security (HSTS):
-     ```bash
-     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-     ```
-   - Enable SSL/TLS with strong ciphers:
-     ```bash
-     sudo a2enmod ssl
-     # Configure SSL certificates and ciphers
-     ```
-
-4. **Set Up Automated Security Updates**
-   - **Why it's important**: Ensures that security patches are applied promptly without manual intervention.
-   - **Implementation**:
-     ```bash
-     sudo apt install unattended-upgrades
-     sudo dpkg-reconfigure -plow unattended-upgrades
-     sudo nano /etc/apt/apt.conf.d/50unattended-upgrades
-     # Ensure security updates are enabled:
-     Unattended-Upgrade::Allowed-Origins {
-         "${distro_id}:${distro_codename}-security";
-     };
-     ```
-   - Configure automated restart for kernel updates if needed.
-
-5. **Implement File Integrity Monitoring**
-   - **Why it's important**: Detects unauthorized file changes that could indicate a compromise.
-   - **Implementation**:
-     ```bash
-     sudo apt install aide
-     sudo nano /etc/aide/aide.conf
-     # Configure directories to monitor
-     # Include web directories and configuration files:
-     /var/www/html NORMAL
-     /etc/apache2 NORMAL
-     ```
-   - Initialize AIDE database:
-     ```bash
-     sudo aideinit
-     sudo cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
-     ```
-   - Set up daily checks:
-     ```bash
-     sudo nano /etc/cron.daily/aide-check
-     # Add:
-     #!/bin/sh
-     /usr/bin/aide --check | mail -s "AIDE Check Report for $(hostname)" root
-     ```
-
-Additional valid measures:
-- Implement ModSecurity web application firewall
-- Set up AppArmor or SELinux profiles
-- Configure proper file permissions for web content
-- Set up log monitoring and alerting
-- Implement backup strategy
-- Use SELinux or AppArmor to confine the web server process
-- Implement account lockout policies
-- Set up intrusion detection (OSSEC, Wazuh)
-- Implement database security measures
-
-**Grading Notes:** Award 1 point for each well-described security measure. Each measure should include why it's important and specific implementation steps with correct command syntax or configuration examples.
-
-## Bonus Question (5 points)
-
-### 34. Explain how an attacker might leverage weak file permissions on key system directories or files to escalate privileges on a Linux system. Give at least two examples of specific files or directories where improper permissions could lead to privilege escalation, and how you would secure them.
-
-**Sample Answer:**
-
-Attackers can leverage weak file permissions on critical system files or directories to escalate privileges from a standard user to root. This typically happens when sensitive files are made writable by non-privileged users, allowing modification of system behavior.
-
-**Example 1: Writable /etc/passwd file**
-If the /etc/passwd file has weak permissions (e.g., chmod 666 /etc/passwd), any user could modify it to create a new user with UID 0 (root privileges). The attack would work like this:
-
-1. Generate a password hash:
-   ```bash
-   openssl passwd -1 -salt xyz password123
-   ```
-   This generates something like `$1$xyz$fYHFJksLjGFhkasGJkl5M1`
-
-2. Add a new root-privileged user by appending to /etc/passwd:
-   ```bash
-   echo "hacker:$1$xyz$fYHFJksLjGFhkasGJkl5M1:0:0:Hacked:/root:/bin/bash" >> /etc/passwd
-   ```
-
-3. Now the attacker can switch to this user and have full root privileges:
-   ```bash
-   su hacker
-   ```
-
-To secure /etc/passwd, the proper permissions should be 644 (rw-r--r--) and owned by root:
-```bash
-sudo chmod 644 /etc/passwd
-sudo chown root:root /etc/passwd
-```
-
-**Example 2: Writable SUID programs**
-SUID (Set User ID) executables run with the permissions of the file owner rather than the user executing them. If a SUID program owned by root has weak permissions, an attacker can modify it to execute arbitrary commands with root privileges.
-
-For example, if `/usr/bin/sudo` had weak permissions:
-1. The attacker could replace it with a malicious script:
-   ```bash
-   echo '#!/bin/bash
-   echo "Password:" 
-   read -s password
-   echo "Running command..."
-   /bin/bash' > /usr/bin/sudo
-   ```
-
-2. When other users run sudo, they'd get a shell with root privileges, and the attacker would also capture their passwords.
-
-To properly secure SUID binaries:
-```bash
-sudo chmod 4755 /usr/bin/sudo
-sudo chown root:root /usr/bin/sudo
-```
-
-**Example 3: Writable systemd service files**
-If an attacker can modify service files in `/etc/systemd/system/` or `/lib/systemd/system/`, they could replace legitimate service definitions with malicious ones that execute commands as root when the service starts.
-
-For instance, with writable systemd directories:
-1. The attacker could modify a service file:
-   ```bash
-   echo '[Service]
-   ExecStart=/bin/sh -c "id > /tmp/pwned && cp /bin/bash /tmp/rootshell && chmod 4777 /tmp/rootshell"
-   [Install]
-   WantedBy=multi-user.target' > /etc/systemd/system/important-service.service
-   ```
-
-2. When the service restarts or the system reboots, the malicious commands execute as root.
-
-To secure systemd service directories:
-```bash
-sudo chmod 755 /etc/systemd/system
-sudo chmod 755 /lib/systemd/system
-sudo chmod 644 /etc/systemd/system/*.service
-sudo chmod 644 /lib/systemd/system/*.service
-sudo chown -R root:root /etc/systemd/system
-sudo chown -R root:root /lib/systemd/system
-```
-
-**Example 4: Writable cron job files**
-If directories like `/etc/cron.d` or files like `/etc/crontab` are writable by non-privileged users, attackers can add entries that execute commands as root on a schedule.
-
-To secure cron directories and files:
-```bash
-sudo chmod -R 644 /etc/cron.d/*
-sudo chmod 644 /etc/crontab
-sudo chmod 644 /etc/cron.hourly/*
-sudo chmod 644 /etc/cron.daily/*
-sudo chmod 644 /etc/cron.weekly/*
-sudo chmod 644 /etc/cron.monthly/*
-sudo chown -R root:root /etc/cron.*
-```
-
-In all cases, the principle of least privilege should be applied - system files and directories should be owned by root and only writable by root, with restrictive read permissions as appropriate for the file's purpose.
-
-**Grading Notes:** Award up to 5 points based on:
-- Clear explanation of how weak permissions enable privilege escalation (1 point)
-- Example 1 with proper technical details and securing method (2 points)
-- Example 2 with proper technical details and securing method (2 points)
-- Additional points for extra examples or particularly insightful analysis
+---

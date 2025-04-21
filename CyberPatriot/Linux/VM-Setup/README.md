@@ -1,176 +1,88 @@
-# Corporate Server Breach - Linux Incident Response Scenario
+# CyberPatriot Linux VM Setup: "Corporate Server Breach" Scenario
 
-This directory contains a script to set up a realistic Linux incident response training environment for CyberPatriot competition preparation. The scenario simulates a compromised corporate server with multiple backdoors, persistence mechanisms, vulnerable services, and forensic artifacts.
+This document outlines the setup process for the "Corporate Server Breach" Linux VM, designed for CyberPatriot incident response training. This VM simulates a realistic post-compromise environment tailored for cadet skill development.
 
-## Understanding the Competition
+## Scenario Overview
 
-CyberPatriot is best defined as an **incident response and remediation competition** where teams inherit a business computer network that has been compromised. Teams must:
+Fictional Company "Innovatech Dynamics" has detected suspicious activity on their primary Linux web server (`corp-linux-server`). Cadets act as the incident response team tasked with identifying the breach, removing attacker persistence, securing vulnerabilities, and restoring normal operations according to the company's specific (fictional) security policy outlined in the challenge README.
 
-1. Identify unauthorized changes and security issues
-2. Find and analyze forensic artifacts
-3. Remove attacker persistence mechanisms
-4. Apply security hardening to prevent future attacks
+## VM Specifications
 
-Rather than simply collecting and applying security fixes, successful teams develop a comprehensive approach to understanding and responding to security incidents.
-
-## Overview
-
-The `corporate-server-breach.sh` script transforms a clean Ubuntu installation into a compromised server that exhibits signs of a successful attack with established persistence. Cadets must investigate the breach, identify unauthorized access methods, remove backdoors, and secure the system according to security requirements.
-
-## Features
-
-- SSH brute force attack evidence in log files
-- Multiple attacker persistence mechanisms:
-  - Backdoor user accounts
-  - Malicious cron jobs
-  - SUID binaries
-  - Backdoor systemd services
-- Vulnerable service configurations
-- Leaked credentials and sensitive data
-- Automated scoring system
-- Competition-style README.txt file
-
-## Requirements
-
-- Ubuntu 20.04 LTS or 22.04 LTS (fresh installation)
-- Minimum 20GB disk space
-- 2GB RAM minimum (4GB recommended)
-- Internet connection during setup (for package installation)
-- Sudo/root access
+- **Base OS**: Ubuntu 22.04 LTS (Minimal Install)
+- **Hostname**: `corp-linux-server`
+- **Primary User**: `sysadmin` (Password: `Company2023!`)
+- **Key Services**: SSH, Apache (with custom PHP app), FTP (vsftpd), Custom internal service `innovatech-ticker`
+- **Simulated Attack**: Includes evidence of SSH brute force, web vulnerability exploitation, multiple persistence mechanisms (cron, systemd, user-level), and data staging.
 
 ## Quick Start
 
-```bash
-# Download the script
-curl -O https://raw.githubusercontent.com/Minagera/CyberPatriot/main/CyberPatriot/Linux/VM-Setup/corporate-server-breach.sh
-
-# Make it executable
-chmod +x corporate-server-breach.sh
-
-# Run with sudo
-sudo ./corporate-server-breach.sh
-```
+1. Ensure you have a fresh Ubuntu 22.04 VM with at least 2GB RAM and 20GB disk space.
+2. Download the setup script:
+   ```bash
+   wget https://github.com/Minagera/CyberPatriot/raw/main/CyberPatriot/Linux/VM-Setup/corporate-server-breach.sh -O setup-innovatech.sh
+   ```
+3. Make the script executable:
+   ```bash
+   chmod +x setup-innovatech.sh
+   ```
+4. Run the script with root privileges:
+   ```bash
+   sudo ./setup-innovatech.sh
+   ```
+5. Wait for the script to complete (approx. 5-15 minutes depending on network speed).
+6. **Crucial Step**: Create a VM snapshot named "Innovatech Breach - Initial State" before distributing to cadets.
+7. Login credentials for initial access: `sysadmin` / `Company2023!`
 
 ## Detailed Installation
 
-1. Create a new Ubuntu VM in your preferred virtualization software
-2. Install Ubuntu with minimal installation options
-3. Create a user named "sysadmin" during installation 
-4. Install VM guest additions if needed
-5. Take a snapshot labeled "Clean Ubuntu Install"
-6. Run the quick start commands above
-7. Take a snapshot labeled "Corporate Server Breach - Ready"
+1.  **Prepare Virtual Environment**:
+    *   Create a new VM (VirtualBox/VMware recommended).
+    *   Install Ubuntu 22.04 LTS Server (Minimal).
+    *   During installation, create a temporary admin user (e.g., `tempadmin`).
+    *   Ensure network connectivity (NAT or Bridged).
+2.  **Transfer and Execute Script**:
+    *   Log in as `tempadmin`.
+    *   Use `wget` (as shown in Quick Start) or SCP to transfer `setup-innovatech.sh` to the VM.
+    *   Run `chmod +x setup-innovatech.sh`.
+    *   Execute `sudo ./setup-innovatech.sh`.
+    *   Monitor output for errors (logged in `/var/log/breach-setup.log`).
+3.  **Post-Installation**:
+    *   Script completion indicates the VM is in the compromised state.
+    *   Shut down the VM.
+    *   Take a snapshot (mandatory for reuse).
+    *   Distribute the VM image or snapshot to cadets.
 
-## Usage Instructions
+## Usage Instructions for Cadets
 
-1. Provide cadets with the VM in its compromised state
-2. Have them login with credentials: sysadmin / Company2023!
-3. Direct them to read the README.txt file in the home directory
-4. Set a time limit (90-120 minutes recommended)
-5. Cadets can check their progress using:
-   - Command line: `check_score`
-   - Web interface: http://localhost/score.php
+1. Start the VM from the "Innovatech Breach - Initial State" snapshot.
+2. Log in using the provided `sysadmin` credentials.
+3. Locate the challenge instructions file on the Desktop: `README-Innovatech-Incident.txt`.
+4. Follow the instructions in the README to investigate, secure the system, and answer forensic questions within the allotted time.
+5. Document all findings and remediation steps in a separate report file.
 
-## Competition README
+## Competition README (`README-Innovatech-Incident.txt`)
 
-The script creates a competition-style README.txt file in the home directory that includes:
+The README file generated by the script includes:
+- Scenario background specific to Innovatech Dynamics.
+- List of authorized Innovatech user accounts and expected running services.
+- Specific forensic questions related to the simulated attack timeline and methods.
+- Scoring criteria tailored to the vulnerabilities present in this VM.
+- Fictional company policies regarding data handling and service uptime.
 
-- A scenario description of a corporate server breach
-- Tasks for the incident response team
-- Company security policy requirements
-- Forensic questions that require investigation of log files and system artifacts
+## Customization Options (Instructor)
 
-This mimics the actual README files provided during CyberPatriot competition rounds.
-
-## Effective Training Approach
-
-Based on the experiences of national champions, here are key strategies for effective CyberPatriot training:
-
-### 1. Develop the Security Mindset
-Focus on understanding security principles that can be applied broadly, rather than just collecting specific fixes.
-
-### 2. Baselining Strategy
-Train cadets to compare the competition image with clean systems to identify:
-- Unauthorized user accounts
-- Unusual running services
-- Modified configuration files
-- Suspicious scheduled tasks/cron jobs
-- Unexpected network connections
-
-### 3. Operating System Familiarity
-Develop deep knowledge of operating system internals:
-- Authentication mechanisms
-- Service management
-- Logging systems
-- Permission models
-- Configuration file structures
-
-### 4. Structured Approach
-During competition, follow a methodical process:
-1. Review README and forensic questions
-2. Baseline the system against a clean reference
-3. Identify and remove unauthorized access methods
-4. Update and patch the system
-5. Secure configurations and services
-6. Implement proper user and permission policies
-
-## Training Session Structure
-
-For optimal learning, structure training sessions as follows:
-
-1. **Briefing** (10 minutes)
-   - Explain the scenario background
-   - Review previous lessons learned
-   - Set clear objectives
-
-2. **Investigation & Remediation** (90-120 minutes)
-   - Provide access to the scenario VM
-   - Allow cadets to work independently or in teams
-   - Encourage documentation of findings
-
-3. **Debrief** (30 minutes)
-   - Review scoring results
-   - Discuss challenges encountered
-   - Share effective solutions
-   - Identify knowledge gaps for future training
-
-## Customization
-
-You can modify the script to adjust difficulty level or change specific aspects:
-
-- Change the `SCENARIO_LEVEL` variable to "basic", "intermediate", or "advanced"
-- Edit usernames, passwords, or IP addresses to match your training scenario
-- Add or remove specific vulnerabilities as needed
-
-## Scoring
-
-The scoring system evaluates cadets on their ability to:
-
-- Remove unauthorized user accounts
-- Disable malicious services and cron jobs
-- Implement secure service configurations
-- Apply proper password policies
-- Enable and configure system security features
-
-## Notes for Instructors
-
-- This VM is designed for educational purposes only
-- Do not connect the compromised VM directly to the internet
-- Use an isolated network for multi-VM training scenarios
-- Reset to the "Corporate Server Breach - Ready" snapshot between training sessions
-- Consider having cadets document their findings and remediation steps
+The `setup-innovatech.sh` script can be modified:
+- **`SCENARIO_LEVEL`**: Adjust complexity (`basic`, `intermediate`, `advanced`). Affects persistence methods and vulnerability obscurity.
+- **User Variables**: Change usernames/passwords (update README generation accordingly).
+- **IP Addresses**: Modify hardcoded attacker IPs (e.g., `ATTACKER_IP="10.150.20.5"`) for variety.
+- **Vulnerabilities**: Comment out specific sections in the script to remove certain attack vectors or persistence methods for tailored difficulty.
 
 ## Troubleshooting
 
-If you encounter issues during setup:
-
-- Check the Ubuntu version (20.04/22.04 recommended)
-- Ensure the VM has internet access during setup
-- Verify you have sufficient disk space
-- Run the script with sudo privileges
-
-For additional help, open an issue on the GitHub repository.
+- **Script Fails**: Check internet connection, ensure base OS is correct, verify sufficient disk space. Check `/var/log/breach-setup.log`.
+- **Services Not Starting**: Use `systemctl status <service_name>` and `journalctl -u <service_name>` to diagnose issues post-setup.
+- **Login Issues**: Double-check credentials provided in Quick Start. Ensure the snapshot is correct.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This training scenario and associated scripts are provided under the MIT License for educational purposes within the CyberPatriot program. Not intended for production use.

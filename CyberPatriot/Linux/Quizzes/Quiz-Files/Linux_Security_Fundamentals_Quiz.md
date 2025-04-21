@@ -1,215 +1,177 @@
-# Linux Security Fundamentals Quiz
+# Linux Security Fundamentals Quiz (CyberPatriot Intermediate)
 
 ## Overview
 
-This quiz tests your knowledge of fundamental Linux security concepts essential for CyberPatriot competitions. It covers user management, file permissions, service configuration, and basic system hardening.
+This quiz assesses your understanding of essential Linux security practices commonly encountered in CyberPatriot. It focuses on user accounts, file system security, running services, and basic system protection on Ubuntu/Linux Mint.
 
-**Time Allowed**: 30 minutes  
-**Total Points**: 50  
+**Time Allowed**: 35 minutes
+**Total Points**: 50
 **Passing Score**: 40 points (80%)
 
 ## Instructions
 
-1. Read each question carefully
-2. Write down your answers on a separate sheet of paper or create a text file with your answers
-3. Number your answers to match the question numbers
-4. Check your answers against the solution key when finished or submit your answers for review
+1.  Read each question carefully.
+2.  Record your answers clearly, numbering them according to the questions.
+3.  Use your knowledge of Linux security principles and commands.
+4.  After completion, compare your answers to the provided solution key or submit them for grading.
 
 ---
 
-## Multiple Choice Questions (2 points each)
+## Section 1: Multiple Choice (2 points each)
 
-### 1. Which file contains encrypted user passwords on Ubuntu/Linux Mint?
+### 1. On a standard Ubuntu system, where is the hashed password for the user 'cadet' primarily stored?
 
-A. /etc/passwd  
-B. /etc/shadow  
-C. /etc/users  
-D. /etc/security/passwords  
+A. `/etc/passwd`
+B. `/etc/group`
+C. `/etc/shadow`
+D. `/home/cadet/.password`
 
-### 2. What command is used to change a user's password in Linux?
+### 2. You need to give user 'jdoe' the ability to run commands as root using `sudo`. Which command is the standard way to add 'jdoe' to the appropriate group on Ubuntu?
 
-A. userpass  
-B. passwd  
-C. chpass  
-D. password  
+A. `groupadd jdoe sudo`
+B. `usermod -g sudo jdoe`
+C. `adduser jdoe sudo`
+D. `chgrp sudo /home/jdoe`
 
-### 3. Which of the following commands adds a user to the sudo group?
+### 3. What numeric permission mode allows the owner to read/write/execute, the group to read/execute, and others to only execute?
 
-A. useradd sudo username  
-B. sudo user-add username  
-C. usermod -aG sudo username  
-D. groupadd sudo username  
+A. 751
+B. 644
+C. 755
+D. 741
 
-### 4. What is the correct permission notation (numeric) that gives read, write, and execute permissions to the owner, read and execute to the group, and no permissions to others?
+### 4. Which command provides the most detailed list of currently *active and running* services managed by `systemd`?
 
-A. 731  
-B. 750  
-C. 530  
-D. 751  
+A. `ps -ef | grep service`
+B. `service --status-all`
+C. `systemctl list-units --type=service --state=active`
+D. `netstat -tulpn`
 
-### 5. Which command displays currently running services on a systemd-based Linux system?
+### 5. When configuring the UFW firewall, what is the recommended default policy for *incoming* network traffic for security?
 
-A. ps aux  
-B. service --status-all  
-C. systemctl list-units --type=service  
-D. chkservice  
+A. `ALLOW`
+B. `REJECT`
+C. `DENY`
+D. `FORWARD`
 
-### 6. What is the default UFW policy that should be set for incoming connections in a secure configuration?
+### 6. To prevent direct root login via SSH, which setting should be modified in `/etc/ssh/sshd_config`?
 
-A. allow  
-B. reject  
-C. deny  
-D. drop  
+A. `AllowRootLogin no`
+B. `PasswordAuthentication no`
+C. `PermitRootLogin no`
+D. `RootLogin deny`
 
-### 7. Which configuration file is used to secure the SSH server on Ubuntu/Linux Mint?
+### 7. Which command is used to apply system security updates listed in the package manager cache on Ubuntu?
 
-A. /etc/ssh/ssh.conf  
-B. /etc/ssh/sshd_config  
-C. /etc/sshd.conf  
-D. /etc/security/ssh.conf  
+A. `apt update`
+B. `apt upgrade`
+C. `apt install --security-updates`
+D. `dpkg --configure -a`
 
-### 8. Which command is used to check if the firewall is active in Ubuntu/Linux Mint?
+### 8. What does the 'SUID' (Set User ID) permission bit allow when set on an executable file?
 
-A. firewall-cmd --state  
-B. iptables -L  
-C. ufw status  
-D. netfilter status  
+A. Allows the file to be executed by members of the file's group.
+B. Allows anyone to execute the file with the permissions of the file's owner.
+C. Allows the file's owner to execute it with root privileges.
+D. Allows the file to inherit the group ID of the directory it's in.
 
-### 9. Which special permission, when set on a directory, ensures that only the file's owner can delete or rename files within that directory regardless of the directory's other permissions?
+### 9. Which file is commonly used to define system-wide defaults for password aging policies (like `PASS_MAX_DAYS`)?
 
-A. SUID bit  
-B. SGID bit  
-C. Sticky bit  
-D. Immutable bit  
+A. `/etc/passwd`
+B. `/etc/pam.d/common-password`
+C. `/etc/shadow`
+D. `/etc/login.defs`
 
-### 10. Which Linux file defines how often users must change their passwords?
+### 10. You find a file with permissions `-rwxr-sr-x`. What does the 's' in the group permissions indicate?
 
-A. /etc/pam.d/password-auth  
-B. /etc/passwd  
-C. /etc/login.defs  
-D. /etc/security/password  
+A. Sticky Bit
+B. SUID Bit
+C. SGID Bit
+D. Special Attribute
 
-### 11. Which tool is commonly used to detect rootkits on Linux systems?
+## Section 2: True/False (1 point each)
 
-A. antivirus  
-B. chkrootkit  
-C. scanrootkit  
-D. rootscan  
+### 11. The `root` user always has a User ID (UID) of 0.
 
-### 12. What command shows all user accounts on the system?
+True / False
 
-A. cat /etc/passwd  
-B. getent passwd  
-C. ls -l /home  
-D. user -l  
+### 12. The command `chmod 600 sensitive_data.txt` makes the file readable and writable only by the owner.
 
-### 13. Which is the most secure method for remote administration of Linux systems?
+True / False
 
-A. Telnet  
-B. SSH with password authentication  
-C. SSH with key-based authentication  
-D. FTP  
+### 13. It is generally safe to disable the UFW firewall during a CyberPatriot competition to make troubleshooting easier.
 
-### 14. What is the correct command to find all SUID files on a system?
+True / False
 
-A. find / -perm /4000  
-B. find / -type suid  
-C. ls -l / | grep suid  
-D. locate suid  
+### 14. The `/etc/passwd` file should ideally have permissions set to `600` (read/write for owner only).
 
-### 15. Which of these is NOT a common Linux security tool?
+True / False
 
-A. SELinux  
-B. AppArmor  
-C. Fail2ban  
-D. WindowsDefender  
+### 15. Using `visudo` is the recommended way to edit the `/etc/sudoers` file to prevent syntax errors.
 
-## True/False Questions (1 point each)
+True / False
 
-### 16. In Linux, the root user has the UID (User ID) of 0.
+### 16. Services listed as `disabled` in `systemctl list-unit-files` cannot be started manually.
 
-True or False
+True / False
 
-### 17. A SUID permission allows the user who executes a file to do so with the permissions of that file's group owner.
+### 17. Setting the sticky bit (`chmod +t`) on a world-writable directory like `/tmp` helps prevent users from deleting each other's files.
 
-True or False
+True / False
 
-### 18. Files created in a directory with the SGID bit set will inherit the group ownership of that directory.
+### 18. `fail2ban` is a tool primarily used for encrypting file systems.
 
-True or False
+True / False
 
-### 19. The command "chmod 777 file.txt" is considered secure because it ensures all users can access the file.
+### 19. Key-based SSH authentication is generally considered more secure than password-based authentication.
 
-True or False
+True / False
 
-### 20. In Linux, a normal user can listen on ports below 1024 without special privileges.
+### 20. Running `apt update` installs the latest security patches on the system.
 
-True or False
+True / False
 
-### 21. The /etc/passwd file on modern Linux systems contains encrypted password hashes.
+## Section 3: Short Answer (3 points each)
 
-True or False
+### 21. List two different commands you could use to check which users are currently logged into the Linux system.
 
-### 22. When using SSH key-based authentication, it's best practice to protect the private key with a passphrase.
+### 22. Briefly explain why removing or disabling unnecessary services is an important security step.
 
-True or False
+### 23. What is the purpose of the `/etc/shadow` file, and why should its permissions be kept restrictive (e.g., readable only by root)?
 
-### 23. AppArmor and SELinux are both implementations of Mandatory Access Control (MAC).
+### 24. Name two settings you would check or change in `/etc/ssh/sshd_config` to make SSH access more secure (besides disabling root login).
 
-True or False
+### 25. You need to find all files owned by the user `malicious_user` within the `/home` directory. What `find` command could you use?
 
-### 24. Setting "PermitRootLogin yes" in the SSH configuration file is a recommended security practice.
+## Section 4: Scenario Analysis (5 points each)
 
-True or False
+### 26. You run `awk -F: '$3 == 0 {print $1}' /etc/passwd` and see the output includes `root` and `backup_admin`. What does this output mean, and what immediate security action should you take regarding `backup_admin`?
 
-### 25. Running services with the minimum required privileges is a core principle of Linux security.
+### 27. During a competition, the README file states that the web server (Apache) must remain running, but you suspect it's configured insecurely. Describe two specific checks you would perform on the Apache configuration and one command to restart the service after making changes.
 
-True or False
+### 28. You find a script named `monitor.sh` in `/home/someuser/` with permissions `-rwxrwxrwx`. Explain the security risk associated with these permissions and provide the command to change them to be more secure (readable/writable/executable by owner, readable/executable by group, readable by others).
 
-## Short Answer Questions (3 points each)
+---
 
-### 26. List three ways to check for unauthorized users on a Linux system.
+## Bonus Question (4 points)
 
-### 27. Explain the principle of least privilege and why it's important for Linux security.
-
-### 28. What is the purpose of the "umask" and how does it affect file creation permissions?
-
-### 29. Describe three methods to secure SSH on a Linux server.
-
-### 30. List three locations where an attacker might place a persistence mechanism (backdoor) on a Linux system.
-
-## Scenario Questions (5 points each)
-
-### 31. You're securing a Linux system and need to check who has sudo access. What commands would you use, and what files would you examine to get this information? Explain how you would interpret the results.
-
-### 32. During a CyberPatriot competition, you discover several unfamiliar services running on your Ubuntu system. Describe the steps you would take to:
-   a) Identify these services
-   b) Determine if they are legitimate
-   c) Secure or remove them if necessary
-   Include specific commands you would use at each step.
-
-### 33. You've been assigned to secure an Ubuntu web server. List five specific security measures you would implement, explaining why each is important and how you would implement it.
-
-## Bonus Question (5 points)
-
-### 34. Explain how an attacker might leverage weak file permissions on key system directories or files to escalate privileges on a Linux system. Give at least two examples of specific files or directories where improper permissions could lead to privilege escalation, and how you would secure them.
+### 29. Explain the difference between `apt update` and `apt upgrade`. Why is it important to run both commands (usually `update` first) when patching a system?
 
 ---
 
 ## Additional Information
 
-- Google Forms Version: [Linux Security Fundamentals Quiz](https://forms.gle/examplelink) (fill in with actual link when created)
-- PDF Version: [Download PDF Version](../Resources/Linux_Security_Fundamentals_Quiz.pdf)
+- PDF Version: [Download PDF Version](../Resources/Linux_Security_Fundamentals_Quiz.pdf) (Placeholder - create if needed)
 
 ## For Mentors
 
-The solution key is available in the [Solutions](../Solutions/Linux_Security_Fundamentals_Quiz_Solution.md) directory. Consider using this quiz in the following ways:
+The solution key is available in the [Solutions](../Solutions/Linux_Security_Fundamentals_Quiz_Solution.md) directory. Consider using this quiz for:
 
-1. **Individual Assessment**: Have cadets take the quiz independently and submit answers
-2. **Team Competition**: Divide into teams and compete for the highest score
-3. **Pre/Post Training**: Use as a before/after assessment for Linux security training
-4. **Discussion Prompt**: Use questions as starting points for group discussions
+1.  **Baseline Assessment**: Gauge understanding before starting Linux modules.
+2.  **Mid-Module Check**: Reinforce concepts learned.
+3.  **Practice**: Simulate competition pressure with the time limit.
+4.  **Review**: Identify areas needing further instruction.
 
 ---
 
-*Note for mentors: Please do not share the solution key with cadets until after they've completed the quiz.*
+*Mentor Note: Ensure the solution key is not accessible to cadets before they attempt the quiz.*
