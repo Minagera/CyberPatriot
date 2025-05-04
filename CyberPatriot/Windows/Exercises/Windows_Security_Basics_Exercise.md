@@ -1,5 +1,7 @@
 # Windows Security Basics Exercise
 
+*This is a placeholder for the Windows Security Basics Exercise. Please add unique, competition-focused content here.*
+
 ## Objective
 
 Practice fundamental Windows security tasks on a Windows 10/11 VM.

@@ -1,5 +1,24 @@
 # Comprehensive CyberPatriot Training Guide
 
+## Directory Reference
+
+This repository is organized into several tiers. Each tier contains a `README.md` file that explains its structure, purpose, and reference points.  
+**Always start by reading the README in each directory to understand its contents and navigation.**
+
+- [Curriculum/](../Curriculum/README.md): Weekly training plans, objectives, and resources.
+- [Windows/](../Windows/README.md): Windows security guides, checklists, exercises, scripts, and quizzes.
+- [Linux/](../Linux/README.md): Linux security guides, checklists, exercises, scripts, and quizzes.
+- [Cisco/](../Cisco/README.md): Cisco networking guides, checklists, exercises, Packet Tracer scenarios, and scripts.
+- [Checklists/](../Checklists/README.md): Centralized security checklists for all platforms.
+- [Resources/](../Resources/README.md): Templates, references, and tools for documentation and automation.
+- [Meld/](../Meld/README.md): Baselining and comparison guides.
+- [Sponsorships/](../Sponsorships/README.md): Templates and info for program support.
+- [Team_Resources/](../Team_Resources/): Team strategy, workflow, and documentation templates.
+
+---
+
+# Comprehensive CyberPatriot Training Guide
+
 This guide incorporates the key insights from Akshay's "How To Win CyberPatriot" document along with practical training strategies for your CyberPatriot cadets.
 
 ## Understanding CyberPatriot: The Correct Perspective

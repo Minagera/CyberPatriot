@@ -1,74 +1,41 @@
 # Grissom High School JROTC CyberPatriot Program
 
+## Directory Reference
+
+This repository is organized into several tiers. Each tier contains a `README.md` file that explains its structure, purpose, and reference points.  
+**Always start by reading the README in each directory to understand its contents and navigation.**
+
+- [Curriculum/](./CyberPatriot/Curriculum/README.md): Weekly training plans, objectives, and resources.
+- [Windows/](./CyberPatriot/Windows/README.md): Windows security guides, checklists, exercises, scripts, and quizzes.
+- [Linux/](./CyberPatriot/Linux/README.md): Linux security guides, checklists, exercises, scripts, and quizzes.
+- [Cisco/](./CyberPatriot/Cisco/README.md): Cisco networking guides, checklists, exercises, Packet Tracer scenarios, and scripts.
+- [Checklists/](./CyberPatriot/Checklists/README.md): Centralized security checklists for all platforms.
+- [Resources/](./CyberPatriot/Resources/README.md): Templates, references, and tools for documentation and automation.
+- [Meld/](./CyberPatriot/Meld/README.md): Baselining and comparison guides.
+- [Sponsorships/](./CyberPatriot/Sponsorships/README.md): Templates and info for program support.
+- [Team_Resources/](./CyberPatriot/Team_Resources/): Team strategy, workflow, and documentation templates.
+- [VM-Setup/](./CyberPatriot/VM-Setup/README.md): Scripts and instructions for creating practice VMs and Packet Tracer scenarios.
+
+---
+
 ## Directory Index
 
 Below is a complete index of the `CyberPatriot` directory, organized for quick navigation and understanding. Each section includes a brief description to help you find the right materials for Windows, Linux, and Cisco Packet Tracer training.
 
 ### Top-Level Structure
 
-- **/CyberPatriot/Curriculum/**  
-  Structured weekly curriculum for Windows, Linux, and Cisco.  
-  - `README.md`: Curriculum overview and schedule  
-  - `Week1/` ... `Week12/`: Weekly plans, objectives, and resources
-
-- **/CyberPatriot/Windows/**  
-  Windows 10/11/2025 security training, guides, checklists, scripts, and exercises.  
-  - `README.md`: Windows security topics and resources  
-  - `Guides/`: Basic, Intermediate, Advanced security guides  
-  - `Checklists/`: Competition checklists for Windows hardening  
-  - `Exercises/`: Hands-on security scenarios  
-  - `Scripts/`: PowerShell automation for security tasks  
-  - `Quizzes/`: Practice quizzes and solutions  
-  - `VM-Setup/`: Scripts and docs for creating Windows practice VMs
-
-- **/CyberPatriot/Linux/**  
-  Ubuntu/Mint security training, guides, checklists, scripts, and exercises.  
-  - `README.md`: Linux security topics and resources  
-  - `Guides/`: Basic, Intermediate, Advanced security guides  
-  - `Checklists/`: Competition checklists for Linux hardening  
-  - `Exercises/`: Hands-on security scenarios  
-  - `Scripts/`: Bash automation for security tasks  
-    - `Templates/`: Script templates for common tasks  
-    - `Examples/`: Complete example scripts  
-    - `Solutions/`: Mentor-only solutions  
-  - `Quizzes/`: Practice quizzes and solutions  
-  - `VM-Setup/`: Scripts and docs for creating Linux practice VMs
-
-- **/CyberPatriot/Cisco/**  
-  Cisco Packet Tracer and IOS security training, guides, checklists, and exercises.  
-  - `README.md`: Cisco networking topics and resources  
-  - `Guides/`: Basic, Intermediate, Advanced IOS guides  
-  - `Checklists/`: Competition checklists for routers and switches  
-  - `Exercises/`: Packet Tracer and CLI-based security scenarios  
-    - `Solutions/`: Mentor-only solutions  
-  - `PacketTracer/`:  
-    - `Scenarios/`: .pkt files for practice  
-    - `Solutions/`: Solution .pkt files  
-  - `Quizzes/`: Practice quizzes and solutions  
-  - `Scripts/`: IOS config templates and automation
-
-- **/CyberPatriot/Checklists/**  
-  Centralized security checklists for Windows, Linux, and Cisco.  
-  - `README.md`: How to use checklists in competition  
-  - `Windows/`, `Linux/`, `Cisco/`: Platform-specific checklists
-
-- **/CyberPatriot/Team_Resources/**  
-  Competition strategy, team roles, workflow, and documentation templates.  
-  - `Competition_Strategy_Guide.md`: Team roles, communication, and scoring strategies  
-  - `Team_Coordination_Templates.md`: Templates for team management  
-  - `Documentation_Templates.md`: Templates for documenting changes and findings
-
-- **/CyberPatriot/Meld/**  
-  Baselining guides for using Meld to compare clean and compromised systems.
-
-- **/CyberPatriot/Sponsorships/**  
-  Sample letters and info for seeking program support.
-
-- **/CyberPatriot/CONTRIBUTING.md**  
-  Guidelines for contributing to the repository.
-
-- **/CyberPatriot/LICENSE**  
-  License information.
+- **Curriculum/**: 12-week training curriculum, lesson plans, and objectives.
+- **Windows/**: Windows 11/2025 security training, guides, checklists, scripts, and exercises.
+- **Linux/**: Ubuntu/Mint security training, guides, checklists, scripts, and exercises.
+- **Cisco/**: Cisco Packet Tracer and IOS security training, guides, checklists, and exercises.
+- **Checklists/**: Centralized security checklists for Windows, Linux, and Cisco.
+- **Resources/**: Templates, references, and tools for documentation and automation.
+- **Meld/**: Baselining guides for using Meld to compare clean and compromised systems.
+- **Sponsorships/**: Templates and info for seeking program support.
+- **Team_Resources/**: Team strategy, workflow, and documentation templates.
+- **VM-Setup/**: Scripts and docs for creating Windows, Linux, and Cisco practice VMs.
+- **CONTRIBUTING.md**: Guidelines for contributing to the repository.
+- **LICENSE**: License information.
 
 ---
 
