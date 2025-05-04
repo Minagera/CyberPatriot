@@ -71,6 +71,7 @@ CyberPatriot Linux VM Scenario
 
 Login: $PRIMARY_USER / $PRIMARY_PASS
 EOF
+
 sudo chown "$PRIMARY_USER":"$PRIMARY_USER" /home/$PRIMARY_USER/README-CyberPatriot-Scenario.txt
 
 echo "[*] Setup complete. Take a VM snapshot now for distribution."
