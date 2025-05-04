@@ -1,6 +1,12 @@
 # Packet Tracer Scenarios
 
-This directory contains Packet Tracer scenario files (.pkt) that simulate various network configurations for practice. Each scenario is designed to help develop skills needed for the CyberPatriot Cisco Networking Challenge.
+Practice files for Cisco Packet Tracer, each designed to simulate a unique CyberPatriot challenge.
+
+- **Basic_Network_Security.pkt**: Device hardening and basic configuration.
+- **Advanced_Network_Security.pkt**: VLANs, ACLs, and advanced security.
+- **ACL_Challenge.pkt**: Access control list practice.
+
+*Open these files in Packet Tracer and follow the included instructions.*
 
 ## Available Scenarios
 

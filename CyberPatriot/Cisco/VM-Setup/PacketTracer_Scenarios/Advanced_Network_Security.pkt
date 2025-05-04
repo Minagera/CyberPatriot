@@ -1,0 +1,77 @@
+# CyberPatriot Packet Tracer Scenario: Advanced Network Security
+
+## Scenario Notes
+
+Your organization has multiple VLANs and strict security requirements. Attackers have exploited open services and weak ACLs.
+
+**Tasks:**
+1. Create and assign VLANs for different departments.
+2. Implement extended ACLs to restrict inter-VLAN traffic.
+3. Disable HTTP/HTTPS server and CDP.
+4. Harden all device passwords and enable SSH only.
+5. Document all changes.
+
+## Initial Configuration
+
+hostname PT-Advanced
+enable secret admin
+ip http server
+cdp run
+interface range g0/1 - 3
+ no shutdown
+!
+# All configs must be unique and not match public examples.
+
+# Scenario: Secure a multi-VLAN network with inter-VLAN routing.
+# Devices: 1 router (R2), 2 switches (S3, S4), 2 VLANs per switch, 2 PCs per VLAN.
+# Tasks:
+# - Configure VLANs and assign ports
+# - Set up router-on-a-stick for inter-VLAN routing
+# - Apply port security (limit MACs, shutdown on violation)
+# - Restrict management access to 192.168.50.0/24
+# - Harden all devices (SSH, banners, password encryption, disable unused interfaces)
+# - Save configuration and test VLAN isolation
+
+# Example configs (cadets must implement, do not copy directly):
+
+# On Switch S3:
+hostname S3-CP
+vlan 10
+ name SALES
+vlan 20
+ name HR
+interface range fa0/1-2
+ switchport mode access
+ switchport access vlan 10
+interface range fa0/3-4
+ switchport mode access
+ switchport access vlan 20
+interface range fa0/1-4
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+!
+# On Router R2:
+hostname R2-CP
+interface g0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+interface g0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+!
+ip access-list standard MGMT_ONLY
+ permit 192.168.50.0 0.0.0.255
+ deny any
+line vty 0 4
+ access-class MGMT_ONLY in
+ transport input ssh
+ login local
+ exec-timeout 5 0
+!
+service password-encryption
+banner motd ^CyberPatriot Advanced Network - Authorized Use Only^
+!
+# All configs must be unique and not match public examples.
+```
+# This is a unique scenario for CyberPatriot training.

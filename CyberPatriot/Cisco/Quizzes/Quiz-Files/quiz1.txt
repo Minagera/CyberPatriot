@@ -1,0 +1,5 @@
+1. What command enables SSH on a Cisco router?
+2. How do you set a console password?
+3. What is the purpose of an access control list (ACL)?
+4. How do you encrypt all passwords in the configuration?
+5. What command saves the running configuration to NVRAM?

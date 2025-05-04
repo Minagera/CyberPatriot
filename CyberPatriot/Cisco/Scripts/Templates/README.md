@@ -1,110 +1,105 @@
-# Cisco IOS Script Templates
+# Cisco IOS Configuration Templates
 
-This directory contains template scripts for common Cisco device configurations. These templates can be customized and used to quickly implement secure configurations on Cisco routers and switches during CyberPatriot competitions.
+Reusable configuration templates for common security tasks:
 
-## Using These Templates
+- Basic device hardening
+- SSH setup
+- ACL configuration
 
-1. These templates are text files containing Cisco IOS commands
-2. They can be copy-pasted into a Cisco device console or used with a terminal emulator's send file feature
-3. Review and modify each template before use to adapt it to your specific device and network requirements
-4. Comments are provided to explain the purpose of each section and configuration line
+Copy and adapt these templates for your Packet Tracer practice.
 
-## Available Templates
+## Directory Index
 
-### Basic Security Templates
+```
+Templates/
+├── Router_Basic_Security_Template.txt
+├── Switch_Basic_Security_Template.txt
+├── ACL_Standard_Template.txt
+├── ACL_Extended_Template.txt
+├── Secure_Routing_Protocol_Template.txt
+├── Advanced_Device_Hardening_Template.txt
+├── AAA_Configuration_Template.txt
+└── README.md
+```
 
-1. **Router_Basic_Security_Template.txt**
-   - Basic router security hardening commands
-   - Includes password configuration, SSH setup, and service disabling
-   - Starting point for any router security implementation
+## Template Descriptions
 
-2. **Switch_Basic_Security_Template.txt**
-   - Basic switch security hardening commands
-   - Includes password configuration, SSH setup, and port security
+- **Router_Basic_Security_Template.txt**  
+  Basic router security: passwords, SSH, disable unnecessary services.
 
-### Intermediate Security Templates
+- **Switch_Basic_Security_Template.txt**  
+  Basic switch security: passwords, SSH, port security.
 
-3. **ACL_Standard_Template.txt**
-   - Templates for standard access control lists
-   - Includes examples for filtering management access
+- **ACL_Standard_Template.txt**  
+  Standard access control lists for management filtering.
 
-4. **ACL_Extended_Template.txt**
-   - Templates for extended access control lists
-   - Examples for filtering various protocols and traffic types
+- **ACL_Extended_Template.txt**  
+  Extended ACLs for protocol/traffic filtering.
 
-5. **Secure_Routing_Protocol_Template.txt**
-   - Templates for securing routing protocols (OSPF, EIGRP)
-   - Authentication configuration for routing updates
+- **Secure_Routing_Protocol_Template.txt**  
+  OSPF/EIGRP authentication and secure routing.
 
-### Advanced Security Templates
+- **Advanced_Device_Hardening_Template.txt**  
+  Control plane policing, advanced security features.
 
-6. **Advanced_Device_Hardening_Template.txt**
-   - Comprehensive security hardening commands
-   - Includes control plane policing and advanced security features
+- **AAA_Configuration_Template.txt**  
+  Authentication, Authorization, Accounting (local and server-based).
 
-7. **AAA_Configuration_Template.txt**
-   - Authentication, Authorization, and Accounting setup
-   - Local and server-based authentication examples
+## Template Usage
+
+- Each template is a plain text file with Cisco IOS commands.
+- Copy/paste into a Cisco device console or use with a terminal emulator.
+- Review and modify for your device and scenario.
+- Comments in templates explain each section.
 
 ## Template Format
-
-Each template follows this general format:
 
 ```
 ! =======================================================
 ! [Template Name]
-! Purpose: [Brief description of the template's purpose]
-! Usage: [How to use this template]
+! Purpose: [Brief description]
+! Usage: [How to use]
 ! =======================================================
 
 ! --- Section 1: [Section Name] ---
-[Commands for this section]
-! [Explanation of important commands]
+[Commands]
+! [Explanation]
 
 ! --- Section 2: [Section Name] ---
-[Commands for this section]
-! [Explanation of important commands]
-
-! ... additional sections ...
+[Commands]
+! [Explanation]
 ```
 
 ## Customizing Templates
 
-Before applying these templates, you should customize them by:
-
-1. Replacing placeholder values (indicated by [BRACKETS])
-2. Removing or commenting out commands that don't apply to your scenario
-3. Adding any specific commands required for your network
-4. Testing on a lab device or Packet Tracer before applying in competition
+- Replace placeholder values (in [BRACKETS])
+- Remove or comment out unneeded commands
+- Add scenario-specific commands
+- Test in Packet Tracer or a lab device before competition
 
 ## Important Notes
 
-- These templates are starting points, not complete solutions
-- Always understand what each command does before using it
-- Not all commands will be appropriate for every scenario
-- During CyberPatriot competitions, make sure all required services remain functional
-- Document any changes you make to the network
+- Templates are starting points, not full solutions
+- Understand each command before use
+- Not all commands fit every scenario
+- Ensure required services remain functional during competition
+- Document all changes
 
 ## Example Usage
 
-Here's how you might use one of these templates:
-
-1. Open the template file in a text editor
-2. Modify it for your specific device (replace hostnames, IP addresses, etc.)
-3. Connect to your Cisco device via console or SSH
-4. Enter configuration mode: `enable` then `configure terminal`
-5. Copy and paste sections of the template one at a time
-6. Verify each section works as expected before continuing
-7. Save the configuration: `copy running-config startup-config`
+1. Open a template in a text editor
+2. Modify for your device (hostnames, IPs, etc.)
+3. Connect to the device (console/SSH)
+4. Enter config mode: `enable` then `configure terminal`
+5. Paste sections one at a time, verify each
+6. Save config: `copy running-config startup-config`
 
 ## Creating Your Own Templates
 
-You're encouraged to create your own templates based on your experiences. When creating new templates:
-
-1. Follow the established format
-2. Include clear comments explaining each section
-3. Test your template thoroughly
-4. Submit a pull request to add it to this repository
+- Follow the established format
+- Add clear comments
+- Test thoroughly
+- Submit via pull request to contribute
 
 ## Additional Resources
 

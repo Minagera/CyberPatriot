@@ -1,0 +1,10 @@
+# Packet Tracer Scenario Placeholder
+
+This file should be created in Cisco Packet Tracer and saved as `Basic_Network_Security.pkt`.  
+**Scenario:**  
+- Configure device hostnames and passwords  
+- Disable unused interfaces  
+- Secure console and VTY access  
+- Save configuration
+
+*Create this scenario in Packet Tracer and save it here.*

@@ -13,7 +13,7 @@ This directory contains instructions and scripts for setting up Linux VMs for Cy
 
 # CyberPatriot Linux VM Setup: "Corporate Server Breach" Scenario
 
-This document outlines the setup process for the "Corporate Server Breach" Linux VM, designed for CyberPatriot incident response training. This VM simulates a realistic post-compromise environment tailored for cadet skill development.
+This directory contains scripts and documentation for setting up unique Linux VMs for CyberPatriot training. The main scenario simulates a compromised Ubuntu server with multiple vulnerabilities and forensic artifacts.
 
 ## Scenario Overview
 
@@ -29,22 +29,11 @@ Fictional Company "Innovatech Dynamics" has detected suspicious activity on thei
 
 ## Quick Start
 
-1. Ensure you have a fresh Ubuntu 22.04 VM with at least 2GB RAM and 20GB disk space.
-2. Download the setup script:
-   ```bash
-   wget https://github.com/Minagera/CyberPatriot/raw/main/CyberPatriot/Linux/VM-Setup/corporate-server-breach.sh -O setup-innovatech.sh
-   ```
-3. Make the script executable:
-   ```bash
-   chmod +x setup-innovatech.sh
-   ```
-4. Run the script with root privileges:
-   ```bash
-   sudo ./setup-innovatech.sh
-   ```
-5. Wait for the script to complete (approx. 5-15 minutes depending on network speed).
-6. **Crucial Step**: Create a VM snapshot named "Innovatech Breach - Initial State" before distributing to cadets.
-7. Login credentials for initial access: `sysadmin` / `Company2023!`
+1. Create a new Ubuntu 22.04 VM (minimal install).
+2. Download `corporate-server-breach.sh` or `ubuntu_vm_setup.sh` to the VM.
+3. Make executable: `chmod +x corporate-server-breach.sh` or `chmod +x ubuntu_vm_setup.sh`
+4. Run as root: `sudo ./corporate-server-breach.sh` or `sudo ./ubuntu_vm_setup.sh`
+5. Take a VM snapshot labeled "Innovatech Breach - Initial State" before distributing to cadets.
 
 ## Detailed Installation
 

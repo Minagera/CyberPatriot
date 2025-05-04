@@ -1,6 +1,11 @@
-# Cisco Networking Exercises
+# Cisco Security Exercises
 
-This directory contains hands-on exercises for practicing Cisco router and switch configuration, security hardening, and troubleshooting in Packet Tracer.
+Practice hands-on Packet Tracer and CLI-based scenarios to build your skills for CyberPatriot.
+
+- Each exercise simulates a common competition challenge.
+- Document your solutions and compare with mentor-provided answers in the Solutions directory.
+
+*All exercises are unique and designed for CyberPatriot training.*
 
 ## Structure
 

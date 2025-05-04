@@ -373,6 +373,63 @@ After implementing these router security measures, proceed to:
 - [CIS Cisco IOS Benchmarks](https://www.cisecurity.org/benchmark/cisco/)
 - [NSA Cisco Router Hardening Guidelines](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/networks/cisco-switch-security-configuration-guide.cfm)
 
+# Cisco Device Hardening Guide for CyberPatriot
+
+Follow these steps to secure Cisco routers and switches:
+
+## 1. Set Hostname and Banner
+```plaintext
+hostname CYBERPATRIOT-RTR
+banner motd ^Authorized access only. Violators will be prosecuted.^
+```
+
+## 2. Secure Enable and Console Access
+```plaintext
+enable secret [STRONG_PASSWORD]
+line console 0
+ password [STRONG_PASSWORD]
+ login
+ exec-timeout 5 0
+```
+
+## 3. Encrypt Passwords
+```plaintext
+service password-encryption
+```
+
+## 4. Configure SSH and Disable Telnet
+```plaintext
+ip domain-name cyberpatriot.local
+crypto key generate rsa modulus 2048
+username admin secret [STRONG_PASSWORD]
+line vty 0 4
+ transport input ssh
+ login local
+ exec-timeout 5 0
+```
+
+## 5. Disable Unused Services and Interfaces
+```plaintext
+no ip http server
+no cdp run
+interface range [UNUSED_PORTS]
+ shutdown
+```
+
+## 6. Apply ACLs for Management Access
+```plaintext
+access-list 10 permit [TRUSTED_IP]
+line vty 0 4
+ access-class 10 in
+```
+
+## 7. Save Configuration
+```plaintext
+write memory
+```
+
+*Adapt these steps to the specific scenario and always check the README for required services!*
+
 # Cisco Guides Overview
 
 This directory contains step-by-step guides for configuring and securing Cisco routers and switches, with a focus on CyberPatriot competition requirements.
@@ -394,3 +451,15 @@ This directory contains step-by-step guides for configuring and securing Cisco r
 - Each guide includes practical configuration examples and verification commands.
 
 *All guides are unique and tailored for CyberPatriot training. If you have suggestions for new topics, please contribute!*
+
+# Cisco Guides Directory
+
+This directory contains step-by-step guides for configuring and securing Cisco devices in CyberPatriot competitions.
+
+## Available Guides
+
+- [Basic Guide](./Basic/README.md): Initial device setup, passwords, and basic security.
+- [Intermediate Guide](./Intermediate/README.md): VLANs, SSH, ACLs, and troubleshooting.
+- [Advanced Guide](./Advanced/README.md): Advanced security, monitoring, and forensics.
+
+*All guides are unique and tailored for CyberPatriot cadet training.*

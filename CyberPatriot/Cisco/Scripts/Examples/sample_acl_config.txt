@@ -1,0 +1,10 @@
+!
+! Sample ACL Configuration for CyberPatriot Practice
+!
+access-list 10 permit 192.168.1.0 0.0.0.255
+access-list 10 deny any
+!
+interface GigabitEthernet0/0
+ ip access-group 10 in
+!
+end

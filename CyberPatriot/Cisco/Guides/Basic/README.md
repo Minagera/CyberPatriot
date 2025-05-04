@@ -1,6 +1,6 @@
 # Cisco IOS Fundamentals
 
-This guide covers the fundamental concepts and commands needed to configure and secure Cisco devices through the Cisco IOS (Internetwork Operating System) command-line interface. This knowledge forms the foundation for the CyberPatriot Cisco Networking Challenge.
+This guide covers the essential Cisco IOS commands and concepts for CyberPatriot.
 
 ## Table of Contents
 
@@ -140,34 +140,19 @@ R1# wr
 Securing a Cisco device is a critical step in the CyberPatriot competition. Here are essential security configurations:
 
 ### Secure Password Configuration
-```
-R1(config)# service password-encryption   // Encrypt all passwords in the configuration
-R1(config)# security passwords min-length 8  // Require minimum 8-character passwords
-```
+- Set enable secret, console, and VTY passwords
+- Use `service password-encryption`
 
 ### Disable Unused Services
-```
-R1(config)# no service tcp-small-servers
-R1(config)# no service udp-small-servers
-R1(config)# no ip http server              // Disable HTTP server
-R1(config)# no ip finger                   // Disable finger service
-R1(config)# no cdp run                     // Disable CDP globally (if not needed)
-```
+- Disable HTTP server, CDP, and unused interfaces
 
 ### Configure SSH (Secure Shell)
-```
-R1(config)# hostname R1                     // Set hostname (required for SSH)
-R1(config)# ip domain-name example.com      // Set domain name
-R1(config)# crypto key generate rsa         // Generate RSA keys
-How many bits in the modulus [512]: 1024     // Minimum 1024 bits recommended
+- Generate RSA keys, set domain name, and restrict VTY to SSH only
 
-R1(config)# line vty 0 4
-R1(config-line)# transport input ssh        // Only allow SSH (no Telnet)
-R1(config-line)# login local                // Use local username/password
-R1(config-line)# exit
+### Save Configuration
+- Use `write memory` or `copy running-config startup-config`
 
-R1(config)# username admin secret StrongP@ss  // Create local user
-```
+*Practice these steps in Packet Tracer before competition. Always follow the scenario README for required settings.*
 
 ## Viewing System Information
 
@@ -227,3 +212,27 @@ Try the basic exercises in the [Exercises](../../Exercises) directory to practic
 - [Cisco IOS Command Reference](https://www.cisco.com/c/en/us/support/ios-nx-os-software/ios-xe-16/products-command-reference-list.html)
 - [Cisco Learning Network](https://learningnetwork.cisco.com/)
 - [Packet Tracer Labs](../../PacketTracer/Scenarios)
+
+# Basic Cisco Device Configuration Guide
+
+Learn how to:
+- Set device hostname and passwords
+- Secure console and VTY access
+- Enable password encryption
+- Save configuration
+
+## Example Commands
+
+```plaintext
+hostname CyberPatriot-Router
+enable secret StrongSecret123
+service password-encryption
+line console 0
+  password SecureLine
+  login
+line vty 0 4
+  password SecureVTY
+  login
+```
+
+*Practice these steps in Packet Tracer before competition!*

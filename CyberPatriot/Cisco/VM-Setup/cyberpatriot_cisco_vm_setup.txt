@@ -1,0 +1,15 @@
+# CyberPatriot Cisco Packet Tracer Setup Script (Simulation Instructions)
+
+1. Open Packet Tracer and create a new project.
+2. Add one router, one switch, and two PCs.
+3. Configure the following:
+   - Hostnames for all devices
+   - Secure passwords for console, VTY, and enable secret
+   - SSH access only (disable Telnet)
+   - Assign IP addresses and test connectivity
+   - Configure a basic ACL to restrict PC-to-PC communication
+   - Save your configuration
+
+4. Export your .pkt file for practice or team review.
+
+*This script is for simulation only and is unique to CyberPatriot training.*

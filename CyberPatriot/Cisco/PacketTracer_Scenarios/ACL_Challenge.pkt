@@ -1,0 +1,9 @@
+# Packet Tracer Scenario Placeholder
+
+This file should be created in Cisco Packet Tracer and saved as `ACL_Challenge.pkt`.  
+**Scenario:**  
+- Apply standard and extended ACLs  
+- Restrict access to sensitive devices  
+- Verify ACL effectiveness
+
+*Create this scenario in Packet Tracer and save it here.*

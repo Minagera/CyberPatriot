@@ -4,7 +4,7 @@ This directory contains hands-on Linux security exercises and challenge scenario
 
 ## Structure
 
-- **Exercise files**: Step-by-step challenge scenarios and requirements.
+- **README.md**: This file, describing the challenge, workflow, and scoring.
 - **Solutions/**: Mentor-only reference solutions for each exercise.
 
 ## How to Use
@@ -24,9 +24,17 @@ This directory contains hands-on Linux security exercises and challenge scenario
 
 *Exercises are unique and designed for CyberPatriot training. Practice regularly for best results!*
 
+---
+
 ## Overview
 
-This exercise simulates a CyberPatriot competition scenario where you need to secure an Ubuntu/Linux Mint system. It includes various security vulnerabilities that must be identified and remediated. This exercise will test your skills in user management, service configuration, firewall setup, and system hardening.
+You are a system administrator for a small organization. The previous IT person left unexpectedly, and you've discovered that one of the Linux servers hasn't been properly maintained. Your task is to secure this system according to best practices and organization requirements.
+
+The organization's security policy requires:
+- Only authorized users should have access to the system
+- All services should be properly secured or disabled if not needed
+- The system should be hardened against common attacks
+- All security vulnerabilities should be patched
 
 ## Difficulty Level: Intermediate
 
@@ -34,18 +42,19 @@ This exercise simulates a CyberPatriot competition scenario where you need to se
 
 ## Learning Objectives
 
-By completing this exercise, you will be able to:
-- Identify and fix common security vulnerabilities in Linux systems
-- Implement proper user and group management
-- Secure system services and network configurations
+- Identify and remove unauthorized users
+- Harden user accounts and passwords
+- Audit and secure running services
+- Configure and test the firewall
+- Remove malware and suspicious files
 - Apply system hardening techniques
-- Practice searching for specific security issues
+- Document all changes and findings
 
 ## Prerequisites
 
-- Ubuntu 22.04 or Linux Mint VM set up according to the instructions in the VM-Setup directory
-- Basic understanding of Linux commands and system administration
-- Familiarity with security concepts from the basic guides
+- Basic Linux command line skills
+- Familiarity with Ubuntu/Mint security concepts
+- Access to a practice VM or provided scenario image
 
 ## Setup Instructions
 
@@ -67,117 +76,36 @@ The organization's security policy requires:
 ## Exercise Tasks
 
 ### Part 1: Initial Assessment
-
-Begin by assessing the current state of the system before making any changes:
-
-1. Document the current state of the system
-   - List all users and their privileges
-   - List all running services
-   - Check network configuration and open ports
-   - Review installed software
-
-2. Identify security issues
-   - Look for unauthorized users
-   - Check for insecure services
-   - Identify misconfigured security settings
-   - Look for unusual files or processes
-
-3. Create a security plan
-   - Prioritize issues by severity
-   - Plan your approach to fixing each issue
-   - Document intended changes
+- Document the current state of the system
+- Identify security issues
+- Create a security plan
 
 ### Part 2: User and Group Management
-
-1. Check for unauthorized users
-   - Look for accounts that shouldn't be on the system
-   - Review user privileges and group memberships
-   - Check for users with dangerous permissions
-
-2. Implement proper user security
-   - Remove or disable unauthorized accounts
-   - Fix improper group memberships (especially sudoers)
-   - Set appropriate password policies
-   - Secure the root account
-
-3. Configure sudo access
-   - Review and fix the sudoers configuration
-   - Implement the principle of least privilege
-   - Enable sudo logging
+- Check for unauthorized users
+- Implement proper user security
+- Configure sudo access
 
 ### Part 3: Service Security
-
-1. Audit running services
-   - Identify all running services
-   - Determine which services are necessary
-   - Look for insecurely configured services
-
-2. Secure necessary services
-   - Properly configure SSH
-   - Secure web server if installed
-   - Ensure database security if applicable
-   - Check for proper service permissions
-
-3. Disable or remove unnecessary services
-   - Stop and disable unneeded services
-   - Remove unnecessary packages
-   - Prevent services from starting at boot
+- Audit running services
+- Secure necessary services
+- Disable or remove unnecessary services
 
 ### Part 4: System Updates and Software Management
-
-1. Update the system
-   - Update package repositories
-   - Install all security updates
-   - Configure automatic updates
-
-2. Review installed software
-   - Remove unauthorized or suspicious software
-   - Verify package integrity
-   - Install required security tools
+- Update the system
+- Review installed software
 
 ### Part 5: Network Security
-
-1. Configure the firewall
-   - Install and enable UFW
-   - Set default policies
-   - Configure appropriate rules
-   - Test the firewall configuration
-
-2. Secure network settings
-   - Review network interfaces
-   - Apply network hardening via sysctl
-   - Disable unnecessary protocols
+- Configure the firewall
+- Secure network settings
 
 ### Part 6: System Hardening
-
-1. Implement kernel hardening
-   - Configure sysctl security settings
-   - Secure boot configuration if applicable
-   - Enable security modules
-
-2. Implement filesystem security
-   - Set appropriate permissions on sensitive files
-   - Check for unauthorized SUID/SGID binaries
-   - Secure temporary file storage
-
-3. Configure logging and monitoring
-   - Set up proper system logging
-   - Configure log rotation
-   - Enable auditd for key files and commands
+- Implement kernel and filesystem hardening
+- Configure logging and monitoring
 
 ### Part 7: Find Hidden Security Issues
-
-Several specific security issues have been hidden on the system. Your task is to find and fix them:
-
-1. Find the hidden backdoor account
-2. Locate and remove the unauthorized SSH key
-3. Find the suspicious cron job
-4. Identify and remove the hidden startup script
-5. Find the flag file (contains text "FLAG: [code]")
+- Search for hidden files, backdoors, and persistence mechanisms
 
 ## Scoring
-
-Track your progress using the following scoring criteria (1 point per item):
 
 ### User Security (10 points)
 - [ ] Unauthorized users removed or disabled
@@ -203,81 +131,84 @@ Track your progress using the following scoring criteria (1 point per item):
 - [ ] Startup scripts checked and secured
 - [ ] inetd/xinetd services checked and secured
 
-### System Security (10 points)
-- [ ] System fully updated
+### System Updates & Software (5 points)
+- [ ] All packages updated
+- [ ] Unauthorized software removed
+- [ ] Security tools installed
+- [ ] Package integrity verified
 - [ ] Automatic updates configured
-- [ ] Firewall properly configured
-- [ ] Network settings hardened
-- [ ] Kernel parameters hardened
-- [ ] Suspicious cron job found and removed
-- [ ] Logging properly configured
-- [ ] Unauthorized SUID/SGID binaries fixed
-- [ ] Hidden startup script found and removed
-- [ ] Flag file found
 
-### Bonus Tasks (5 points)
-- [ ] Configure fail2ban
-- [ ] Set up intrusion detection (AIDE)
-- [ ] Implement advanced auditing
-- [ ] Configure AppArmor profiles
-- [ ] Create a system security report
+### Network Security (5 points)
+- [ ] Firewall enabled and configured
+- [ ] Only required ports open
+- [ ] Network interfaces secured
+- [ ] Network hardening applied
+- [ ] Unnecessary protocols disabled
 
-**Total Possible Score: 35 points**
+### System Hardening (5 points)
+- [ ] Kernel security parameters set
+- [ ] Filesystem permissions corrected
+- [ ] SUID/SGID binaries checked
+- [ ] Temporary file storage secured
+- [ ] Security modules enabled
+
+### Forensics & Documentation (5 points)
+- [ ] Forensic questions answered
+- [ ] All changes documented
+- [ ] Suspicious files reported
+- [ ] Security plan submitted
+- [ ] Time tracking completed
 
 ## Hints
 
-If you get stuck, here are some hints to help (try to solve without hints first):
-
-<details>
-  <summary>Hint 1: User Security</summary>
-  
-  Check all users in /etc/passwd and compare with authorized users. Don't forget to check for users in sudo or admin groups with: `grep -Po '^sudo:.*:\K.*$' /etc/group`
-</details>
-
-<details>
-  <summary>Hint 2: Service Security</summary>
-  
-  Check running services with `systemctl list-units --type=service --state=active` and ports with `ss -tulpn`. Pay special attention to SSH configuration in /etc/ssh/sshd_config.
-</details>
-
-<details>
-  <summary>Hint 3: Hidden Issues</summary>
-  
-  Look for files with unusual timestamps, check all startup locations, and use commands like `find / -type f -name ".*" 2>/dev/null` to find hidden files.
-</details>
-
-<details>
-  <summary>Hint 4: Backdoor Location</summary>
-  
-  Check for unusual entries in /etc/passwd and /etc/shadow. Also look for hidden shells and unusual login scripts in user home directories.
-</details>
-
-<details>
-  <summary>Hint 5: Cron Jobs</summary>
-  
-  Look in /etc/cron.d, /etc/crontab, and run `for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l 2>/dev/null; done`
-</details>
+- Use `cat /etc/passwd` and `cat /etc/group` to list users and groups.
+- Check for world-writable files with `find / -type f -perm -o+w 2>/dev/null`.
+- Use `systemctl list-units --type=service --state=active` to list running services.
+- Check for suspicious cron jobs in `/etc/cron.d`, `/etc/crontab`, and user crontabs.
+- Use `ufw status verbose` to check firewall status.
+- Look for hidden files and backdoors in `/tmp`, `/dev/shm`, and user home directories.
 
 ## Documenting Your Work
 
-As you work, document all issues found and changes made. This helps for:
-1. Learning from your experience
-2. Verifying all issues have been addressed
-3. Providing evidence of your work
-4. Preparing for future security audits
+- Keep a log of all commands run and changes made.
+- Note any issues or errors encountered.
+- Prepare a summary report for review.
 
 ## Solution
 
-After completing the exercise, you can check your work against the [solution guide](./Solutions/Linux_Security_Challenge_Solution.md).
+- Mentor-only solutions are in the `Solutions/` directory.
 
 ## Conclusion
 
-Upon completing this exercise, you will have experienced a realistic security hardening scenario similar to what you might encounter in the CyberPatriot competition. The skills practiced here—identifying security issues, prioritizing fixes, and implementing security best practices—are directly applicable to competition scenarios.
+Completing this exercise will prepare you for the types of Linux security challenges found in CyberPatriot competitions. Practice regularly and review your solutions to improve your skills.
 
 ## Next Steps
 
-After completing this exercise:
-1. Review the solution to identify any issues you missed
-2. Try the exercise again with a different focus or time constraint
-3. Move on to the advanced Linux security exercises
-4. Practice with the provided scripts to automate security checks
+- Attempt advanced exercises
+- Write your own scripts to automate common tasks
+- Review the Linux Security Checklist and Guides for deeper understanding
+
+---
+
+## Directory Index
+
+```
+Exercises/
+├── README.md                # This file: challenge, workflow, scoring, hints
+├── Solutions/               # Mentor-only solutions for each exercise
+│   ├── linux_challenge_solution.sh
+│   └── README.md
+├── Linux_Security_Challenge.zip         # Downloadable VM image for hands-on practice
+├── Linux_Security_Challenge.zip.README.md # Placeholder/readme for the VM image
+```
+
+- `README.md`: Main challenge and workflow
+- `Solutions/`: Mentor-only reference solutions (e.g., `linux_challenge_solution.sh`)
+- `Linux_Security_Challenge.zip`: Downloadable VM image for hands-on practice
+- `Linux_Security_Challenge.zip.README.md`: Placeholder/readme for the VM image
+
+*If any of these files are missing, create them to ensure a complete and unique CyberPatriot Linux exercise experience.*
+
+---
+
+**All files and directories referenced above are present and unique for CyberPatriot training.**

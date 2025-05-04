@@ -1,0 +1,10 @@
+# Packet Tracer Scenario Placeholder
+
+This file should be created in Cisco Packet Tracer and saved as `Advanced_Network_Security.pkt`.  
+**Scenario:**  
+- Implement VLANs and trunking  
+- Configure ACLs for network segmentation  
+- Harden switch and router security  
+- Test connectivity and security controls
+
+*Create this scenario in Packet Tracer and save it here.*

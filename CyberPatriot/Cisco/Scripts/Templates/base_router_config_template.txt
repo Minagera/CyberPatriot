@@ -1,0 +1,25 @@
+!
+! CyberPatriot Base Router Configuration Template
+!
+hostname CyberPatriot-Router
+!
+enable secret [REPLACE_WITH_STRONG_PASSWORD]
+!
+line console 0
+ password [REPLACE_WITH_STRONG_PASSWORD]
+ login
+!
+line vty 0 4
+ password [REPLACE_WITH_STRONG_PASSWORD]
+ login
+ transport input ssh
+!
+service password-encryption
+!
+banner motd ^CYBERPATRIOT COMPETITION - AUTHORIZED ACCESS ONLY^
+!
+ip domain-name cyberpatriot.local
+crypto key generate rsa modulus 1024
+!
+!
+end

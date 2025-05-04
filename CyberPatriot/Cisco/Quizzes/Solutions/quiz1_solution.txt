@@ -1,0 +1,5 @@
+1. crypto key generate rsa
+2. line console 0; password [PASSWORD]; login
+3. To filter network traffic based on rules
+4. service password-encryption
+5. copy running-config startup-config

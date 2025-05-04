@@ -1,9 +1,16 @@
 # Cisco IOS Script Examples
 
-This directory contains example scripts and configurations for Cisco routers and switches.
+Sample configuration scripts for common CyberPatriot tasks:
 
-- Use these examples to learn how to automate common security tasks.
-- Review the comments to understand each command.
-- Adapt examples for your own practice scenarios.
+- Secure console and VTY access
+- Enable SSH and disable Telnet
+- Configure VLANs and interfaces
 
-*Examples are for learning and reference. Do not use in competition without review!*
+Use these examples as a starting point for your own configurations.
+
+Complete example scripts for automating Cisco device security.
+
+- Use these to learn best practices and advanced configuration.
+- Always test scripts in Packet Tracer before using in competition.
+
+*All scripts are unique and for CyberPatriot training only.*

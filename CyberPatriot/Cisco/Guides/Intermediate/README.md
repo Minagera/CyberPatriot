@@ -1,6 +1,35 @@
-# Cisco Switch Security Guide
+# Intermediate Cisco Security Guide
 
-This guide covers intermediate-level security configurations for Cisco switches. These techniques are essential for hardening network devices during the CyberPatriot competition and follow industry best practices for securing network infrastructure.
+Topics:
+- Configuring VLANs and trunking
+- Enabling SSH and disabling Telnet
+- Setting up basic ACLs
+- Interface security best practices
+
+## Example: Enable SSH
+
+```plaintext
+ip domain-name cyberpatriot.local
+crypto key generate rsa
+username cadet privilege 15 secret StrongCadetPass!
+line vty 0 4
+  transport input ssh
+  login local
+```
+
+*Test SSH access in Packet Tracer after configuration.*
+
+# Intermediate Cisco Security
+
+This guide covers VLANs, ACLs, and switch security for CyberPatriot.
+
+- Create and assign VLANs
+- Configure trunk ports
+- Implement standard and extended ACLs
+- Enable port security on switches
+- Secure management access
+
+*Use these techniques to secure your Packet Tracer scenarios and real devices.*
 
 ## Table of Contents
 

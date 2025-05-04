@@ -1,6 +1,10 @@
 # Linux Security Quizzes
 
-This directory contains quizzes to test your knowledge of Linux security concepts and practical skills.
+This directory contains quiz files and solutions for CyberPatriot Linux training.
+
+- Use `Quiz-Files/` for practice questions.
+- Use `Solutions/` for answer keys.
+- Quizzes are designed to reinforce key Linux security concepts and competition skills.
 
 ## Structure
 

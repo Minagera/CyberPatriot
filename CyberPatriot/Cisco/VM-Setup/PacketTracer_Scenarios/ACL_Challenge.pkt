@@ -1,0 +1,27 @@
+# CyberPatriot Packet Tracer Scenario: ACL Challenge
+
+## Scenario Notes
+
+A recent audit found that sensitive servers are accessible from unauthorized networks. Your task is to implement ACLs to restrict access.
+
+**Tasks:**
+1. Create a standard ACL to allow only management subnet access to VTY lines.
+2. Create an extended ACL to block FTP and Telnet to the server subnet.
+3. Apply ACLs to the correct interfaces and lines.
+4. Test and verify all restrictions.
+
+## Initial Configuration
+
+hostname PT-ACL
+enable secret challenge
+interface g0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+!
+line vty 0 4
+ password test
+ login
+ transport input telnet ssh
+!
+# All configs must be unique and not match public examples.
+```

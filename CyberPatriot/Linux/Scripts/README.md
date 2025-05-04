@@ -84,8 +84,8 @@ When using or modifying these scripts:
 
 ## Templates vs. Examples
 
-- **Templates** are incomplete scripts designed to be modified and completed by cadets
-- **Examples** are complete, working scripts that demonstrate specific techniques
+- **Templates**: Located in `Templates/`, these are starting points for cadets to build their own scripts.
+- **Examples**: Located in `Examples/`, these show completed scripts for reference.
 - **Solutions** are reference implementations for mentors (not to be shared with cadets until after exercises)
 
 ## Important Note

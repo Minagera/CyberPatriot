@@ -1,6 +1,11 @@
-# Cisco IOS Scripts
+# Cisco IOS Script Templates and Examples
 
-This directory contains scripts and configuration templates for automating and securing Cisco routers and switches.
+This directory contains configuration templates and example scripts for automating Cisco device setup in Packet Tracer.
+
+- Use these scripts to speed up device configuration during practice.
+- All scripts are unique and designed for CyberPatriot training.
+
+See the Templates and Examples subdirectories for more.
 
 ## Structure
 

@@ -1,0 +1,26 @@
+# CyberPatriot Packet Tracer Scenario: Basic Network Security
+
+## Scenario Notes
+
+You are given a small business router and switch. The network has been compromised due to weak passwords and open services.
+
+**Tasks:**
+1. Change all device passwords to strong values.
+2. Enable SSH and disable Telnet.
+3. Configure login banners.
+4. Disable unused interfaces.
+5. Save and verify your configuration.
+
+## Initial Configuration
+
+hostname PT-Router
+enable secret cisco
+line vty 0 4
+ password cisco
+ login
+ transport input telnet
+!
+interface g0/1
+ no shutdown
+!
+# All configs must be unique and not match public examples.

@@ -1,9 +1,5 @@
-# Packet Tracer Scenario Solutions
+# Packet Tracer Scenario Solutions (Mentor Use Only)
 
-This directory contains solution files (.pkt) for the Packet Tracer scenarios in the [Scenarios](../Scenarios) directory.
+This directory contains completed Packet Tracer files and solution notes for each scenario.
 
-- Use these solutions for reference **after** attempting the scenario on your own.
-- Compare your configuration to the solution to identify areas for improvement.
-- Do not use these files during competition or initial practice.
-
-*Solutions are for mentor and review use only.*
+*Use for instructor reference or post-practice review.*
