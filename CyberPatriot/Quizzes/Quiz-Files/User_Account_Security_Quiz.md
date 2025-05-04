@@ -1,5 +1,14 @@
 # User Account Security Quiz
 
+## Overview
+
+This quiz tests your knowledge of user account security across Windows, Linux, and Cisco.  
+It covers user management, privilege escalation, password policy, and auditing.
+
+**Time Allowed**: 20 minutes  
+**Total Points**: 30  
+**Passing Score**: 24 points (80%)
+
 ## Multiple Choice
 
 1. Which command lists all users on a Linux system?

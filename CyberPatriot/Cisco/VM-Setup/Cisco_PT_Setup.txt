@@ -1,0 +1,20 @@
+CyberPatriot Cisco Packet Tracer Setup Instructions
+
+1. Open Cisco Packet Tracer.
+2. Create a new project and add the following devices:
+   - 2 Routers (e.g., 2911)
+   - 2 Switches (e.g., 2960)
+   - 4 PCs
+3. Configure basic IP addressing for all devices.
+4. Set up VLANs on the switches:
+   - VLAN 10: Cadet
+   - VLAN 20: Admin
+5. Configure trunk ports and assign PCs to VLANs.
+6. Set up basic routing between VLANs.
+7. Secure device access:
+   - Set console and vty passwords
+   - Enable SSH
+   - Disable unused ports
+8. Save your configuration.
+
+*This setup simulates a typical CyberPatriot Cisco challenge environment.*

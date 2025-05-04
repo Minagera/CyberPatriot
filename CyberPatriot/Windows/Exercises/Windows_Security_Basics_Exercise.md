@@ -1,26 +1,35 @@
 # Windows Security Basics Exercise
 
-*This is a placeholder for the Windows Security Basics Exercise. Please add unique, competition-focused content here.*
+## Scenario
 
-## Objective
+You have received a Windows 11 VM with several security issues. Your task is to identify and remediate vulnerabilities using basic Windows security tools.
 
-Practice fundamental Windows security tasks on a Windows 10/11 VM.
+## Objectives
+
+- Identify unauthorized user accounts
+- Enable and configure Windows Defender
+- Apply all pending Windows updates
+- Configure basic firewall rules
+- Document all changes made
 
 ## Tasks
 
-1. Change the Administrator password to a strong value.
-2. Remove or disable the Guest account.
-3. Create a new standard user account named `cadet`.
-4. Enable Windows Defender and run a quick scan.
-5. Ensure Windows Firewall is enabled for all profiles.
-6. Apply all available Windows Updates.
-7. Remove any unauthorized users or groups.
-8. Document all changes in a change log.
+1. Review the list of user accounts and remove any unauthorized users.
+2. Open Windows Defender and ensure real-time protection is enabled.
+3. Run Windows Update and install all available updates.
+4. Open Windows Firewall and create a rule to block inbound traffic on port 23 (Telnet).
+5. Document each change in the provided change log template.
 
-## Deliverables
+## Scoring
 
-- Screenshots or logs showing each completed task.
-- Completed change log.
-- Short reflection: Which security step was most important and why?
+- Each correctly remediated vulnerability: 2 points
+- Complete documentation: 5 points
 
-*This exercise is unique and designed for CyberPatriot training.*
+## Hints
+
+- Use the Windows Security app for Defender settings.
+- Use `net user` in Command Prompt to list accounts.
+- Check the Event Viewer for security logs.
+
+---
+*This exercise is unique and designed for CyberPatriot cadet training.*

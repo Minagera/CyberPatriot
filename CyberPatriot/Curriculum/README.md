@@ -13,6 +13,53 @@ The training program spans 12 weeks, progressively building skills from basic to
 - **Assessment**: Quizzes or challenges to gauge understanding
 - **Additional Resources**: Supplementary materials for continued learning
 
+## Directory Index
+
+```
+Curriculum/
+├── Curriculum_Index.md
+├── README.md
+├── Week1/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week2/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week3/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week4/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week5/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week6/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week7/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week8/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week9/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week10/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week11/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+├── Week12/
+│   ├── README.md
+│   ├── Quiz_Solutions.md
+```
+
+- Each week references quizzes and exercises in the Windows, Linux, Cisco, or Exercises directories.
+- All referenced files are unique and tailored for CyberPatriot cadet training.
+
 ## Recommended Schedule
 
 ### Phase 1: Fundamentals (Weeks 1-4)
@@ -82,6 +129,13 @@ Each week includes assessment opportunities to gauge cadet understanding. Consid
 
 Remember that the goal is not just competition success but developing lasting cybersecurity skills and interest in the field.
 
+## How to Use
+
+- Start at Week 1 and progress sequentially.
+- Each week includes objectives, lesson plan, hands-on exercises, and assessments.
+- Use the referenced exercises and quizzes for practice.
+- Document your progress and questions for review.
+
 ## Reference Templates
 
 - [Incident Response Report Template](../Resources/Templates/Incident_Response_Report_Template.md)
@@ -99,3 +153,4 @@ Remember that the goal is not just competition success but developing lasting cy
 - [Reference Sheets](../Resources/References/)
 
 ---
+*This directory and all referenced files are unique and tailored for CyberPatriot cadet training. If you find a missing file, create it using the format above.*
