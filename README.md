@@ -13,7 +13,7 @@ This repository is organized into several tiers. Each tier contains a `README.md
 - [Resources/](./CyberPatriot/Resources/README.md): Templates, references, and tools for documentation and automation.
 - [Meld/](./CyberPatriot/Meld/README.md): Baselining and comparison guides.
 - [Sponsorships/](./CyberPatriot/Sponsorships/README.md): Templates and info for program support.
-- [Team_Resources/](./CyberPatriot/Team_Resources/): Team strategy, workflow, and documentation templates.
+- [Team_Resources/](./CyberPatriot/Team_Resources/README.md): Team strategy, workflow, and documentation templates.
 - [VM-Setup/](./CyberPatriot/VM-Setup/README.md): Scripts and instructions for creating practice VMs and Packet Tracer scenarios.
 
 ---
@@ -68,12 +68,16 @@ The competition consists of three main components:
 
 This repository is organized into several key directories:
 
-- `/curriculum/` - Overall curriculum structure and learning paths
-- `/windows_security/` - Windows security training materials and exercises
-- `/linux_security/` - Linux security training materials and exercises
-- `/cisco_networking/` - Cisco networking training materials and exercises
-- `/resources/` - Additional resources, checklists, and reference materials
-- `/team_materials/` - Team management materials and competition workflows
+- `/Curriculum/` - Overall curriculum structure and learning paths
+- `/Windows/` - Windows security training materials and exercises
+- `/Linux/` - Linux security training materials and exercises
+- `/Cisco/` - Cisco networking training materials and exercises
+- `/Checklists/` - Security checklists for all platforms
+- `/Resources/` - Templates, references, and tools for documentation and automation
+- `/Meld/` - Baselining and comparison guides
+- `/Sponsorships/` - Sponsorship and support templates
+- `/Team_Resources/` - Team management materials and competition workflows
+- `/VM-Setup/` - Scripts and instructions for creating practice VMs and Packet Tracer scenarios
 
 ## Getting Started
 
@@ -100,7 +104,7 @@ To make the most of these materials, cadets should have:
 
 ### Windows Security Track
 
-The Windows Security track covers security concepts for Windows 10/11 and Windows Server. Topics include:
+The Windows Security track covers security concepts for Windows 11/2025 and Windows Server. Topics include:
 
 - User account management and security policies
 - Service hardening and configuration
@@ -109,7 +113,7 @@ The Windows Security track covers security concepts for Windows 10/11 and Window
 - Group Policy Objects
 - Windows security tools
 
-[Go to Windows Security Track](./windows_security/)
+[Go to Windows Security Track](./Windows/README.md)
 
 ### Linux Security Track
 
@@ -122,7 +126,7 @@ The Linux Security track focuses on Ubuntu and Linux Mint security. Topics inclu
 - Package management and updates
 - Security monitoring and auditing
 
-[Go to Linux Security Track](./linux_security/)
+[Go to Linux Security Track](./Linux/README.md)
 
 ### Cisco Networking Track
 
@@ -135,7 +139,7 @@ The Cisco Networking track provides training for the networking component of the
 - Packet Tracer exercises
 - Quiz preparation
 
-[Go to Cisco Networking Track](./cisco_networking/)
+[Go to Cisco Networking Track](./Cisco/README.md)
 
 ## Competition Preparation
 
@@ -147,7 +151,7 @@ The Cisco Networking track provides training for the networking component of the
 4. Set up time management system
 5. Prepare documentation templates
 
-[Complete Competition Guide](./team_materials/competition_workflow.md)
+[Complete Competition Guide](./Team_Resources/competition_workflow.md)
 
 ## Resources
 
@@ -158,8 +162,8 @@ The Cisco Networking track provides training for the networking component of the
 
 ### Additional Learning Resources
 
-- [Security Checklists](./resources/checklists/)
-- [Reference Materials](./resources/references/)
+- [Security Checklists](./Checklists/)
+- [Reference Materials](./Resources/References/)
 
 ## Team Information
 
@@ -175,8 +179,8 @@ The Cisco Networking track provides training for the networking component of the
 - Monthly 6-hour sessions (simulating competition environment)
 - Additional sessions before competitions
 
-[Team Formation Guidelines](./team_materials/team_formation.md)
-[Practice Schedule](./team_materials/practice_schedule.md)
+[Team Formation Guidelines](./Team_Resources/team_formation.md)
+[Practice Schedule](./Team_Resources/practice_schedule.md)
 
 ## Scenario Generation and Automation
 
@@ -187,7 +191,7 @@ To maximize cadet learning, this repository will include tools and templates for
 - **Scenario templates for common CyberPatriot challenges**
 - **Guides for instructors to create new scenarios quickly**
 
-See the `/resources/scenario_tools/` directory for scripts and instructions (to be developed).
+See the `/Resources/Tools/` directory for scripts and instructions.
 
 ## Gap Analysis and Roadmap
 
