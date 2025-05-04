@@ -4,50 +4,22 @@ This directory contains Packet Tracer scenario files (.pkt) that simulate variou
 
 ## Available Scenarios
 
-### Basic Level
+- **Basic_Network_Security.pkt**: Basic router/switch security
+- **Basic_VLAN_Setup.pkt**: VLANs and inter-VLAN routing
+- **ACL_Implementation.pkt**: Standard and extended ACLs
+- **Remote_Access_Security.pkt**: SSH and management access
+- **Enterprise_Network_Security.pkt**: Advanced, multi-device security
+- **Network_Troubleshooting.pkt**: Find and fix security misconfigurations
+- **Advanced_Branch_Security.pkt**: Multi-VLAN, segmentation, and forensics
 
-1. **Basic_Network_Security.pkt**
-   - A simple network with a router, switch, and endpoints
-   - Focus on basic device security configuration
-   - Suitable for beginners learning Cisco IOS security commands
+## How to Use
 
-2. **Basic_VLAN_Setup.pkt**
-   - Introduction to VLANs and inter-VLAN routing
-   - Practice configuring VLANs on switches
-   - Configure a router-on-a-stick topology
+1. Download the scenario file.
+2. Open it in Cisco Packet Tracer.
+3. Read the accompanying exercise document in the [Exercises](../../Exercises) directory.
+4. Complete the required tasks and verify your solution.
 
-### Intermediate Level
-
-3. **ACL_Implementation.pkt**
-   - Practice implementing standard and extended ACLs
-   - Filter traffic between different network segments
-   - Secure a small network while maintaining required connectivity
-
-4. **Remote_Access_Security.pkt**
-   - Secure remote access configuration
-   - SSH setup and configuration
-   - Management access restrictions
-
-### Advanced Level
-
-5. **Enterprise_Network_Security.pkt**
-   - Complex network with multiple routers and switches
-   - Implementation of routing protocols with security
-   - Multi-layered security approach
-   - Advanced ACLs and filtering techniques
-
-6. **Network_Troubleshooting.pkt**
-   - A network with intentional security misconfigurations
-   - Practice identifying and fixing security issues
-   - Simulates a CyberPatriot competition scenario
-
-## Using These Scenarios
-
-1. Download the scenario file
-2. Open it in Cisco Packet Tracer
-3. Read the accompanying exercise document in the [Exercises](../../Exercises) directory
-4. Complete the required tasks
-5. Verify your solution against the corresponding solution file in the [Solutions](../Solutions) directory
+*Scenarios are designed for CyberPatriot training. Practice with different scenarios to build your skills!*
 
 ## Scenario Development Notes
 
@@ -55,6 +27,16 @@ This directory contains Packet Tracer scenario files (.pkt) that simulate variou
 - Each scenario includes notes within the Packet Tracer file that explain the setup
 - Scenarios are designed to mimic real-world network security challenges
 - All scenarios have been tested to ensure they are solvable
+
+## Scenario Randomization Workflow
+
+While Packet Tracer does not support full automation, you can:
+1. Use provided scenario templates as a base.
+2. Randomly change device names, passwords, VLANs, and IPs.
+3. Save each variant as a new .pkt file for practice.
+4. Use the scoring TCL script to check student solutions.
+
+*For advanced users: Consider scripting .pkt file modifications externally (see resources).*
 
 ## Creating Your Own Scenarios
 

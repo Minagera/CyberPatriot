@@ -16,25 +16,6 @@ This directory contains example Bash scripts designed to help CyberPatriot cadet
 - [File_Permission_Scanner.sh](./File_Permission_Scanner.sh): Finds world-writable files and SUID/SGID binaries.
 - [Firewall_Status_Reporter.sh](./Firewall_Status_Reporter.sh): Checks UFW status and lists allowed/blocked ports.
 
-## Why Script?nd Creating Your Own Scripts
-
-- **Save time**: Automate repetitive checks. thing (e.g., users in the sudo group).
-- **Reduce mistakes**: Scripts do the same thing every time.
-- **Document your process**: Output can be saved for your competition report.
-- Always add comments explaining what each part does.
-## Important Note
-### Example: Basic User Audit Script Outline
-Never run a script you do not understand. Always review and test scripts before using them in a competition environment.
-```bash
----bin/bash
-# Example: Basic User Audit Script for CyberPatriot
-
-echo "=== User Audit Report ==="
-awk -F: '$3 >= 1000 && $3 < 65534 {print "User:", $1, "UID:", $3, "Shell:", $7}' /etc/passwd
-echo "Sudo group members:"
-getent group sudo | cut -d: -f4 | tr ',' '\n'
-```
-
 ## Why Script?
 
 - **Save time**: Automate repetitive checks.
@@ -45,4 +26,31 @@ getent group sudo | cut -d: -f4 | tr ',' '\n'
 
 Never run a script you do not understand. Always review and test scripts before using them in a competition environment.
 
----
+# Linux Script Examples
+
+This directory contains complete example scripts for Linux security automation and auditing.
+
+## Example Scripts
+
+- `secure_user_add.sh`: Adds users with secure defaults and password policies
+- `audit_services.sh`: Lists all running and enabled services
+- `find_world_writable.sh`: Finds world-writable files and directories
+- `ufw_hardening.sh`: Applies recommended UFW firewall rules
+- `ssh_hardening.sh`: Applies secure SSH configuration settings
+
+## How to Use
+
+- Review the script to understand its logic.
+- Run the script in a test VM to see its effects.
+- Use as a reference when writing your own scripts for exercises or competition.
+
+*Examples are provided for learning and reference. Do not use in production without review!*
+```bash
+---bin/bash
+# Example: Basic User Audit Script for CyberPatriot
+
+echo "=== User Audit Report ==="
+awk -F: '$3 >= 1000 && $3 < 65534 {print "User:", $1, "UID:", $3, "Shell:", $7}' /etc/passwd
+echo "Sudo group members:"
+getent group sudo | cut -d: -f4 | tr ',' '\n'
+```

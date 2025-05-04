@@ -114,3 +114,28 @@ Consider contributing improvements back to your team's shared repository to bene
 -   [Bash Scripting Basics Guide](../../Guides/Intermediate/Bash_Scripting_Basics.md)
 -   [Linux Command Line Reference](https://linuxcommand.org/)
 -   [CyberPatriot Linux Checklists](../../Checklists/Linux/README.md)
+
+# Linux Script Templates
+
+This directory contains starter templates for common Linux security automation tasks.
+
+## How to Use
+
+1. Copy a template to your working directory.
+2. Edit the script to fit your scenario (add users, services, etc.).
+3. Test the script in a VM before using in competition or exercises.
+
+## Available Templates
+
+- `user_management_template.sh`: Add/remove users, set password policies
+- `service_audit_template.sh`: List running/enabled services
+- `firewall_setup_template.sh`: Configure UFW or iptables rules
+- `permissions_audit_template.sh`: Find and fix insecure file permissions
+
+## Best Practices
+
+- Add comments to explain each section of your script.
+- Use variables for usernames, services, and file paths.
+- Always validate script output and check for errors.
+
+*Templates are for learning and rapid exercise development. Customize as needed!*

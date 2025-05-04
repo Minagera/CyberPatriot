@@ -1,3 +1,21 @@
+# Cisco Networking Exercises
+
+This directory contains hands-on exercises for practicing Cisco router and switch configuration, security hardening, and troubleshooting in Packet Tracer.
+
+## Structure
+
+- **Exercise files**: Step-by-step scenarios and requirements for each challenge.
+- **Solutions/**: Mentor-only reference solutions for each exercise.
+
+## How to Use
+
+1. Open the corresponding Packet Tracer scenario from `../PacketTracer/Scenarios/`.
+2. Follow the instructions in the exercise file.
+3. Complete all required configuration and verification steps.
+4. Check your work against the solution in the `Solutions/` directory (after attempting the exercise).
+
+*Exercises are designed to simulate real CyberPatriot Cisco challenges. Practice regularly for best results!*
+
 # Basic Network Security Exercise
 
 ## Overview
@@ -26,14 +44,14 @@ The exercise uses the following topology:
                          Internet
                             |
                             |
-                     +------+------+
+                     +------+------+ 
                      |    Router    |
-                     +------+------+
+                     +------+------+ 
                             |
                             |
-                     +------+------+
+                     +------+------+ 
                      |    Switch    |
-                     +------+------+
+                     +------+------+ 
                        /         \
                       /           \
                      /             \

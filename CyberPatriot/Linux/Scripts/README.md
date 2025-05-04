@@ -1,15 +1,42 @@
 # Linux Security Scripts
 
-This directory contains Bash scripts for Linux security hardening, auditing, and automation. These scripts help automate common security tasks and provide consistent security implementations for Ubuntu and Linux Mint systems.
+This directory contains scripts to automate, audit, and harden Linux systems for CyberPatriot training.
 
 ## Directory Structure
 
-```
-Scripts/
-├── Templates/          # Script templates for cadets to modify
-├── Examples/           # Example scripts for reference
-└── Solutions/          # Solution scripts (mentor access only)
-```
+- **Templates/**  
+  Script templates for cadets to modify and use in exercises.  
+  *Examples:*  
+  - `user_management_template.sh`: Add/remove users, enforce password policies  
+  - `service_audit_template.sh`: List and check running services  
+  - `firewall_setup_template.sh`: Basic UFW/iptables configuration
+
+- **Examples/**  
+  Complete, ready-to-run scripts demonstrating best practices.  
+  *Examples:*  
+  - `secure_user_add.sh`: Adds users with secure defaults  
+  - `audit_services.sh`: Reports on enabled/disabled services  
+  - `find_world_writable.sh`: Finds world-writable files
+
+- **Solutions/**  
+  Mentor-only solution scripts for exercise scenarios.  
+  *Examples:*  
+  - `linux_challenge_solution.sh`: Full remediation for a challenge VM  
+  - `automated_hardening_solution.sh`: Script that applies all required hardening steps
+
+## How to Use
+
+- Start with a template, adapt it to your scenario, and test in a VM.
+- Review example scripts to learn scripting techniques and best practices.
+- After attempting an exercise, compare your script to the mentor solution for feedback.
+
+## Tips
+
+- Always test scripts in a safe environment before using in competition.
+- Document what each script does and any changes it makes.
+- Use scripts to save time and reduce manual errors during CyberPatriot rounds.
+
+*All scripts are unique and tailored for CyberPatriot training. Contributions are welcome!*
 
 ## Using These Scripts
 
@@ -101,6 +128,14 @@ Applies system-wide security controls:
 - Implements firewall rules
 - Configures security-related software
 - Enables system auditing
+
+## Example Scripts
+
+- Add and secure users in bulk
+- Audit running services and open ports
+- Apply recommended file permissions
+- Configure and test UFW firewall rules
+- Search for world-writable files and SUID binaries
 
 ## Contributing
 

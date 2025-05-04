@@ -1,3 +1,32 @@
+# Linux VM Setup for CyberPatriot
+
+This directory contains instructions and scripts for setting up Linux VMs for CyberPatriot exercises and scenarios.
+
+## Quick Start
+
+1. Download the appropriate setup script (e.g., `corporate-server-breach.sh`).
+2. Follow the README instructions to prepare your VM.
+3. Take a snapshot before distributing to cadets or starting an exercise.
+
+## Customization
+
+- Edit setup scripts to adjust scenario difficulty or add/remove vulnerabilities.
+- Update usernames, passwords, or IP addresses as needed for your training environment.
+- Use the provided README templates to document scenario details for cadets.
+
+## Troubleshooting
+
+- See the troubleshooting section in each scenario README for common issues.
+- If a script fails, check for correct OS version, sufficient disk space, and network connectivity.
+- Use VM snapshots to quickly reset to a clean state.
+
+## Example Scenarios
+
+- "Corporate Server Breach": Simulates a post-compromise environment for incident response training.
+- "Ordinary Day": Presents a system with subtle, non-obvious security issues for advanced practice.
+
+*VM setup scripts are unique and designed for CyberPatriot training. Always test your VM images before distributing to cadets!*
+
 # CyberPatriot Linux VM Setup: "Corporate Server Breach" Scenario
 
 This document outlines the setup process for the "Corporate Server Breach" Linux VM, designed for CyberPatriot incident response training. This VM simulates a realistic post-compromise environment tailored for cadet skill development.
