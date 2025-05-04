@@ -26,54 +26,13 @@ This directory provides foundational Bash script templates specifically designed
 
 ## Available Templates
 
-### System_Security_Audit.sh
-
-This template performs a broad security assessment of a Linux system.
-
-**Core Functions:**
--   Examines user account configurations and policies.
--   Checks running services and common network settings.
--   Audits critical file permissions.
--   Looks for common system hardening settings.
--   Identifies potentially unauthorized software or files.
--   Generates a summary report highlighting potential issues.
-
-**How to Use:**
-```bash
-# Review and customize the script first
-sudo bash ./System_Security_Audit.sh
-```
-
-### User_Account_Audit.sh (Example - Create if needed)
-
-*This template focuses specifically on user and group security.*
-
-**Core Functions:**
--   Lists local users and their status.
--   Checks password policies and aging.
--   Identifies members of critical groups (like `sudo`).
--   Flags accounts with potential security risks (e.g., UID 0, empty passwords).
-
-**How to Use:**
-```bash
-# Review and customize
-sudo bash ./User_Account_Audit.sh
-```
-
-### Service_Hardening_Helper.sh (Example - Create if needed)
-
-*This template assists in identifying and managing system services.*
-
-**Core Functions:**
--   Lists active and enabled services.
--   Flags potentially insecure or unnecessary services (e.g., telnet, ftp).
--   Provides commands to disable services.
-
-**How to Use:**
-```bash
-# Review and customize
-sudo bash ./Service_Hardening_Helper.sh
-```
+- `System_Security_Audit.sh`: Broad security assessment of a Linux system.
+- `User_Account_Audit.sh`: Audit user and group security.
+- `Service_Hardening_Helper.sh`: Identify and manage system services.
+- `user_management_template.sh`: Add/remove users, set password policies.
+- `service_audit_template.sh`: List running/enabled services.
+- `firewall_setup_template.sh`: Configure UFW or iptables rules.
+- `permissions_audit_template.sh`: Find and fix insecure file permissions.
 
 ## Script Troubleshooting Tips
 
@@ -114,28 +73,3 @@ Consider contributing improvements back to your team's shared repository to bene
 -   [Bash Scripting Basics Guide](../../Guides/Intermediate/Bash_Scripting_Basics.md)
 -   [Linux Command Line Reference](https://linuxcommand.org/)
 -   [CyberPatriot Linux Checklists](../../Checklists/Linux/README.md)
-
-# Linux Script Templates
-
-This directory contains starter templates for common Linux security automation tasks.
-
-## How to Use
-
-1. Copy a template to your working directory.
-2. Edit the script to fit your scenario (add users, services, etc.).
-3. Test the script in a VM before using in competition or exercises.
-
-## Available Templates
-
-- `user_management_template.sh`: Add/remove users, set password policies
-- `service_audit_template.sh`: List running/enabled services
-- `firewall_setup_template.sh`: Configure UFW or iptables rules
-- `permissions_audit_template.sh`: Find and fix insecure file permissions
-
-## Best Practices
-
-- Add comments to explain each section of your script.
-- Use variables for usernames, services, and file paths.
-- Always validate script output and check for errors.
-
-*Templates are for learning and rapid exercise development. Customize as needed!*

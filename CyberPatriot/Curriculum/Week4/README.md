@@ -73,10 +73,8 @@ By the end of this session, cadets will be able to:
   - Document user security changes
 
 ### 6. Team Challenge (25 minutes)
-- Split into teams of 2-3
-- Each team receives a system with user security issues
-- Teams compete to identify and fix all user-related vulnerabilities
-- Present findings and solutions to the class
+- Teams compete to find and fix the most user security issues in a simulated environment
+- Points awarded for each correct fix and documentation
 
 ### 7. Assessment (20 minutes)
 - [User Account Security Quiz](../../Quizzes/Quiz-Files/User_Account_Security_Quiz.md)
@@ -84,7 +82,7 @@ By the end of this session, cadets will be able to:
 - Review of common mistakes
 
 ### 8. Wrap-up and Preview (10 minutes)
-- Recap user security concepts
+- Recap key user security concepts
 - Assign homework (see below)
 - Preview next week (Windows System Hardening)
 - Q&A session

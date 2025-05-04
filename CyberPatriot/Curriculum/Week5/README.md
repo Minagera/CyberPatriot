@@ -74,8 +74,7 @@ By the end of this session, cadets will be able to:
 
 ### 7. Assessment (20 minutes)
 - [Windows System Hardening Quiz](../../Windows/Quizzes/Quiz-Files/Windows_System_Hardening_Quiz.md)
-- Group discussion of key hardening techniques
-- Review of common mistakes and misconceptions
+- Review answers as a class
 
 ### 8. Wrap-up and Preview (10 minutes)
 - Recap Windows hardening techniques

@@ -27,70 +27,34 @@ Windows/
 
 ## Getting Started
 
-1. Begin by setting up a Windows VM using the instructions in the [VM-Setup](./VM-Setup) directory
-2. Review the basic security concepts in the [Guides/Basic](./Guides/Basic) directory
-3. Try the introductory exercises
-4. Explore the script examples to learn about automation
+1. Set up a Windows VM using [VM-Setup](./VM-Setup)
+2. Review [Guides/Basic](./Guides/Basic) for foundational security concepts
+3. Complete introductory exercises
+4. Explore script examples for automation
 
 ## Learning Path
 
-For optimal learning, we recommend following this sequence:
-
-1. Basic Windows security principles and user account management
+1. User account management and password policies
 2. Windows Update and patch management
 3. Windows Defender and security tools
 4. Windows Firewall configuration
 5. Service hardening and application security
-6. Advanced security topics (Group Policy, Registry security, etc.)
+6. Advanced topics: Group Policy, Registry security, auditing
 
 ## CyberPatriot Competition Tips
 
-- The Windows portion of CyberPatriot typically involves:
-  - Securing user accounts (removing unauthorized users, setting appropriate permissions)
-  - Ensuring Windows Update is configured correctly
-  - Enabling and configuring Windows security features
-  - Removing malware and unauthorized software
-  - Answering forensic questions
-  - Implementing security policies
-
-- Focus on completing the highest-value items first
-- Always read the competition README file thoroughly
+- Always read the competition README file first
 - Use checklists to ensure you don't miss critical steps
-- Take snapshots of your VM when possible to create recovery points
-- Document your changes in case you need to troubleshoot
+- Focus on high-value items: user accounts, updates, Defender, Firewall, services
+- Document your changes for troubleshooting and reporting
 
 ## Windows Security Fundamentals
 
-The key areas of Windows security covered in these materials include:
-
-1. **User Account Security**
-   - User account management
-   - Password policies
-   - User rights assignments
-   - Administrator accounts
-
-2. **System Security**
-   - Windows Update configuration
-   - Windows Defender settings
-   - Windows Firewall
-   - Service hardening
-
-3. **Application Security**
-   - Software restrictions
-   - Application control
-   - Browser security
-   - Malware prevention and removal
-
-4. **Policy-Based Security**
-   - Local security policy
-   - Group Policy (Server)
-   - Security templates
-   - Security compliance
-
-5. **Monitoring and Auditing**
-   - Event logs
-   - Audit policies
-   - Security monitoring
+- User Account Security (accounts, passwords, rights, admin)
+- System Security (updates, Defender, Firewall, services)
+- Application Security (software restrictions, browser, malware removal)
+- Policy-Based Security (Local Security Policy, Group Policy, templates)
+- Monitoring and Auditing (event logs, audit policies)
 
 ## Scripting and Automation
 
@@ -99,8 +63,6 @@ The Scripts directory contains PowerShell scripts for:
 - Hardening system components
 - Auditing security settings
 - Performing system inventory
-
-Learning to use these scripts will help you work more efficiently during competitions.
 
 ## Additional Resources
 

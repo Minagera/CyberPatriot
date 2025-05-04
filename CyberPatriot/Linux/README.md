@@ -1,7 +1,5 @@
 # Linux Security Training Materials
 
-This directory contains training materials, exercises, and resources for the Linux portion of the CyberPatriot competition. The content covers Ubuntu 22.04 and Linux Mint security hardening techniques and best practices.
-
 ## Directory Structure
 
 ```

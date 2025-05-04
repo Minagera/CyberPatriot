@@ -90,10 +90,18 @@ By the end of this session, cadets will be able to:
   - Generate security status reports
   - Practice with existing script templates
 
+## Hands-on Exercise
+- Write and test a PowerShell script for Windows security auditing
+- Write and test a Bash script for Linux user auditing
+- Document script output and improvements
+
 ### 7. Assessment (20 minutes)
 - [Security Scripting Quiz](../../Quizzes/Quiz-Files/Security_Scripting_Quiz.md)
 - Script review and optimization
 - Troubleshooting script issues
+
+## Assessment
+- Quiz on scripting concepts and automation best practices
 
 ### 8. Wrap-up and Preview (10 minutes)
 - Recap scripting concepts

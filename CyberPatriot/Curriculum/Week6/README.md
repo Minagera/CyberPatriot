@@ -73,15 +73,11 @@ By the end of this session, cadets will be able to:
 - Detecting and resolving policy violations
 
 ### 6. Hands-on Exercise (60 minutes)
-- **Exercise**: [Linux System Hardening Challenge](../../Linux/Exercises/Linux_System_Hardening_Challenge.md)
-  - Apply Linux security configurations
-  - Secure system services
-  - Configure firewall protection
-  - Implement advanced access controls
-  - Verify security settings
-  - Document implemented hardening measures
+- Harden a Linux VM using provided checklists and scripts
+- Document all changes and verify system security
 
 ### 7. Assessment (20 minutes)
+- Quiz on Linux hardening concepts
 - [Linux System Hardening Quiz](../../Linux/Quizzes/Quiz-Files/Linux_System_Hardening_Quiz.md)
 - Group discussion of key hardening techniques
 - Review of common mistakes and misconceptions

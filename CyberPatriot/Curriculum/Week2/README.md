@@ -52,13 +52,12 @@ By the end of this session, cadets will be able to:
 - Understanding the root account and its security implications
 
 ### 5. Hands-on Exercise (60 minutes)
-- **Exercise**: [Linux Security Basics Lab](../../Linux/Exercises/Linux_Security_Basics_Lab.md)
-  - Set up a secure Linux user environment
-  - Configure appropriate file permissions
-  - Practice command line security tools
-  - Analyze system logs for security events
+- Practice user and file management commands on a Linux VM
+- Secure a sample user account
+- Document changes in a change log
 
 ### 6. Assessment (20 minutes)
+- Quiz on Linux basics and security concepts
 - [Linux Fundamentals Quiz](../../Linux/Quizzes/Quiz-Files/Linux_Fundamentals_Quiz.md)
 - Group review of answers
 - Discussion of common misconceptions

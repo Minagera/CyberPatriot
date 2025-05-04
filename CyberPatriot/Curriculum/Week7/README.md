@@ -78,15 +78,12 @@ By the end of this session, cadets will be able to:
 - DMZ configuration
 
 ### 6. Hands-on Exercise (60 minutes)
-- **Exercise**: [Network Security Implementation](../../Exercises/Network_Security_Implementation.md)
-  - Configure Windows Firewall with complex rules
-  - Implement Linux firewall protections
-  - Configure Cisco router and switch security
-  - Test cross-platform network connectivity
-  - Verify security configurations
+- Configure firewalls on Windows and Linux VMs
+- Secure a Cisco switch using Packet Tracer
+- Document firewall and segmentation changes
 
 ### 7. Assessment (20 minutes)
-- [Network Security & Firewall Quiz](../../Quizzes/Quiz-Files/Network_Security_Firewall_Quiz.md)
+- Quiz on network security and firewall concepts
 - Discussion of network security scenarios
 - Troubleshooting common issues
 

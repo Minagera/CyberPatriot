@@ -95,11 +95,14 @@ By the end of this session, cadets will be able to:
   - Configure intrusion detection
   - Test security configurations
   - Respond to simulated security incidents
+- Secure a Linux VM using advanced hardening techniques
+- Document kernel and service security changes
 
 ### 8. Assessment (20 minutes)
 - [Advanced Linux Security Quiz](../../Linux/Quizzes/Quiz-Files/Advanced_Linux_Security_Quiz.md)
 - Discussion of complex security scenarios
 - Security configuration prioritization exercise
+- Quiz on advanced Linux security topics
 
 ### 9. Wrap-up and Preview (10 minutes)
 - Recap advanced Linux security techniques

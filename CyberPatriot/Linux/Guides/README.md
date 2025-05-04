@@ -41,16 +41,6 @@ This directory contains step-by-step guides for all major Linux security topics 
 
 *All guides are unique and tailored for CyberPatriot training. If you have suggestions for new topics, please contribute!*
 
-# Linux Security Guides for CyberPatriot
-
-This directory contains step-by-step guides for learning and applying Linux security concepts in CyberPatriot competitions.
-
-- **Basic Guides**: Start here if you are new to Linux security.
-- **Intermediate Guides**: Learn practical hardening and troubleshooting skills.
-- **Advanced Guides**: Explore complex security topics and advanced defense techniques.
-
-**Tip:** Use these guides alongside hands-on exercises and checklists for the best results.
-
 ## Using These Guides for Competition Prep
 
 - Read through each guide before a practice round or competition.

@@ -11,32 +11,21 @@ This directory contains example Bash scripts designed to help CyberPatriot cadet
 
 ## Example Scripts Provided
 
-- [Quick_User_Audit.sh](./Quick_User_Audit.sh): Lists all users, their groups, and highlights suspicious accounts.
-- [Service_Checker.sh](./Service_Checker.sh): Shows all running services and flags common insecure ones.
-- [File_Permission_Scanner.sh](./File_Permission_Scanner.sh): Finds world-writable files and SUID/SGID binaries.
-- [Firewall_Status_Reporter.sh](./Firewall_Status_Reporter.sh): Checks UFW status and lists allowed/blocked ports.
+- `Quick_User_Audit.sh`: Lists all users, their groups, and highlights suspicious accounts.
+- `Service_Checker.sh`: Shows all running services and flags common insecure ones.
+- `File_Permission_Scanner.sh`: Finds world-writable files and SUID/SGID binaries.
+- `Firewall_Status_Reporter.sh`: Checks UFW status and lists allowed/blocked ports.
+- `secure_user_add.sh`: Adds users with secure defaults and password policies.
+- `audit_services.sh`: Lists all running and enabled services.
+- `find_world_writable.sh`: Finds world-writable files and directories.
+- `ufw_hardening.sh`: Applies recommended UFW firewall rules.
+- `ssh_hardening.sh`: Applies secure SSH configuration settings.
 
 ## Why Script?
 
 - **Save time**: Automate repetitive checks.
 - **Reduce mistakes**: Scripts do the same thing every time.
 - **Document your process**: Output can be saved for your competition report.
-
-## Important Note
-
-Never run a script you do not understand. Always review and test scripts before using them in a competition environment.
-
-# Linux Script Examples
-
-This directory contains complete example scripts for Linux security automation and auditing.
-
-## Example Scripts
-
-- `secure_user_add.sh`: Adds users with secure defaults and password policies
-- `audit_services.sh`: Lists all running and enabled services
-- `find_world_writable.sh`: Finds world-writable files and directories
-- `ufw_hardening.sh`: Applies recommended UFW firewall rules
-- `ssh_hardening.sh`: Applies secure SSH configuration settings
 
 ## How to Use
 
@@ -45,8 +34,8 @@ This directory contains complete example scripts for Linux security automation a
 - Use as a reference when writing your own scripts for exercises or competition.
 
 *Examples are provided for learning and reference. Do not use in production without review!*
+
 ```bash
----bin/bash
 # Example: Basic User Audit Script for CyberPatriot
 
 echo "=== User Audit Report ==="

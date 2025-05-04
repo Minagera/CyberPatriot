@@ -60,9 +60,9 @@ By the end of this session, cadets will be able to:
 - Address any misconceptions or questions
 
 ### 7. Wrap-up and Preview (10 minutes)
-- Recap key learnings
+- Recap key Windows security concepts
 - Assign homework (see below)
-- Preview next week's topic (Linux Fundamentals)
+- Preview next week (Linux Fundamentals)
 - Q&A session
 
 ## Homework Assignment
@@ -84,9 +84,8 @@ By the end of this session, cadets will be able to:
 - Quiz handouts or online quiz system
 
 ## Instructor Notes
-- Gauge team's existing Windows knowledge at the beginning
-- Adjust pace based on team's familiarity with Windows
-- Allow extra time for VM setup if needed
-- Focus on fundamentals rather than advanced techniques
-- Highlight specific areas frequently tested in competition
-- Have backup exercises ready for teams that finish early
+- Many cadets may be new to Windows security - focus on fundamentals
+- Demonstrate each security tool live if possible
+- Encourage documentation of all changes made during exercises
+- Highlight the importance of reading the README and scenario instructions in competition
+- Be ready to troubleshoot VM issues and answer basic Windows questions

@@ -81,3 +81,21 @@ Each week includes assessment opportunities to gauge cadet understanding. Consid
 - Adjusting future sessions based on assessment results
 
 Remember that the goal is not just competition success but developing lasting cybersecurity skills and interest in the field.
+
+## Reference Templates
+
+- [Incident Response Report Template](../Resources/Templates/Incident_Response_Report_Template.md)
+- [Change Log Template](../Resources/Templates/Change_Log_Template.md)
+- [Team Workflow Checklist](../Resources/Templates/Team_Workflow_Checklist.md)
+- [Forensics Question Response Template](../Resources/Templates/Forensics_Question_Response_Template.md)
+
+## Additional Resources
+
+- [CyberPatriot Official Training Materials](https://www.uscyberpatriot.org/competition/training-materials)
+- [Windows Security Guides](../Windows/Guides/)
+- [Linux Security Guides](../Linux/Guides/)
+- [Cisco Networking Guides](../Cisco/Guides/)
+- [Security Checklists](../Checklists/)
+- [Reference Sheets](../Resources/References/)
+
+---

@@ -78,6 +78,8 @@ By the end of this session, cadets will be able to:
 - Log analysis techniques
 
 ### 7. Hands-on Exercise (60 minutes)
+- Secure a Windows VM using advanced techniques
+- Document registry and PowerShell changes
 - **Exercise**: [Advanced Windows Security Challenge](../../Windows/Exercises/Advanced_Windows_Security_Challenge.md)
   - Implement registry security configurations
   - Create PowerShell security scripts
@@ -88,6 +90,7 @@ By the end of this session, cadets will be able to:
   - Analyze security effectiveness
 
 ### 8. Assessment (20 minutes)
+- Quiz on advanced Windows security topics
 - [Advanced Windows Security Quiz](../../Windows/Quizzes/Quiz-Files/Advanced_Windows_Security_Quiz.md)
 - Discussion of complex security scenarios
 - Security configuration prioritization exercise
