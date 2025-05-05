@@ -1,144 +1,73 @@
-# Week 10: Advanced Linux Security
+# Week 10: Advanced Linux Security & Incident Response Intro
 
 ## Learning Objectives
-By the end of this session, cadets will be able to:
-- Implement advanced Linux security features and configurations
-- Configure and manage SELinux/AppArmor effectively
-- Use advanced security auditing and monitoring tools
-- Implement intrusion detection techniques
-- Secure critical Linux services in depth
-- Apply kernel security parameters
-- Detect and remediate sophisticated Linux vulnerabilities
-- Apply defense-in-depth strategies for Linux environments
 
-## Pre-class Preparation
-- Review [Linux Advanced Security guide](../../Linux/Guides/Advanced/Linux_Advanced_Security.md)
-- Complete the [SELinux/AppArmor Tutorial](../../Linux/Guides/Advanced/Mandatory_Access_Controls.md)
-- Watch [Advanced Linux Security video](https://www.youtube.com/watch?v=example) (placeholder link)
-- Read [Linux Kernel Security Parameters](https://example.com/kernel-security) (placeholder link)
+By the end of this week, cadets will be able to:
+-   Understand the role of Pluggable Authentication Modules (PAM) and identify key configuration files.
+-   Configure basic PAM settings for password quality and account lockout (building on Week 4).
+-   Locate and analyze system logs using `journalctl` and traditional log files in `/var/log`.
+-   Identify common Linux persistence mechanisms (cron jobs, systemd timers/services, startup scripts).
+-   Apply basic incident response concepts within the Linux environment.
+-   Apply learned techniques using `VM-Setup` scenarios.
 
-## Lesson Plan
+## Topics Covered
 
-### 1. Advanced Linux Security Architecture (25 minutes)
-- Linux security model deep dive
-- Kernel security mechanisms
-- Security modules architecture
-- Linux security namespaces
-- Linux capabilities
-- Seccomp filters
-- Security-focused Linux distributions
-- Defense-in-depth implementation
+-   **Pluggable Authentication Modules (PAM):**
+    -   Purpose: Flexible framework for authentication, authorization, session management, password changes.
+    -   Key Configuration Files: `/etc/pam.d/` directory (service-specific files like `sshd`, `login`, `sudo`), `/etc/security/` (module configurations like `pwquality.conf`).
+    -   Common Modules: `pam_unix.so` (traditional password checks), `pam_pwquality.so` (password complexity), `pam_tally2.so` or `pam_faillock.so` (login failure tracking/lockout), `pam_permit.so`, `pam_deny.so`.
+    -   Structure of PAM files: `type control module-path module-arguments`.
+    -   Review/Enhance: Configuring password complexity (`/etc/pam.d/common-password` with `pam_pwquality.so`) and potentially account lockout (`pam_tally2` or `pam_faillock`).
+-   **Linux Logging:**
+    -   Systemd Journal (`journalctl`): Centralized logging system.
+        -   Viewing logs: `journalctl`, `-f` (follow), `-u <service>` (filter by unit), `-p <priority>` (filter by priority err, warning, info), `--since`, `--until`.
+        -   Checking boot logs: `journalctl -b`.
+    -   Traditional Syslog (`/var/log/`):
+        -   Common log files: `syslog` (general messages), `auth.log` (authentication events - logins, sudo), `kern.log` (kernel messages), `dpkg.log` (package installs/removals), `ufw.log` (firewall).
+        -   Tools for viewing: `cat`, `less`, `tail -f`, `grep`.
+    -   Using logs for forensic questions (e.g., finding login times, sudo usage, package installs).
+-   **Linux Persistence Mechanisms:**
+    -   Cron Jobs:
+        -   User crontabs: `crontab -l` (list for current user), `crontab -e` (edit). Files typically in `/var/spool/cron/crontabs/`.
+        -   System-wide cron: `/etc/crontab`, `/etc/cron.d/`, `/etc/cron.hourly/`, `/etc/cron.daily/`, `/etc/cron.weekly/`, `/etc/cron.monthly/`. Look for suspicious scripts/commands.
+    -   Systemd Timers/Services:
+        -   User services/timers: `~/.config/systemd/user/`.
+        -   System services/timers: `/etc/systemd/system/`, `/usr/lib/systemd/system/`. Look for suspicious `.service` or `.timer` files. Commands: `systemctl list-timers --all`, `systemctl list-unit-files --type=service`.
+    -   Startup Scripts: Files executed on login or boot.
+        -   `/etc/profile`, `/etc/profile.d/*.sh`
+        -   `~/.bashrc`, `~/.profile`, `~/.bash_profile`, `~/.bash_login`
+        -   (Less common now) `/etc/rc.local` (may need enabling). Check for malicious commands added.
+    -   SUID Binaries (Review from Week 6): `find / -perm /6000 -type f -ls`.
+    -   (Mention others briefly: Rootkits, modified binaries - advanced).
+-   **Incident Response (Linux Context):**
+    -   Applying IR phases: Identifying suspicious processes (`ps`, `top`, `htop`), network connections (`ss`, `netstat`), cron jobs, services. Containing by killing processes, blocking IPs (UFW), disabling users. Eradicating by removing malicious files/scripts, fixing configs. Recovering by ensuring required services run.
+-   **Practice with `VM-Setup`:**
+    -   Using the `../VM-Setup/Linux/corporate-server-breach.sh` script to create compromised VMs.
+    -   Applying investigation techniques (logs, cron, systemd, scripts) to find vulnerabilities and forensic answers described in the generated `README-Innovatech-Incident.txt`.
 
-### 2. SELinux and AppArmor Mastery (40 minutes)
-- MAC systems advanced configuration
-- SELinux contexts and policies
-  - Policy types (targeted, strict, MLS)
-  - Policy manipulation
-  - Custom policy development
-  - Troubleshooting SELinux issues
-- AppArmor profiles and modes
-  - Profile development
-  - Profile testing and debugging
-  - AppArmor tools
-- MAC system auditing and monitoring
-- Policy violation investigation
-- MAC system performance considerations
+## Activities/Exercises
 
-### 3. Advanced Service Security (35 minutes)
-- Securing critical services in depth:
-  - SSH hardening techniques
-  - Web server security (Apache/Nginx)
-  - Database security (MySQL/PostgreSQL)
-  - DNS server security (BIND)
-  - Mail server security
-- Service isolation techniques
-- Container security concepts
-- Service vulnerability assessment
-- Service security monitoring
-- Fine-tuning service configurations
+-   **Lab 1 (PAM):** Review `common-password`. If `pam_pwquality` is installed, examine its options. (Optional: Configure basic account lockout using `pam_tally2` or `pam_faillock` - requires careful setup).
+-   **Lab 2 (Logging):** Use `journalctl` to view logs, filter by service (`sshd`) and time. Use `tail -f /var/log/auth.log` and perform logins/sudo actions to see live updates. Use `grep` to search logs for specific usernames or IPs.
+-   **Lab 3 (Persistence):** Use `crontab -l` and check system cron directories. Use `systemctl list-timers --all`. Check `/etc/profile.d/` and `~/.bashrc` for suspicious entries.
+-   **Lab 4 (IR Discussion):** Discuss how to investigate a suspicious process found running on Linux. What steps would you take? How does this fit the IR model?
+-   **Exercise:** [Unique Linux IR Scenario](../Exercises/Linux/Incident_Response/README.md) - Use a VM generated by `../VM-Setup/Linux/`. Follow the generated README, investigate using logs, cron, systemd, etc., to identify IOCs, remove persistence, and answer forensic questions.
 
-### 4. Kernel Security Parameters (30 minutes)
-- sysctl security settings
-- /proc/sys/kernel security parameters
-- /proc/sys/net security parameters
-- Kernel modules security
-- Kernel hardening techniques
-- Disabling unnecessary kernel features
-- Securing the boot process
-- Kernel security verification
+## Assessment
 
-### 5. Advanced Authentication and Authorization (30 minutes)
-- Pluggable Authentication Modules (PAM) advanced configuration
-- Multi-factor authentication
-- Centralized authentication systems
-- LDAP and Active Directory integration
-- Role-based access control
-- Advanced sudo configurations
-- Account security monitoring
-- Access control auditing
+-   Participation in labs and investigation tasks.
+-   Ability to locate common Linux persistence mechanisms.
+-   Ability to use `journalctl` and `grep` to find basic information in logs.
+-   Completion of [Unique Linux IR Scenario](../Exercises/Linux/Incident_Response/README.md).
+-   [Unique Incident Response Quiz](../Quizzes/Quiz-Files/Incident_Response_Quiz.md) (Include Linux-specific questions)
 
-### 6. Intrusion Detection and Security Monitoring (30 minutes)
-- Host-based intrusion detection
-- File integrity monitoring
-- AIDE configuration and management
-- System auditing with auditd
-- Log aggregation and analysis
-- Security event monitoring
-- Anomaly detection techniques
-- Security incident response
+## Resources
 
-### 7. Hands-on Exercise (60 minutes)
-- **Exercise**: [Advanced Linux Security Challenge](../../Linux/Exercises/Advanced_Linux_Security_Challenge.md)
-  - Implement SELinux/AppArmor policies
-  - Configure advanced service security
-  - Implement kernel security parameters
-  - Configure intrusion detection
-  - Test security configurations
-  - Respond to simulated security incidents
-- Secure a Linux VM using advanced hardening techniques
-- Document kernel and service security changes
+-   [Unique Linux Persistence Guide](../Linux/Guides/Persistence/README.md) (New or enhance existing)
+-   [Unique Linux Logging Guide](../Linux/Guides/Logging/README.md) (New or enhance existing)
+-   [Unique Linux PAM Guide](../Linux/Guides/PAM/README.md) (New or enhance existing)
+-   [Unique Linux VM Setup README](../Linux/VM-Setup/README.md)
+-   `pam.d`, `journalctl`, `crontab`, `systemd`, `grep` man pages.
 
-### 8. Assessment (20 minutes)
-- [Advanced Linux Security Quiz](../../Linux/Quizzes/Quiz-Files/Advanced_Linux_Security_Quiz.md)
-- Discussion of complex security scenarios
-- Security configuration prioritization exercise
-- Quiz on advanced Linux security topics
-
-### 9. Wrap-up and Preview (10 minutes)
-- Recap advanced Linux security techniques
-- Assign homework (see below)
-- Preview next week (Advanced Networking & Packet Tracer Scenarios)
-- Q&A session
-
-## Homework Assignment
-1. Complete the [Linux Intrusion Detection Setup guide](../../Linux/Guides/Advanced/Intrusion_Detection_Setup.md)
-2. Create a custom SELinux policy or AppArmor profile for a service
-3. Research and document three advanced attack techniques against Linux systems and their mitigations
-4. Develop a comprehensive Linux security audit checklist
-
-## Additional Resources
-- [SELinux User Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_selinux/index)
-- [AppArmor Documentation](https://gitlab.com/apparmor/apparmor/-/wikis/Documentation)
-- [Linux Kernel Security](https://www.kernel.org/doc/html/latest/security/index.html)
-- [Linux Security Modules](https://www.linux.com/news/overview-linux-kernel-security-features/)
-- [Linux Intrusion Detection Systems](https://example.com/linux-ids) (placeholder link)
-
-## Materials Needed
-- Ubuntu 22.04/Linux Mint VM for each cadet
-- SELinux and AppArmor enabled VMs
-- Security tool installations (AIDE, auditd, etc.)
-- Linux service configurations
-- Projection system for demonstrations
-- Linux security checklists
-- Access to repository materials
-
-## Instructor Notes
-- This is a highly technical session - prepare simplified explanations for complex concepts
-- Have troubleshooting guides ready for SELinux/AppArmor issues
-- Consider having pre-configured environments if configurations are time-consuming
-- Emphasize practical skills that will be useful in competition
-- Include real examples from past CyberPatriot Linux challenges
-- Prepare a recovery plan for systems that become unusable due to security configurations
-- Consider bringing in guest speaker with Linux security expertise if available
-- Focus on configurations commonly checked in CyberPatriot scoring
-- Include a mix of GUI and command-line approaches where possible
+---
+*This weekly plan is uniquely designed for the Grissom JROTC CyberPatriot program.*

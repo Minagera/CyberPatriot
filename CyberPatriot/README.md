@@ -1,65 +1,71 @@
-# Comprehensive CyberPatriot Training Guide
+# Grissom High School JROTC CyberPatriot Program Training Repository (25-26 Season)
 
-This repository provides a structured and comprehensive set of resources designed for training high school JROTC cadets for the Air Force Association's CyberPatriot National Youth Cyber Defense Competition. It incorporates strategies focused on incident response, system hardening, and forensic analysis across Windows, Linux, and Cisco platforms.
+**Mission:** To provide a comprehensive, unique, and continuously improving set of training materials for Grissom High School JROTC cadets, enabling them to excel in the CyberPatriot National Youth Cyber Defense Competition through a deep understanding of incident response, system hardening, and teamwork.
 
-**Always start by reading the README file in each directory to understand its contents and navigation.**
+**Always start by reading the README file in each directory to understand its contents and purpose.**
 
 ## Directory Reference
 
--   [**Curriculum/**](Curriculum/README.md): Structured weekly training plans, objectives, exercises, and quizzes.
--   [**Windows/**](Windows/README.md): Guides, checklists, exercises, scripts, quizzes, and VM setup resources specific to Windows (Windows 11/Server).
--   [**Linux/**](Linux/README.md): Guides, checklists, exercises, scripts, quizzes, and VM setup resources specific to Linux (Ubuntu/Mint).
--   [**Cisco/**](Cisco/README.md): Guides, checklists, exercises, and Packet Tracer resources specific to Cisco IOS networking.
--   [**Checklists/**](Checklists/README.md): Centralized, actionable security checklists for rapid hardening during competition.
+-   [**Curriculum/**](Curriculum/README.md): Structured weekly training plans tailored for the 25-26 season, including objectives, exercises, and assessment references.
+-   [**Windows/**](Windows/README.md): Resources specific to securing Windows environments (Desktop/Server), including guides, checklists, scripts, and VM setup scenarios.
+-   [**Linux/**](Linux/README.md): Resources specific to securing Linux environments (Ubuntu focus), including guides, checklists, scripts, and VM setup scenarios.
+-   [**Cisco/**](Cisco/README.md): Resources for the Cisco Networking Challenge, including IOS guides, checklists, and Packet Tracer exercises.
+-   [**Checklists/**](Checklists/README.md): Actionable checklists for rapid system hardening during competition, emphasizing README priority.
 -   [**Exercises/**](Exercises/README.md): Hands-on practice scenarios simulating competition challenges across all platforms.
--   [**Quizzes/**](Quizzes/README.md): Assessment tools to test knowledge of security concepts, tools, and procedures.
--   [**Resources/**](Resources/README.md): Reusable templates, command references, core security principles, and tools.
--   [**VM-Setup/**](VM-Setup/README.md): Scripts and guides for creating vulnerable virtual machine environments for realistic practice.
--   [**Team_Resources/**](Team_Resources/README.md): Guides and templates for competition strategy, team roles, workflow, and communication.
--   [**Meld/**](Meld/README.md): Guides on using baselining techniques with tools like Meld for effective vulnerability discovery.
--   [**Sponsorships/**](Sponsorships/README.md): Templates and information for seeking program support and funding.
+-   [**Quizzes/**](Quizzes/README.md): Assessment tools to reinforce learning and test knowledge relevant to competition tasks.
+-   [**Resources/**](Resources/README.md): Reusable templates (documentation, forensics), command references, core security principles, and potentially helpful tools/links.
+-   [**VM-Setup/**](VM-Setup/README.md): Scripts and instructions for creating realistic, compromised VM environments for practice. **Crucial for hands-on training.**
+-   [**Team_Resources/**](Team_Resources/README.md): Guides on competition strategy, team roles, workflow optimization, and effective communication protocols.
+-   [**Meld/**](Meld/README.md): Guidance on using baselining techniques (specifically with Meld) for efficient vulnerability discovery.
+-   [**Sponsorships/**](Sponsorships/README.md): Templates and information related to seeking program support and funding.
 
 ## Understanding CyberPatriot: The Correct Perspective
 
-CyberPatriot is best defined as an **incident response and remediation competition**. Teams inherit compromised systems and must:
-1.  Identify unauthorized changes and security issues.
-2.  Find and analyze forensic artifacts.
-3.  Remove attacker persistence mechanisms.
-4.  Apply security hardening to prevent future attacks.
-This requires a deeper understanding than simply applying fixes from a list.
+CyberPatriot is fundamentally an **incident response and remediation competition**. Teams inherit compromised systems and must:
+1.  **Investigate:** Identify unauthorized changes, malware, and security misconfigurations.
+2.  **Analyze:** Find and interpret forensic artifacts to understand the compromise and answer specific questions.
+3.  **Remediate:** Remove attacker persistence, malware, and unauthorized access.
+4.  **Harden:** Apply security best practices and required configurations to prevent future attacks while maintaining essential services (as defined by the README).
+This requires critical thinking and adaptability, not just rote application of fixes.
 
-## Training Approach
+## Training Approach (25-26 Focus)
 
-1.  **Develop the Security Mindset:** Focus on *why* security measures work, not just *what* they are. Understand attacker motivations and techniques.
-2.  **Focus on Operating System Familiarity:** Build deep knowledge of Windows (Registry, GPO, Services, Event Logs) and Linux (Users, PAM, Systemd, Cron, Permissions, Logs).
-3.  **Research-Driven Preparation:** Learn about common services (HTTP, DNS, SSH, RDP, SQL, Mail, SMB) and how to secure them *before* the competition.
-4.  **Baselining Strategy:** Master comparing competition images to known-good configurations to quickly spot deviations. Use tools like Meld.
-5.  **Effective Team Composition:** Assign roles (Windows, Linux, Cisco, Documentation/Forensics, Orchestrator) but encourage cross-training.
-6.  **The Competition "Gameplan":** Develop a repeatable workflow: Read README -> Baseline -> Users/Groups -> Backdoors/Malware -> Updates -> Services -> Hardening -> Permissions -> Forensics -> Verify Score.
+Success hinges on more than checklists. Our training emphasizes:
+
+1.  **Security Mindset:** Understanding the *why* behind vulnerabilities and attacker TTPs (Tactics, Techniques, Procedures).
+2.  **OS Fluency:** Deep, practical knowledge of Windows (Registry, GPO, Services, Event Logs, PowerShell) and Linux (Users/Groups, PAM, Systemd, Cron, Permissions, Logs, Bash).
+3.  **Research Proficiency:** Quickly learning to secure unfamiliar services or configurations encountered during competition.
+4.  **Baselining Mastery:** Systematically comparing competition images against known-good states or initial scans to rapidly identify deviations. Tools like Meld are key.
+5.  **Structured Workflow:** Adhering to a repeatable process: **Read README -> Initial Baseline/Recon -> User Accounts -> Persistence Mechanisms -> Services/Applications -> Security Policies -> Network Security -> Forensics -> Verification/Scoring.**
+6.  **Team Synergy:** Utilizing defined roles (Windows, Linux, Cisco, Documentation/Forensics, Orchestrator) and clear communication protocols (see `Team_Resources/`). Cross-training is encouraged.
+7.  **Forensic Focus:** Treating forensic questions not as an afterthought, but as integral to the investigation process, worth significant points.
 
 ## Training Resources
 
--   **Incident Response Training VMs:** Use the `VM-Setup` scripts to create realistic post-breach scenarios.
--   **Cisco Packet Tracer Scenarios:** Practice network hardening, ACLs, and secure configurations in `Cisco/PacketTracer_Scenarios/`.
--   **Checklists & References:** Utilize materials in `Checklists/` and `Resources/References/` for quick access during practice and competition.
--   **Quizzes & Exercises:** Reinforce learning with materials in `Quizzes/` and `Exercises/`.
+-   **Incident Response VMs:** Utilize `VM-Setup/` scripts regularly to practice on realistic scenarios.
+-   **Packet Tracer Scenarios:** Master Cisco concepts via `Cisco/PacketTracer_Scenarios/`.
+-   **Checklists & References:** Use `Checklists/` and `Resources/References/` during practice to build speed and familiarity.
+-   **Quizzes & Exercises:** Reinforce concepts from `Quizzes/` and `Exercises/`.
+-   **Curriculum:** Follow the structured plan in `Curriculum/` for progressive skill development.
 
-## Implementation Schedule
+## Implementation Schedule (Example)
 
--   **Phase 1 (Fundamentals):** OS Basics, Networking, Security Principles, User Management.
--   **Phase 2 (Intermediate):** System Hardening (Win/Lin), Firewall Config, Basic Scripting.
--   **Phase 3 (Advanced):** Advanced Security (Win/Lin), Advanced Networking/Packet Tracer, Competition Strategy, Mock Competitions.
+*(Refer to `Curriculum/README.md` for the detailed weekly breakdown)*
+-   **Phase 1 (Fundamentals):** OS Basics (Win/Lin), Networking Concepts, Security Principles, User Management.
+-   **Phase 2 (Intermediate):** System Hardening (Policies, Services, Firewalls), Basic Scripting (Audit/Recon), Intro to Baselining.
+-   **Phase 3 (Advanced):** Advanced Security Features, Log Analysis, Forensics Techniques, Advanced Networking/Packet Tracer, Competition Strategy, Full Mock Competitions.
 
 ## Continuous Improvement
 
--   Conduct after-action reviews following each practice/competition round.
--   Identify knowledge gaps and areas for improvement.
--   Update checklists, scripts, and documentation based on lessons learned.
--   Research unfamiliar vulnerabilities or services encountered.
+This repository is a living resource.
+-   Conduct After Action Reviews (AARs) after practices/competitions.
+-   Identify knowledge gaps and update materials accordingly.
+-   Contribute improvements, new scripts, checklists, or scenarios via pull requests or direct updates (if permissions allow).
+-   Research new vulnerabilities and defense techniques relevant to potential competition scenarios.
 
 ## Conclusion
 
-Success in CyberPatriot requires a blend of technical skill, strategic thinking, effective teamwork, and a commitment to continuous learning. This repository provides the foundation for building a highly competitive team.
+Excelling in CyberPatriot requires dedication, technical proficiency, strategic thinking, and strong teamwork. This repository provides the framework and resources for the Grissom JROTC team to achieve success in the 25-26 season and beyond.
 
 ---
-*All materials in this repository are intended to be unique and specifically tailored for CyberPatriot training. Contributions and improvements are welcome.*
+*All materials herein are uniquely developed or adapted for Grissom JROTC CyberPatriot training. Contributions focused on enhancing cadet readiness are encouraged.*

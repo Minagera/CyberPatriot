@@ -1,32 +1,52 @@
-# Windows Security Scripts for CyberPatriot
+# Windows Security Scripts for CyberPatriot (PowerShell)
 
-This directory contains unique PowerShell scripts designed for automating security checks, hardening, auditing, and inventory tasks commonly needed in CyberPatriot competitions on Windows systems.
+This directory contains unique PowerShell scripts designed to aid in auditing and reconnaissance during CyberPatriot competitions. **These scripts prioritize information gathering and verification over making direct system changes.**
 
-**Disclaimer:** Always understand what a script does before running it, especially in a competition environment. Test scripts thoroughly on practice VMs first. Incorrect script usage can break system functionality or lead to point deductions.
+**Disclaimer:** Always understand what a script does before running it, especially in a competition environment. Test scripts thoroughly in practice VMs. Use scripts to augment, not replace, manual investigation and understanding. **Prioritize actions based on the README, not just script output.**
 
-## Example Scripts
+## Scripting Philosophy for CyberPatriot
 
--   [**`user_audit.ps1`**](user_audit.ps1): Lists all local users, their status (enabled/disabled), last logon time (if available), and group memberships, highlighting administrative accounts.
--   [**`service_hardening.ps1`**](service_hardening.ps1): Identifies and offers to disable common non-essential or potentially risky services (e.g., Remote Registry, Telnet, SNMP). *Requires careful review before running.*
--   [**`defender_update.ps1`**](defender_update.ps1): Checks the status of Windows Defender Antivirus (Real-time protection, signature version) and attempts to trigger an update.
--   [**`firewall_check.ps1`**](firewall_check.ps1): Displays the status (enabled/disabled) of Windows Defender Firewall for Domain, Private, and Public profiles and lists currently allowed rules (can be verbose).
--   [**`startup_audit.ps1`**](startup_audit.ps1): Lists programs configured to run at startup (Registry Run keys, Startup folder) and enumerates active scheduled tasks for review.
--   [**`policy_check.ps1`**](policy_check.ps1): (Optional - Example) Checks key Local Security Policy settings (Password Policy, Lockout Policy) against recommended values.
--   [**`share_audit.ps1`**](share_audit.ps1): (Optional - Example) Lists active network shares and their permissions.
+-   **Read-Only First:** Prioritize scripts that gather information without making changes.
+-   **Targeted Information:** Scripts should collect specific, relevant security data (users, services, tasks, etc.).
+-   **Baseline-Friendly Output:** Format output consistently (e.g., sorted lists) to make comparison with `diff` tools (like Meld) easier.
+-   **Efficiency:** Automate repetitive checks to save time.
+-   **Safety:** Avoid commands that could disrupt required services or violate competition rules.
+
+## Available Scripts (Examples - Create/Update as needed)
+
+-   **`Audit-UsersAndGroups.ps1`** (Placeholder - Create if missing)
+    *   *Purpose:* Gathers information about local users (enabled status, password policies) and key group memberships (Administrators, Remote Desktop Users). Provides a quick overview of account status.
+    *   *Output:* Formatted console output summarizing user accounts and group members.
+-   **`Check-CommonPersistence.ps1`** (Placeholder - Create if missing)
+    *   *Purpose:* Checks common persistence locations like Registry Run/RunOnce keys, enabled Scheduled Tasks (basic properties), and Startup folders. Highlights potentially suspicious entries for manual review.
+    *   *Output:* Lists entries found in common persistence locations.
+-   **`Audit-Services.ps1`** (Placeholder - Create if missing)
+    *   *Purpose:* Lists running services and services set to auto-start, optionally filtering for non-Microsoft services or showing service executable paths. Helps identify potentially unnecessary or suspicious services.
+    *   *Output:* Formatted list of services with relevant details (Name, DisplayName, Status, StartMode, PathName).
+-   **`Get-SystemInfoAudit.ps1`** (Placeholder - Create if missing)
+    *   *Purpose:* Gathers basic system information (OS version, hostname, uptime), checks firewall status, UAC status, and Defender status. Provides a quick system health check.
+    *   *Output:* Summary of key system and security feature statuses.
 
 ## How to Use
 
-1.  Transfer the script to the target Windows machine.
-2.  Open PowerShell as Administrator.
-3.  Set the execution policy if necessary (e.g., `Set-ExecutionPolicy RemoteSigned -Scope Process -Force`).
-4.  Navigate to the script directory (`cd C:\path\to\scripts`).
-5.  Run the script (e.g., `.\user_audit.ps1`).
-6.  Review the output carefully.
+1.  Transfer the desired script(s) to the target Windows VM (ensure transfer method is secure and permitted).
+2.  Open **PowerShell as Administrator**.
+3.  Temporarily adjust execution policy if needed (use the least permissive scope necessary):
+    ```powershell
+    # Example: Allow scripts for this PowerShell session only
+    Set-ExecutionPolicy RemoteSigned -Scope Process -Force
+    ```
+4.  Navigate to the script's directory: `cd C:\Path\To\Scripts`
+5.  Run the script: `.\ScriptName.ps1`
+6.  **Carefully review the output.** Use the information to guide your manual investigation and hardening actions based on the competition README.
 
 ## Contribution
 
-Develop new scripts for common CyberPatriot tasks (e.g., checking specific registry keys, auditing permissions, finding large media files). Ensure scripts are well-commented and focus on information gathering or safe configuration changes.
+Develop new scripts focusing on:
+-   **Information Gathering:** Checking specific security settings (e.g., audit policy status, specific registry keys related to security features), finding prohibited files, checking share permissions.
+-   **Non-Destructive Checks:** Scripts should avoid making changes unless explicitly designed for a safe, reversible configuration check (clearly documented).
+-   **Clarity and Comments:** Ensure scripts are well-commented, explaining each section's purpose.
+-   **Uniqueness:** Tailor scripts for common CyberPatriot findings and avoid simply copying generic scripts found online.
 
 ---
-
-*All scripts are unique and designed for CyberPatriot training. Add new scripts as needed for your team! Always test scripts in a safe environment before using them in competition.*
+*All scripts are unique and designed for Grissom JROTC CyberPatriot training. Always test thoroughly before competition use.*

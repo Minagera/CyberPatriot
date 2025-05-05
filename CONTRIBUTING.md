@@ -1,84 +1,41 @@
-# Contributing to CyberPatriot Training Program
+# Contributing to the Grissom CyberPatriot Repository
 
-Thank you for considering contributing to the CyberPatriot Training Program! This document outlines the process for contributing to this repository.
+Thank you for your interest in contributing! Your help is valuable in keeping these training materials effective, up-to-date, and unique for preparing cadets for the CyberPatriot competition.
+
+## Guiding Principles
+
+1.  **Uniqueness:** All contributed content (guides, exercises, scripts, quizzes, templates, etc.) must be original work or significantly adapted and tailored specifically for the CyberPatriot training context of this repository. Avoid direct copying from external sources. Attribute ideas where appropriate, but the implementation must be unique.
+2.  **Relevance:** Content should directly support preparation for the CyberPatriot competition, focusing on the skills, tools, and mindset needed for success, particularly at the Nationals level (incident response, hardening, forensics).
+3.  **Accuracy:** Ensure technical information, commands, and configurations are accurate for the specified platforms (Windows 10/11, Ubuntu 22.04, Cisco IOS/Packet Tracer).
+4.  **Clarity:** Write guides and instructions clearly and concisely. Comment scripts effectively. Ensure exercises and quizzes have clear objectives.
+5.  **Structure:** Follow the existing directory structure and file naming conventions where possible. Use Markdown for documentation.
 
 ## How to Contribute
 
-1. **Fork the Repository**: Create your own fork of the repository.
+1.  **Fork the Repository:** Create your own copy of the repository on GitHub.
+2.  **Create a Branch:** Make your changes in a dedicated branch with a descriptive name (e.g., `feature/add-linux-pam-guide`, `fix/update-windows-checklist`).
+3.  **Make Changes:** Add or modify files, ensuring they adhere to the guiding principles.
+4.  **Test Your Changes:** If adding scripts, test them. If adding exercises, ensure they are solvable. Proofread guides and quizzes.
+5.  **Commit Changes:** Write clear, concise commit messages explaining the purpose of your changes.
+6.  **Push to Your Fork:** Push your branch to your forked repository on GitHub.
+7.  **Submit a Pull Request (PR):** Open a pull request from your branch to the `main` branch of the original `Minagera/CyberPatriot` repository.
+    -   Provide a clear title and description for your PR, explaining what changes you made and why.
+    -   Reference any related issues if applicable.
 
-2. **Create a Branch**: Create a branch for your contribution.
-   ```
-   git checkout -b feature/your-feature-name
-   ```
+## Areas for Contribution (See Gap Analysis in main README.md)
 
-3. **Make Changes**: Make your changes or additions to the repository.
-
-4. **Follow Style Guidelines**:
-   - Use Markdown for documentation files
-   - Include clear, step-by-step instructions
-   - Add screenshots where appropriate
-   - Test all scripts and exercises before submitting
-
-5. **Commit Changes**: Commit your changes with a clear and descriptive commit message.
-   ```
-   git commit -m "Add: Detailed description of your changes"
-   ```
-
-6. **Push to Your Fork**: Push your changes to your forked repository.
-   ```
-   git push origin feature/your-feature-name
-   ```
-
-7. **Submit a Pull Request**: Create a pull request from your fork to the main repository.
-
-## Types of Contributions
-
-We welcome the following types of contributions:
-
-- New training guides
-- Exercise scenarios
-- Quiz questions
-- PowerShell or Bash scripts
-- Packet Tracer scenarios
-- Bug fixes and corrections
-- Improvements to existing content
-
-## File Structure Guidelines
-
-When adding new content, please follow the existing file structure:
-
-- Place Windows-related content in the `/Windows` directory
-- Place Linux-related content in the `/Linux` directory
-- Place Cisco-related content in the `/Cisco` directory
-- Use appropriate subdirectories for different types of content (Guides, Exercises, Scripts, etc.)
-
-## Content Guidelines
-
-- **Guides and Instructions**:
-  - Begin with an overview of the topic
-  - Provide clear, numbered steps
-  - Include expected outputs or screenshots where helpful
-  - End with verification steps or assessment criteria
-
-- **Exercises**:
-  - Include clear learning objectives
-  - Provide all necessary files or setup instructions
-  - Include a difficulty level (Basic, Intermediate, Advanced)
-  - Provide assessment criteria
-
-- **Scripts**:
-  - Include detailed comments
-  - Provide usage instructions
-  - Include error handling
-  - Test thoroughly before submitting
-
-## Solution Files
-
-- If you're contributing exercises or challenges, please include solution files in the appropriate `/Solutions` directory
-- Mark solution files clearly so they're not accessed inadvertently by students
+-   Populating missing guides, exercises, and quizzes (especially Advanced topics).
+-   Enhancing VM-Setup scripts with more varied/subtle vulnerabilities and scoring.
+-   Creating challenging Packet Tracer scenarios.
+-   Developing advanced cross-platform exercises.
+-   Adding forensics-focused guides and exercises.
+-   Improving existing checklists and reference sheets.
+-   Adding instructor notes/solutions.
+-   Suggesting useful tools for the `Resources/Tools/` directory.
+-   Updating sponsorship information.
 
 ## Questions?
 
-If you have any questions about contributing, please open an issue in the repository or contact the repository maintainers.
+If you have questions about contributing or want to discuss an idea, feel free to open an Issue on the repository.
 
-Thank you for helping to improve the CyberPatriot Training Program!
+Thank you for helping improve these resources for Grissom JROTC CyberPatriot cadets!

@@ -1,135 +1,63 @@
-# Week 12: Competition Strategies & Mock Competition
+# Week 12: Competition Strategy, Forensics Review & Mock Competition
 
 ## Learning Objectives
-By the end of this session, cadets will be able to:
-- Apply strategic approaches to CyberPatriot competition scenarios
-- Prioritize security issues based on scoring impact
-- Efficiently divide work among team members
-- Manage time effectively during competition
-- Document security changes systematically
-- Apply knowledge from previous weeks in integrated scenarios
-- Work effectively under competition pressure and time constraints
-- Reflect on and improve team performance
 
-## Pre-class Preparation
-- Review all previous week's materials
-- Complete the [CyberPatriot Competition Strategy Guide](../../Resources/Competition_Strategy_Guide.md)
-- Watch [CyberPatriot Competition Tips video](https://www.youtube.com/watch?v=example) (placeholder link)
-- Review the [Complete Security Checklist Package](../../Checklists/)
-- Prepare any questions about competition scenarios
+By the end of this week, cadets will be able to:
+-   Understand and apply effective CyberPatriot competition workflow and time management strategies.
+-   Execute assigned team roles effectively.
+-   Utilize communication protocols during simulated competition.
+-   Systematically analyze and answer forensic questions based on evidence gathered.
+-   Integrate skills learned across Windows, Linux, and Cisco in a mock competition setting.
+-   Participate in an After-Action Review (AAR) to identify strengths and weaknesses.
 
-## Lesson Plan
+## Topics Covered
 
-### 1. Competition Success Strategies (30 minutes)
-- Competition format and scoring review
-- Time management techniques
-- Team roles and communication
-- Critical thinking under pressure
-- Decision-making frameworks
-- Common competition pitfalls
-- Incident management approach
-- Securing quick scoring points
+-   **Competition Workflow & Strategy:**
+    -   Review: Importance of reading the README first.
+    -   Phased Approach: Initial Recon/Baseline -> User Security -> Persistence Hunting -> Service/Policy Hardening -> Forensics -> Verification/Troubleshooting.
+    -   Time Management: Allocating time blocks, regular score checks, SITREPs.
+    -   Prioritization: Focusing on high-point items, README tasks, and critical vulnerabilities first. Balancing security fixes with maintaining required services.
+    -   Documentation: Using Change Logs (`../Resources/Templates/Change_Log_Template.md`), documenting forensic answers (`../Resources/Templates/Forensics_Question_Response_Template.md`).
+-   **Team Roles & Communication:**
+    -   Review Roles: Orchestrator/Captain, Windows Specialist, Linux Specialist, Cisco Specialist, Documentation/Forensics Lead (roles may overlap).
+    -   Executing Roles: Responsibilities during competition simulation.
+    -   Communication Protocols: Using SITREP and BLOCKER protocols (`../Team_Resources/communication_protocols.md`) during the mock competition. Importance of clear, concise communication.
+-   **Forensic Question Analysis:**
+    -   Types of Questions: Identifying users, finding files, determining event times, analyzing configurations, locating specific data mentioned in README.
+    -   Investigation Techniques Review: Using logs (Event Viewer, `journalctl`, `/var/log`), file system searches (`find`, File Explorer search), registry checks, command history, configuration file analysis (`sshd_config`, `ufw status`, etc.).
+    -   Answering Effectively: Providing precise answers based on evidence, citing sources/commands used if helpful, using the provided template.
+-   **Mock Competition:**
+    -   Setup: Using `VM-Setup` generated Windows/Linux images and a relevant Packet Tracer scenario. Distribute mock READMEs.
+    -   Execution: Run a timed session (e.g., 2-4 hours) simulating competition conditions. Cadets work in teams, execute roles, apply workflow, communicate, and document. Mentors observe and note issues. Scoring engine (if available) or manual checks used.
+-   **After-Action Review (AAR):**
+    -   Process: What was supposed to happen? What actually happened? What went well? What could be improved?
+    -   Focus Areas: Technical execution, workflow efficiency, communication effectiveness, time management, documentation quality, forensic accuracy.
+    -   Outcome: Identify specific areas for future practice and improvement. Update team strategies or checklists.
 
-### 2. Integrated Security Approach (25 minutes)
-- Connecting Windows, Linux, and Cisco security concepts
-- Cross-platform security principles
-- Unified security frameworks
-- Finding similarities in security approaches
-- Platform-specific priority issues
-- Identifying high-value security targets
-- Balancing breadth and depth in security fixes
+## Activities/Exercises
 
-### 3. Team Coordination Techniques (20 minutes)
-- Effective team communication
-- Work distribution strategies
-- Progress tracking methods
-- Knowledge sharing during competition
-- Decision making in team settings
-- Conflict resolution
-- Supporting team members
-- Leadership rotation
+-   **Discussion:** Review team roles, workflow, and communication protocols. Discuss common pitfalls in competition (e.g., spending too much time on low-point items, breaking required services, poor communication).
+-   **Forensics Practice:** Provide sample forensic questions and have cadets describe the steps/commands they would use on Win/Lin to find the answers.
+-   **Mock Competition:** Conduct the timed mock competition exercise using prepared VMs, Packet Tracer file, and READMEs.
+-   **AAR Session:** Facilitate a structured AAR immediately following the mock competition. Encourage open and constructive feedback from all team members.
 
-### 4. Documentation and Verification (20 minutes)
-- Documentation best practices
-- Creating efficient change logs
-- Verification of security changes
-- Preventing and recovering from mistakes
-- Tracking points and progress
-- Using checklists effectively
-- Final verification procedures
-- Report generation
+## Assessment
 
-### 5. Mock Competition Briefing (15 minutes)
-- Explanation of mock competition format
-- Distribution of team roles
-- Overview of scoring system
-- Rules and resources allowed
-- Time constraints
-- Expected deliverables
-- Evaluation criteria
+-   Observation of teamwork, communication, and workflow during the mock competition.
+-   Quality of documentation (Change Log, Forensics Answers) produced during the mock competition.
+-   Performance in the mock competition (points achieved, vulnerabilities addressed, forensic accuracy).
+-   Participation and insights shared during the AAR.
+-   [Unique Competition Strategy Quiz](../Quizzes/Quiz-Files/Competition_Strategy_Quiz.md)
 
-### 6. Mock Competition (120 minutes)
-- **Exercise**: Full CyberPatriot-style mock competition
-  - Integrated Windows, Linux, and Cisco challenges
-  - Vulnerabilities from all previous training weeks
-  - Timed competition format
-  - Score tracking
-  - Team coordination requirement
-  - Documentation requirement
+## Resources
 
-### 7. Competition Debrief and Analysis (40 minutes)
-- Review of mock competition results
-- Team performance analysis
-- Identification of strengths and weaknesses
-- Discussion of effective strategies
-- Analysis of time management
-- Review of missed vulnerabilities
-- Celebration of successes
-- Areas for improvement
+-   [Unique Competition Strategy Guide](../Team_Resources/Competition_Strategy_Guide.md)
+-   [Unique Communication Protocols](../Team_Resources/communication_protocols.md)
+-   [Unique Team Formation Guide](../Team_Resources/team_formation.md)
+-   [Unique Incident Response Workflow](../Team_Resources/incident_response_workflow.md) (or similar workflow doc)
+-   [Unique Documentation Templates](../Resources/Templates/)
+-   All previously covered Guides, Checklists, and Reference sheets.
+-   VMs/Scenarios from `../VM-Setup/`, `../Cisco/PacketTracer_Scenarios/`, `../Exercises/`.
 
-### 8. Final Course Wrap-up (20 minutes)
-- Review of 12-week curriculum
-- Major concepts summary
-- Competition readiness assessment
-- Next steps for continued learning
-- Additional practice resources
-- Recognition of cadet achievements
-- Final Q&A session
-- Mentor contact information for further questions
-
-## Homework Assignment
-1. Create a personal competition preparation checklist
-2. Write a reflection on team performance and individual contributions
-3. Develop a study plan for any identified weak areas
-4. Practice with provided competition images (if available)
-
-## Additional Resources
-- [CyberPatriot Competitor's Field Guide](https://www.uscyberpatriot.org/competition/training-materials/competitor-field-guide)
-- [Past CyberPatriot Competition Analysis](https://example.com/past-competitions) (placeholder link)
-- [Competition Time Management Strategies](https://example.com/competition-time) (placeholder link)
-- [Team Coordination Templates](../../Resources/Team_Coordination_Templates.md)
-- [Comprehensive Security Documentation Templates](../../Resources/Documentation_Templates.md)
-
-## Materials Needed
-- Competition environment VMs (Windows, Linux, Cisco Packet Tracer)
-- Scoring server or scoring simulation
-- Competition scenario description documents
-- Team role assignment cards
-- Printed security checklists for all platforms
-- Stopwatches or timing system
-- Documentation templates
-- Projection system for demonstrations and debrief
-- Certificates or recognition for course completion
-
-## Instructor Notes
-- Create a realistic competition environment
-- Consider bringing in experienced CyberPatriot competitors as guest evaluators
-- Be available to provide hints if teams get completely stuck, but encourage independent problem-solving
-- Take notes on team dynamics for debrief discussion
-- Consider video recording teams (with permission) for post-competition analysis
-- Prepare specific feedback for each team
-- Have contingency plans for technical issues
-- Create a positive, encouraging atmosphere even under competition pressure
-- Emphasize that mistakes are learning opportunities
-- Consider bringing refreshments for the mock competition (similar to competition day)
-- Have some awards or recognition prepared for various achievements
+---
+*This weekly plan is uniquely designed for the Grissom JROTC CyberPatriot program, focusing on integrating skills and refining team performance.*

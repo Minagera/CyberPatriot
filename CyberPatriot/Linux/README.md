@@ -1,6 +1,6 @@
-# Linux Security Training Materials
+# Linux Security Training Materials (Ubuntu Focus - 25-26 Season)
 
-This directory contains training materials for securing Linux systems (focusing on Ubuntu and Linux Mint distributions) within the CyberPatriot competition context.
+This directory provides resources for mastering Linux (specifically Ubuntu/Debian-based systems) security within the CyberPatriot competition framework.
 
 ## Directory Structure
 
@@ -152,55 +152,32 @@ Learning to use these scripts will help you work more efficiently during competi
 
 ## Directory Index
 
-### [Checklists/](Checklists/README.md)
-Links to the detailed Linux checklist in the main `Checklists/Linux/` directory. Covers user accounts, permissions, services, firewall, updates, and forensics.
-
-### [Exercises/](Exercises/README.md)
-Hands-on practice scenarios simulating CyberPatriot challenges on Linux, including basic hardening, service configuration, and forensic investigation.
-
-### [Guides/](Guides/README.md)
-In-depth guides on Linux security fundamentals and advanced topics relevant to the competition.
--   **[Basic/](Guides/Basic/README.md)**: Core concepts like user management, permissions, basic commands, package management (apt).
--   **[Advanced/](Guides/Advanced/README.md)**: Deeper dives into services (systemd), firewall (UFW), SSH hardening, PAM, logging, and common vulnerabilities.
-
-### [Quizzes/](Quizzes/README.md)
-Quizzes testing knowledge of Linux commands, security concepts, configuration files, and hardening techniques.
-
-### [Scripts/](Scripts/README.md)
-Unique Bash scripts for automating security checks, audits, and common hardening tasks on Linux systems. Includes examples for user audits, service checks, finding world-writable files, etc.
-
-### [VM-Setup/](VM-Setup/README.md)
-Scripts and documentation for creating compromised Linux virtual machine environments (Ubuntu/Mint) for realistic incident response training.
+-   [**Guides/**](Guides/README.md)
+    *   Contains `Basic/` and `Advanced/` guides covering fundamental CLI usage, user/group management, permissions, services (`systemctl`), networking (`ip`, `ss`), firewalls (UFW), and progressing to advanced topics like PAM, logging (`journalctl`), SSH hardening, and basic forensics. **Uniquely focused on CP tasks.**
+-   [**Checklists/**](../Checklists/Linux/README.md)
+    *   **Link to the main Linux checklist.** Offers a structured workflow for hardening Ubuntu systems rapidly during competition, always prioritizing the README.
+-   [**Exercises/**](../Exercises/Linux/README.md) (Create if missing)
+    *   Practical labs and scenarios for practicing Linux hardening, vulnerability remediation, persistence hunting, and forensic analysis on Ubuntu systems.
+-   [**Scripts/**](Scripts/README.md)
+    *   Unique Bash scripts designed for security auditing and reconnaissance on Linux systems (checking users, sudoers, services, listening ports, common persistence points). **Emphasizes safe information gathering.**
+-   [**VM-Setup/**](VM-Setup/README.md)
+    *   Essential resources (`corporate-server-breach.sh`) for creating compromised Ubuntu VM environments that simulate realistic CyberPatriot incident response challenges.
 
 ---
 
-## CyberPatriot Competition Tips for Linux
+## CyberPatriot Competition Tips for Linux (Unique Focus)
 
--   **Read the README:** This is always the first and most critical step. Identify required users, services, prohibited actions, and forensic questions.
--   **User Accounts:**
-    *   Use `cat /etc/passwd` and `cat /etc/group` to identify users/groups.
-    *   Remove unauthorized users (`sudo userdel -r [username]`).
-    *   Change weak passwords (`sudo passwd [username]`).
-    *   Check for users with UID 0 (`awk -F: '($3 == 0)' /etc/passwd`).
-    *   Review sudoers (`sudo cat /etc/sudoers`, `sudo ls /etc/sudoers.d/`) and remove unauthorized users from the `sudo` or `wheel` group (`sudo deluser [username] sudo`).
-    *   Disable unused accounts (`sudo passwd -l [username]`).
--   **Password Policy:** Configure PAM (`/etc/pam.d/common-password`) for complexity and `/etc/login.defs` for aging. Install `libpam-pwquality` if needed.
--   **Services (`systemctl`):**
-    *   List running services (`systemctl list-units --type=service --state=running`).
-    *   List listening ports (`sudo ss -tulpn`).
-    *   Disable unnecessary/insecure services (e.g., `telnet`, `vsftpd` if not required, `apache2` if not required) using `sudo systemctl disable --now [service-name]`.
-    *   Check service configurations (e.g., `/etc/ssh/sshd_config`, `/etc/apache2/apache2.conf`). Harden SSH (disable root login, use keys, change port if allowed).
--   **Firewall (UFW):**
-    *   Ensure UFW is installed (`sudo apt install ufw`).
-    *   Enable it (`sudo ufw enable`).
-    *   Check status (`sudo ufw status verbose`).
-    *   Allow required services/ports (e.g., `sudo ufw allow ssh`, `sudo ufw allow http`) and deny others. Default deny incoming (`sudo ufw default deny incoming`).
--   **Updates:** Run `sudo apt update && sudo apt upgrade -y` if allowed by README and time permits.
--   **Permissions:**
-    *   Find world-writable files/directories (`find / -type d -perm -0002 -ls`, `find / -type f -perm -0002 -ls`). Correct permissions (`chmod o-w [file/dir]`).
-    *   Find SUID/SGID files (`find / -perm /6000 -type f -ls`). Investigate and remove SUID/SGID bit if unnecessary (`chmod -s [file]`).
--   **Forensics:** Use `find`, `grep`, `cat`, `ls -la` to search for files mentioned in the README, check logs (`/var/log/`), examine cron jobs (`crontab -l`, `/etc/cron.*`), check shell history (`history`, `~/.bash_history`).
--   **Documentation:** Log all changes made.
+-   **README is KING:** The absolute first step. Identify required users/services, prohibited actions, scoring tasks, and forensic clues. Document constraints immediately.
+-   **User Account Security:** Master user/group management (`useradd`, `usermod`, `userdel`, `groupadd`, `passwd`). Identify users via `/etc/passwd`, `/etc/group`, `/etc/shadow`. Remove unauthorized users (`sudo userdel -r [user]`). Change ALL passwords to strong, unique ones (`sudo passwd [user]`). Check for UID 0 users (`awk -F: '($3 == 0)' /etc/passwd`). Scrutinize `/etc/sudoers` and `/etc/sudoers.d/` (`visudo` is safe editor), remove unauthorized sudo access (`sudo deluser [user] sudo`). Disable unused accounts (`sudo passwd -l [user]`).
+-   **Password Policy (PAM & login.defs):** Configure password complexity via PAM (`/etc/pam.d/common-password`, requires `libpam-pwquality`). Set password aging policies (`PASS_MAX_DAYS`, `PASS_MIN_DAYS`, `PASS_WARN_AGE`) in `/etc/login.defs`. Apply aging to existing users (`sudo chage -M 90 -m 7 -W 14 [user]`).
+-   **Service Management (`systemctl` & `ss`):** List running/enabled services (`systemctl list-units --type=service --state=running`, `systemctl list-unit-files --state=enabled`). Identify listening ports/services (`sudo ss -tulpn`). Disable unnecessary/insecure services (e.g., `telnet`, `vsftpd` if not needed, web servers if not required) using `sudo systemctl disable --now [service]`. **Verify against README requirements before disabling.** Harden critical service configs (e.g., `/etc/ssh/sshd_config` - `PermitRootLogin no`, `PasswordAuthentication no` (if keys used), `Protocol 2`).
+-   **Firewall (UFW):** Ensure UFW is installed (`sudo apt install ufw -y`). Enable it (`sudo ufw enable`). Set default deny for incoming traffic (`sudo ufw default deny incoming`). Allow only necessary services/ports based *explicitly* on the README (`sudo ufw allow ssh`, `sudo ufw allow http`, `sudo ufw allow 8080/tcp`). Check status (`sudo ufw status verbose`).
+-   **Updates:** Run `sudo apt update && sudo apt upgrade -y` **only if** the README allows and time permits. Be aware upgrades can sometimes break scoring.
+-   **Permissions & SUID/SGID:** Find world-writable files/dirs (`find / -type d -perm -002 -ls`, `find / -type f -perm -002 -ls`) and fix (`chmod o-w [target]`). Find SUID/SGID files (`find / -perm /6000 -type f -ls`), investigate suspicious ones (non-standard binaries), and remove the bit if unauthorized (`chmod -s [file]`). Check critical file permissions (`/etc/passwd`, `/etc/shadow`, `/etc/sudoers`).
+-   **Persistence Hunting:** Look for cron jobs (user: `crontab -l -u [user]`, system: `/etc/crontab`, `/etc/cron.*`). Check `systemd` services/timers (`/etc/systemd/system/`). Examine shell startup files (`.bashrc`, `.profile`). Look for suspicious SUID binaries. Check for modified binaries (use `dpkg --verify` if time permits).
+-   **Forensic Investigation:** Search common locations (`/home/*/Desktop`, `/home/*/Documents`, `/tmp`, `/var/tmp`, `/root`) and user directories for READMEs, answer files, or clues. Use `grep -r` to search file contents. Analyze logs in `/var/log` (`syslog`, `auth.log`, `ufw.log`) and `journalctl` for relevant events (logins, sudo usage, service starts/stops, UFW blocks). Check command history (`history`, `.bash_history`).
+-   **Documentation & Verification:** Keep a Change Log. Check scoring frequently. Use documentation to revert changes if needed.
+-   **Baselining:** Use commands (`getent passwd`, `systemctl list-units --state=running`, `ss -tulpn`, `crontab -l`, `find / -perm /6000`) at the start. Compare output later or use Meld.
 
 ---
 
@@ -212,4 +189,4 @@ Scripts and documentation for creating compromised Linux virtual machine environ
 
 ---
 
-*All materials in this directory are unique and tailored for CyberPatriot cadet training. If you find missing content or have suggestions, please contribute!*
+*All materials in this directory are unique and tailored for CyberPatriot cadet training aiming for National-level performance. Use the README files within each subdirectory for more specific guidance.*

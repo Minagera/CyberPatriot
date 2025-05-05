@@ -1,59 +1,64 @@
-# Security Checklists for CyberPatriot
+# Security Checklists for CyberPatriot (25-26 Season)
 
-This directory centralizes actionable security checklists designed for rapid system hardening during CyberPatriot competitions.
+This directory centralizes unique, actionable security checklists designed for rapid system hardening during CyberPatriot competitions. They cover Windows, Linux, and Cisco IOS.
 
 ## CRITICAL FIRST STEP: Always Read the Competition README First!
 
-**The most important step in any CyberPatriot competition is to thoroughly read the README file provided with each challenge!**
+**The single most important action in any CyberPatriot round is to thoroughly read and understand the README file provided with each image!**
 
--   Each competition image comes with a README file containing specific scenario information, required services/users, prohibited actions, and forensic questions.
--   The README may override general security practices with competition-specific requirements.
--   Answers to forensic questions are often found by following README instructions.
+The README contains:
+-   **Scenario Context:** Background story, system roles.
+-   **Authorized Items:** Users, groups, services, applications that MUST remain operational.
+-   **Prohibited Actions:** Specific things you must NOT do (e.g., "Do not disable Service X").
+-   **Scored Tasks:** Specific configurations or fixes required for points.
+-   **Forensic Questions:** Questions worth points, requiring investigation within the image.
+-   **Overrides:** Competition-specific requirements that **TRUMP** general security best practices or checklist items.
 
-**Never make security changes without first consulting the README file for that specific challenge!**
+**Never make changes without consulting the README! Adapt these checklists based on its specific instructions.** Document README constraints before starting work.
 
 ## Overview
 
-Security checklists provide:
--   A systematic approach to securing systems under time pressure.
--   A way to ensure critical security issues aren't overlooked.
--   A reference for common vulnerabilities and fixes relevant to CyberPatriot.
--   A basis for documenting completed tasks.
+These checklists provide:
+-   A **structured workflow** for securing systems under time pressure.
+-   A method to **avoid overlooking critical security areas**.
+-   A quick reference for **common CyberPatriot vulnerabilities and fixes**.
+-   A basis for **documenting actions taken** (check off items as completed).
+-   A **training tool** to reinforce hardening steps.
 
 ## Available Checklists
 
--   [**Windows/**](Windows/README.md): Checklist for Windows 11 / Windows Server. Covers user accounts, policies, services, features, file system, network security, and common forensic locations.
--   [**Linux/**](Linux/README.md): Checklist for Ubuntu / Linux Mint. Covers user accounts, password policies, services, firewall (UFW), SSH, permissions, logging, and common forensic locations.
--   [**Cisco/**](Cisco/README.md): Checklist for Cisco IOS devices (via Packet Tracer). Covers basic hardening, password security, SSH configuration, disabling unused services/interfaces, and basic ACL concepts.
+-   [**Windows/README.md**](Windows/README.md): Comprehensive checklist for Windows Desktop/Server hardening (Users, Policies, Services, Firewall, Persistence, Forensics).
+-   [**Linux/README.md**](Linux/README.md): Comprehensive checklist for Ubuntu/Debian hardening (Users, PAM, Services, UFW, Permissions, Persistence, Forensics).
+-   [**Cisco/README.md**](Cisco/README.md): Checklist for basic Cisco IOS device hardening (Passwords, SSH, Services, Banners, Interface Security).
 
 ## How to Use
 
-1.  **Read the Competition README.**
-2.  Use the relevant platform checklist as a guide.
-3.  Prioritize items based on the README and potential point values (e.g., forensic questions, critical vulnerabilities).
-4.  Document actions taken (use `../Resources/Templates/Change_Log_Template.md`).
-5.  Adapt the checklist based on the specific image and scenario.
+1.  **READ THE README FIRST.** Note all constraints and required items.
+2.  Select the appropriate checklist (Windows, Linux, Cisco).
+3.  Follow the suggested workflow (often Recon -> Users -> Persistence -> Services -> Policies -> Network -> Forensics -> Verify).
+4.  **Adapt** the checklist based on the README (skip steps if prohibited, add steps if required).
+5.  Check off items as you complete them.
+6.  **Document** changes made (use `../Resources/Templates/Change_Log_Template.md`).
+7.  **Verify** scoring engine updates frequently. If points are lost, review recent changes using your documentation.
 
 ## Team Strategy
 
--   Assign specific sections to different team members based on roles (Windows Specialist, Linux Specialist, etc.).
--   Communicate findings and completed items.
--   Use the checklist to track progress and ensure coverage.
--   Prioritize high-value security fixes first.
+-   Assign checklist sections to team members based on roles (Windows Specialist, Linux Specialist).
+-   Use the checklist to ensure coverage but encourage deeper investigation beyond just ticking boxes.
+-   Communicate findings and completed sections within the team.
+-   Use the "Common Scoring Items" section as a final review before time expires, cross-referenced with the README.
 
 ## Additional Resources
 
-For more detailed information on implementing these security measures, refer to:
--   The `Guides` directories within each platform folder (`../Windows/Guides/`, `../Linux/Guides/`, `../Cisco/Guides/`).
--   The `Exercises` directory for hands-on practice (`../Exercises/`).
--   The `Resources` directory for command references and templates (`../Resources/`).
+-   [Guides](../Windows/Guides/, ../Linux/Guides/, ../Cisco/Guides/): For deeper understanding of checklist items.
+-   [Scripts](../Windows/Scripts/, ../Linux/Scripts/): To automate reconnaissance related to checklist items.
+-   [References](../Resources/References/): For quick command lookups.
 
 ## Customizing Checklists
 
-Teams are encouraged to customize these checklists based on:
--   Team member expertise.
--   Specifics learned from practice images and past competitions.
--   Time management strategies.
--   Point-earning effectiveness observed via the scoring engine.
+-   Mentors/Teams can fork or copy these checklists and customize them based on team strengths, weaknesses, or specific competition trends observed.
+-   Add specific commands or steps your team finds particularly useful.
+-   Reorder sections based on your team's preferred workflow. Ensure uniqueness is maintained.
 
-Remember that the competition README file's instructions always take precedence over general security practices in these checklists when there's a conflict.
+---
+*These checklists are unique resources developed for Grissom JROTC CyberPatriot training.*

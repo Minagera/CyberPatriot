@@ -1,219 +1,231 @@
-# Windows Security Checklist for CyberPatriot
+# Windows Security Checklist for CyberPatriot (Unique & Actionable - 25-26 Season)
 
 ## CRITICAL FIRST STEP: Read the Competition README File!
-Before making any changes, thoroughly read the README file provided with the competition image. It contains:
-- Required services that must remain operational
-- User accounts that must be maintained
-- Prohibited actions that could cause penalties
-- Answers to forensics questions (worth points!)
-- Competition-specific requirements that override general security practices
-
-**README INSTRUCTIONS TRUMP THIS CHECKLIST!**
+Before ANY changes, dissect the README. Note: Required Services/Users, Prohibited Actions, Scored Tasks, Forensic Questions, Overrides to Best Practices. **README IS LAW!** Document constraints.
 
 ---
 
-## User Account Management (`lusrmgr.msc` or `Computer Management`)
+**Workflow Suggestion:** Recon/README -> Users -> Persistence -> Services/Apps -> Policies -> Network -> Forensics -> Verify Score
 
-### Critical User Settings
-- [ ] **Read README:** Identify authorized/required users.
-- [ ] Change all user passwords to strong passwords (12+ chars, complex). Document them!
-- [ ] Remove unauthorized user accounts (check README first!).
-- [ ] Disable the Guest account (if not required by README).
-- [ ] Ensure Administrator account is secured (strong password, consider renaming if allowed).
-- [ ] Remove unauthorized users from `Administrators` group.
-- [ ] Remove unauthorized users from `Remote Desktop Users` group.
-- [ ] Check for hidden/unusual user accounts.
+---
 
-### Password Policy (`secpol.msc` > Account Policies > Password Policy)
-- [ ] Enforce password history: `5` passwords remembered (or higher)
-- [ ] Maximum password age: `90` days (or lower)
-- [ ] Minimum password age: `1` day (or higher)
-- [ ] Minimum password length: `12` characters (or higher)
-- [ ] Password must meet complexity requirements: `Enabled`
-- [ ] Store passwords using reversible encryption: `Disabled`
+## User Account Management (`lusrmgr.msc`, `net user`, `Get-LocalUser`, `secpol.msc`)
 
-### Account Lockout Policy (`secpol.msc` > Account Policies > Account Lockout Policy)
-- [ ] Account lockout threshold: `5` invalid logon attempts (or lower)
-- [ ] Account lockout duration: `30` minutes (or higher)
-- [ ] Reset account lockout counter after: `30` minutes (or higher)
+### Account Review & Cleanup
+- [ ] **Read README:** Identify ALL authorized users & groups. Document them.
+- [ ] List local users: `Get-LocalUser | Format-Table Name, Enabled, LastLogon` or `lusrmgr.msc`.
+- [ ] **Remove unauthorized user accounts** (`net user <user> /delete` or `Remove-LocalUser -Name <user>`). Verify against authorized list.
+- [ ] **Disable unnecessary accounts** (e.g., unused app accounts - check README). `Disable-LocalUser -Name <user>` or `net user <user> /active:no`.
+- [ ] **Disable built-in Guest account** (Verify SID S-1-5-32-546). `Disable-LocalUser -Name Guest` or `net user Guest /active:no`.
+- [ ] **Rename Administrator account** (ONLY if allowed by README). `Rename-LocalUser -Name Administrator -NewName <NewAdminName>` or `secpol.msc`. Document new name.
+- [ ] **Rename Guest account** (ONLY if allowed by README). `Rename-LocalUser -Name Guest -NewName <NewGuestName>` or `secpol.msc`. Document new name.
+
+### Password Security
+- [ ] **Change ALL passwords** for remaining users (including renamed Admin) to strong, unique passwords compliant with policy (`net user <user> *` or `Set-LocalUser`). Document securely!
+- [ ] Check "Password never expires": `Get-LocalUser | Select Name,PasswordNeverExpires`. Uncheck (`Set-LocalUser -Name <user> -PasswordNeverExpires $false`) unless required by README.
+- [ ] Check "User cannot change password": `Get-LocalUser | Select Name,UserMayNotChangePassword`. Uncheck (`Set-LocalUser -Name <user> -UserMayNotChangePassword $false`) unless required.
+
+### Group Membership (`lusrmgr.msc`, `net localgroup`, `Get-LocalGroupMember`)
+- [ ] Review **Administrators** group members: `Get-LocalGroupMember Administrators`. Remove ALL unauthorized users/groups (`Remove-LocalGroupMember Administrators -Member <user>`). Apply Least Privilege rigorously.
+- [ ] Review **Remote Desktop Users** group members: `Get-LocalGroupMember 'Remote Desktop Users'`. Remove unauthorized. Check README for RDP allowance.
+- [ ] Review other sensitive groups (Backup Operators, Power Users, etc.). Remove unauthorized members.
+
+### User Rights (`secpol.msc` -> Local Policies -> User Rights Assignment)
+- [ ] Review sensitive rights (Debug programs, Act as part of OS, Take ownership, Backup/Restore files). Remove unauthorized users/groups.
+- [ ] Deny access to this computer from the network: Add `Guest` and potentially other non-admin groups.
+- [ ] Deny log on locally: Add `Guest`.
+- [ ] Deny log on through Remote Desktop Services: Add `Guest` and other unauthorized/non-admin groups if RDP is restricted/disabled per README.
 
 ---
 
 ## Windows Security Features
 
-### Windows Defender Antivirus (`Windows Security` App)
-- [ ] Ensure Real-time protection is `On`.
-- [ ] Check Virus & threat protection updates are recent. Run update if possible.
-- [ ] Run a Quick Scan (or Full Scan if time permits).
-- [ ] Review Protection history for quarantined items or threats.
+### Windows Defender Antivirus (`Windows Security` App, `Get-MpComputerStatus`, `Get-MpPreference`)
+- [ ] Verify Real-time protection is **Enabled**: `(Get-MpComputerStatus).RealTimeProtectionEnabled` or `(Get-MpPreference).DisableRealtimeMonitoring -eq $false`. Enable if disabled (`Set-MpPreference -DisableRealtimeMonitoring $false`).
+- [ ] Verify Virus & threat definitions are **Up to date** (if internet allowed/possible). Check `Windows Security` app or `(Get-MpComputerStatus).AntispywareSignatureVersion`.
+- [ ] Run a **Quick Scan** (if time permits/allowed): `Start-MpScan -ScanType QuickScan`. Check history/quarantine in `Windows Security` app.
 
-### Windows Defender Firewall (`wf.msc` or `Windows Security` App)
-- [ ] **Read README:** Identify required ports/services (e.g., HTTP, RDP if needed).
-- [ ] Ensure Firewall is `On` for Domain, Private, and Public profiles.
-- [ ] Block inbound connections by default for all profiles.
-- [ ] Review inbound rules: Disable or remove rules for unauthorized applications/ports. Allow only necessary ones (check README).
-- [ ] Review outbound rules: Less critical, but check for suspicious entries if time allows.
+### Windows Defender Firewall (`wf.msc`, `Get-NetFirewallProfile`, `Get-NetFirewallRule`)
+- [ ] Verify Firewall is **Enabled** for ALL profiles: `Get-NetFirewallProfile | Select Name, Enabled`. Enable if needed (`Set-NetFirewallProfile -Profile Domain,Private,Public -Enabled True`).
+- [ ] Set Default Inbound action to **Block**: `Get-NetFirewallProfile | Select Name, DefaultInboundAction`. Set if needed (`Set-NetFirewallProfile -Profile Domain,Private,Public -DefaultInboundAction Block`).
+- [ ] Set Default Outbound action to **Allow** (Default). Verify: `Get-NetFirewallProfile | Select Name, DefaultOutboundAction`.
+- [ ] Review **Inbound Rules**: `Get-NetFirewallRule -Direction Inbound -Action Allow -Enabled True | Sort-Object DisplayName | Format-Table Name, DisplayName, Profile, Enabled -AutoSize`. Disable/remove suspicious/unnecessary rules.
+- [ ] Review **Outbound Rules** (less common focus): `Get-NetFirewallRule -Direction Outbound -Action Block -Enabled True`. Check for suspicious blocks.
+- [ ] **Create necessary Allow rules** ONLY for required services/ports specified in the README. Be specific (Program/Port/Protocol/Scope). Use `wf.msc` or `New-NetFirewallRule`.
 
-### Windows Updates (`Settings` > `Update & Security`)
-- [ ] **Read README:** Check if updates are allowed/prohibited/required.
-- [ ] If allowed and network available, check for and install critical updates (time permitting).
+### User Account Control (UAC) (`secpol.msc` or `UserAccountControlSettings.exe`)
+- [ ] Ensure UAC is **Enabled**: Check `secpol.msc` -> Security Options -> "Run all administrators in Admin Approval Mode" is `Enabled`. Verify prompt behavior is reasonable (Default level usually OK). Registry: `(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').EnableLUA -eq 1`.
+
+### Windows Updates (`Settings` > `Update & Security`, `Get-HotFix`)
+- [ ] Check for/Install updates **ONLY IF** required or explicitly allowed by README and time/network permits. Note status if required.
 
 ---
 
 ## Services and Applications
 
-### Disable Unnecessary Services (`services.msc`)
-- [ ] **Read README:** Identify required services. **DO NOT DISABLE REQUIRED SERVICES.**
-- [ ] Disable commonly unnecessary/risky services (if not required):
-    - [ ] Remote Registry
-    - [ ] Telnet
-    - [ ] SNMP Service / SNMP Trap
-    - [ ] FTP Service (if installed)
-    - [ ] Print Spooler (if no printing needed)
-    - [ ] Server (if no file sharing needed)
-    - [ ] Workstation (needed for network access, usually leave enabled)
-    - [ ] Remote Desktop Services (if RDP not required by README)
+### Disable Unnecessary Services (`services.msc`, `Get-Service`, `Get-CimInstance Win32_Service`)
+- [ ] **Read README:** Identify required services. Document them.
+- [ ] List running/auto-start services: `Get-Service | Where-Object {$_.Status -eq 'Running' -or $_.StartType -eq 'Automatic'} | Sort-Object DisplayName`.
+- [ ] Identify potentially unnecessary/risky services (Telnet, Remote Registry, Fax, Print Spooler (if no printing), Web Server (IIS/Apache if not required), Third-party updaters, SNMP Trap/Service).
+- [ ] **Disable** unnecessary services (Verify against README first!): `Set-Service -Name <ServiceName> -StartupType Disabled; Stop-Service -Name <ServiceName> -Force`.
+- [ ] Investigate suspicious services (Name, Description, `PathName` via `Get-CimInstance Win32_Service`). Check path for legitimacy.
 
-### Application Security (`Settings` > `Apps` > `Apps & features`)
+### Application Security (`Settings` > `Apps`, `Get-Package`, `Get-CimInstance Win32_Product`)
 - [ ] **Read README:** Identify authorized/required applications.
-- [ ] Uninstall unauthorized software (check README first!).
-- [ ] Check for prohibited software (games, hacking tools, P2P clients, unauthorized remote access).
-- [ ] Remove unauthorized browser extensions/plugins (Chrome, Firefox, Edge).
+- [ ] **Uninstall unauthorized software** (Check README!). Look for games, hacking tools (Wireshark, Nmap unless allowed), P2P, unauthorized remote access (VNC, TeamViewer), unknown programs. Use Settings > Apps or `Uninstall-Package`.
+- [ ] Remove unauthorized browser extensions/plugins (Manual check per browser).
 
-### Remote Access (`System Properties` > `Remote`)
-- [ ] Disable or secure Remote Desktop (Allow connections only from computers running RDP with NLA) - Check README first!
-- [ ] Disable Remote Assistance if not needed.
-
----
-
-## File System Security
-
-### Sharing and Access (`compmgmt.msc` > `Shared Folders` > `Shares`)
-- [ ] **Read README:** Identify required shares.
-- [ ] Disable unnecessary file shares (especially default admin shares like C$, ADMIN$ if allowed).
-- [ ] Review Share Permissions: Remove `Everyone` group access. Grant access only to necessary users/groups (e.g., Authenticated Users, specific groups). Use least privilege.
-- [ ] Review NTFS Permissions (Security tab): Ensure file/folder permissions are not overly permissive (check critical folders like `C:\Windows`, `C:\Program Files`, user profiles).
+### Remote Access (`SystemPropertiesRemote.exe`, `Settings`, `Get-LocalGroupMember 'Remote Desktop Users'`)
+- [ ] **Disable or secure Remote Desktop** (Allow connections with NLA) - **Check README FIRST!** If allowed, ensure ONLY authorized users are in `Remote Desktop Users` group. Disable via System Properties > Remote if not allowed.
+- [ ] Disable Remote Assistance if not needed/allowed (System Properties > Remote).
 
 ---
 
 ## Security Policies (`secpol.msc`)
 
-### Audit Policy (`Local Policies` > `Audit Policy`)
-- [ ] Audit account logon events: `Success, Failure`
-- [ ] Audit account management: `Success, Failure`
-- [ ] Audit logon events: `Success, Failure`
-- [ ] Audit object access: `Failure` (Enable Success if specific object auditing is needed)
-- [ ] Audit policy change: `Success, Failure`
-- [ ] Audit privilege use: `Failure`
-- [ ] Audit system events: `Success, Failure`
-- *Note: Excessive auditing can fill logs quickly.*
+*(Verify settings via `secpol.msc` GUI)*
+
+### Password Policy (`Account Policies` > `Password Policy`)
+- [ ] Enforce password history: `5-24` passwords remembered.
+- [ ] Maximum password age: `60-90` days (per README).
+- [ ] Minimum password age: `1` day (per README).
+- [ ] Minimum password length: `12-14` characters (per README).
+- [ ] Password must meet complexity requirements: `Enabled`.
+- [ ] Store passwords using reversible encryption: `Disabled`.
+
+### Account Lockout Policy (`Account Policies` > `Account Lockout Policy`)
+- [ ] Account lockout threshold: `3-5` invalid logon attempts.
+- [ ] Account lockout duration: `15-30` minutes.
+- [ ] Reset account lockout counter after: `15-30` minutes.
+
+### Audit Policy (`Local Policies` > `Audit Policy` OR Advanced Audit Policy Configuration) - Enable Success & Failure
+- [ ] Audit account logon events: `Success, Failure`.
+- [ ] Audit account management: `Success, Failure`. (Crucial for tracking user/group changes)
+- [ ] Audit logon events: `Success, Failure`. (Crucial for tracking logins/logoffs)
+- [ ] Audit object access: `Failure` (Enable Success only if specific object auditing is needed & configured).
+- [ ] Audit policy change: `Success, Failure`. (Track changes to policies)
+- [ ] Audit privilege use: `Failure` (Success can be very noisy).
+- [ ] Audit process tracking: `Failure` (Enable Success for Process Creation ID 4688 if needed for forensics). **Enable Command Line Auditing via GPO/Registry if possible.**
+- [ ] Audit system events: `Success, Failure`.
+    *Advanced:* Use `auditpol.exe /get /category:*` to view. Use `auditpol.exe /set /subcategory:"User Account Management" /success:enable /failure:enable` etc. for granular control.
 
 ### User Rights Assignment (`Local Policies` > `User Rights Assignment`)
-- [ ] Review users/groups assigned to sensitive rights (e.g., "Act as part of the operating system", "Debug programs", "Take ownership of files"). Remove unauthorized entries.
-- [ ] Deny access to this computer from the network: Add `Guest` account.
-- [ ] Deny log on locally: Add `Guest` account.
-- [ ] Deny log on through Remote Desktop Services: Add `Guest` and potentially other non-admin groups if RDP is restricted.
+- *Covered partially in User Management.* Review others like "Allow log on through Remote Desktop Services", "Access this computer from the network".
 
 ### Security Options (`Local Policies` > `Security Options`)
 - [ ] Interactive logon: Message text/title for logon attempts: Set appropriate warning banner.
-- [ ] Interactive logon: Do not display last user name: `Enabled`
-- [ ] Network access: Do not allow anonymous enumeration of SAM accounts: `Enabled`
-- [ ] Network access: Do not allow anonymous enumeration of SAM accounts and shares: `Enabled`
-- [ ] Accounts: Rename administrator account: Consider renaming if allowed by README.
-- [ ] Accounts: Rename guest account: Consider renaming if allowed by README.
-- [ ] User Account Control: Run all administrators in Admin Approval Mode: `Enabled` (Default, ensure it wasn't disabled). Check other UAC settings.
+- [ ] Interactive logon: Do not display last user name: `Enabled`.
+- [ ] Network access: Do not allow anonymous enumeration of SAM accounts: `Enabled`.
+- [ ] Network access: Do not allow anonymous enumeration of SAM accounts and shares: `Enabled`.
+- [ ] Accounts: Rename administrator account: (See User Management).
+- [ ] Accounts: Rename guest account: (See User Management).
+- [ ] User Account Control: Run all administrators in Admin Approval Mode: `Enabled`. (See Security Features).
+- [ ] Network security: LAN Manager authentication level: `Send NTLMv2 response only. Refuse LM & NTLM`.
+- [ ] Shutdown: Allow system to be shut down without having to log on: `Disabled`.
+
+---
+
+## File System Security (`icacls`, `Get-Acl`)
+
+- [ ] Check permissions on critical directories (`C:\Windows`, `C:\Program Files`, `C:\Users`). Ensure Administrators/SYSTEM have Full Control, Users have Read/Execute. Remove excessive permissions (e.g., `Everyone Full Control`, `Users Full Control`). Use `icacls <path>` to view, `icacls <path> /remove Everyone` etc.
+- [ ] Search for world-writable directories/files (Advanced: Use PowerShell `Get-ChildItem -Recurse | Get-Acl | Where-Object {$_.Access | Where-Object {$_.IdentityReference -eq 'Everyone' -and $_.FileSystemRights -like '*Write*'}}`). Fix insecure permissions (`icacls <path> /remove Everyone` or `/inheritance:d`).
+- [ ] Search for large media files (`.mp3`, `.mp4`, `.avi`, etc.) if prohibited by README. `Get-ChildItem C:\ -Recurse -Include *.mp3,*.mp4,*.avi -ErrorAction SilentlyContinue | Select FullName, Length`
 
 ---
 
 ## Network Security
 
-### Network Settings
-- [ ] Disable SMBv1 protocol (commonly exploited):
-    ```powershell
-    # Run PowerShell as Administrator
-    Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart
-    ```
-- [ ] Check Network Discovery and File Sharing settings (Network and Sharing Center > Change advanced sharing settings). Disable if not needed for the required profile.
+### Network Shares (`fsmgmt.msc`, `Get-SmbShare`, `Get-SmbShareAccess`)
+- [ ] **Read README:** Identify required shares.
+- [ ] **Remove unnecessary shares:** `Remove-SmbShare -Name <ShareName> -Force`.
+- [ ] Secure required shares:
+    -   Review **Share Permissions**: `Get-SmbShareAccess -Name <ShareName>`. Apply Least Privilege (`Grant-SmbShareAccess` / `Revoke-SmbShareAccess`). Avoid `Everyone`. Use `Authenticated Users` or specific groups.
+    -   Review **NTFS Permissions** on the shared folder (`icacls <FolderPath>`). Ensure they are also restrictive (most restrictive wins).
+- [ ] Disable SMBv1 (if possible/allowed): `Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart`
+
+### Hosts File (`C:\Windows\System32\drivers\etc\hosts`)
+- [ ] Check `hosts` file: `Get-Content C:\Windows\System32\drivers\etc\hosts`. Remove malicious/unexpected entries (Edit manually or `Set-Content`).
 
 ---
 
 ## Search for Forensics Questions / Persistence
 
-- [ ] **Read README:** Note specific forensic questions.
-- [ ] Check Desktop, Documents, Downloads, `C:\`, `C:\Users`, `C:\Windows\Temp` for README files, answer files, suspicious scripts, or unusual files.
-- [ ] Check Registry Run Keys:
-    - `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`
-    - `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`
-    - `HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
-    - `HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce`
-    - (WoW6432Node equivalents on 64-bit)
-- [ ] Check Scheduled Tasks (`taskschd.msc`): Look for unusual tasks, tasks running with high privileges, or tasks executing suspicious commands/scripts.
-- [ ] Check Startup Folders:
-    - `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp`
-    - `C:\Users\<user>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
-- [ ] Check Services (`services.msc`): Look for unusual services, services with suspicious paths/commands, or services configured to run malicious executables.
-- [ ] Check Event Logs (`eventvwr.msc`): Look for relevant events based on forensic questions (e.g., Security log for logons - 4624/4625, System log for service errors/installs, Application log). Filter by time or event ID.
-- [ ] Check Browser History/Extensions.
-- [ ] Check `hosts` file (`C:\Windows\System32\drivers\etc\hosts`) for malicious redirects.
+- [ ] **Read README:** Note ALL forensic questions carefully.
+- [ ] Search common locations for clues: Desktop, Documents, Downloads, Temp (`$env:TEMP`, `C:\Windows\Temp`), Recycle Bin (`$Recycle.Bin`), User Profiles (`C:\Users`). Use `findstr` or `Select-String -Path C:\Users\*.txt -Pattern 'password'` etc.
+- [ ] Check **Registry Run/RunOnce Keys**: `Get-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run'`, `Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'`, `...RunOnce`. Use `regedit` for GUI view. Remove malicious entries (`Remove-ItemProperty`).
+- [ ] Check **Scheduled Tasks**: `Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled'} | Format-Table TaskPath, TaskName, State, Author`. Use `taskschd.msc` for GUI. Look for suspicious names, triggers, actions (paths, arguments), authors. Disable/remove malicious tasks (`Unregister-ScheduledTask`).
+- [ ] Check **Startup Folders**: User (`$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup`), All Users (`$env:ALLUSERSPROFILE\Microsoft\Windows\Start Menu\Programs\Startup`). Remove malicious shortcuts/scripts.
+- [ ] Check **Services**: `Get-CimInstance -ClassName Win32_Service | Select Name, State, StartMode, PathName`. Use `services.msc`. Look for unusual services, suspicious `PathName`, bad descriptions, weird dependencies, or malicious recovery options. Disable/fix malicious services (`Set-Service`, `Stop-Service`).
+- [ ] Check **Event Logs** (`eventvwr.msc`): Filter Security/System/Application logs. Use `Get-WinEvent`. Filter by Time, Event ID (Logon 4624/4625, User Create 4720, Group Add 4732, Service Install 7045, Process Create 4688 - requires Command Line Auditing), Keywords from questions.
+- [ ] Check Browser History/Extensions (Manual check per browser).
+- [ ] Check `hosts` file (as above).
+- [ ] Use `findstr /S /I /M "keyword" C:\*.*` or `Select-String` for broad file content searches if needed.
 
 ---
 
 ## Common CyberPatriot Scoring Items (Verify based on README)
 
-- [ ] Unauthorized users removed / Passwords changed
-- [ ] Administrator account secured / Guest disabled
-- [ ] Password policy configured
+- [ ] Unauthorized users removed / Passwords changed & strong
+- [ ] Administrator account secured (Renamed if allowed) / Guest disabled
+- [ ] Password policy configured (Length, Complexity, History, Age)
 - [ ] Account lockout policy configured
-- [ ] Windows Defender enabled and updated
-- [ ] Windows Firewall enabled and configured correctly
+- [ ] Windows Defender enabled & updated (if possible)
+- [ ] Windows Firewall enabled & configured correctly (Profiles, Default Actions, Rules per README)
 - [ ] Windows Updates installed (if allowed/required)
-- [ ] Unnecessary/Insecure services disabled
-- [ ] Malware/Persistence removed (Tasks, Run Keys, Services)
+- [ ] Unnecessary/Insecure services disabled (per README)
+- [ ] Malware/Persistence removed (Tasks, Run Keys, Services, Files, Startup)
 - [ ] Unauthorized software removed
-- [ ] File sharing secured (Share/NTFS Permissions)
-- [ ] Audit policies enabled
-- [ ] Security banners configured
-- [ ] Secure remote access configured (RDP disabled or secured)
+- [ ] File sharing secured (Share/NTFS Permissions, SMBv1 disabled if allowed)
+- [ ] Audit policies enabled (Logon, Account Mgmt, Policy Change)
+- [ ] Security banners configured (Interactive Logon Message)
+- [ ] Secure remote access configured (RDP disabled or secured per README)
 - [ ] Answering Forensics Questions correctly
 
 ---
 
-## Quick PowerShell Commands (Run as Administrator)
+## Quick PowerShell Commands (Run as Administrator - Verification/Recon)
 
-Check Users and Group Memberships:
+Users & Groups:
 ```powershell
-Get-LocalUser | Where-Object {$_.Enabled -eq $true} | Format-Table Name, Description, Enabled
+Get-LocalUser | Where-Object {$_.Enabled -eq $true} | Format-Table Name, Description, Enabled, LastLogon
 Get-LocalGroupMember -Group "Administrators"
 Get-LocalGroupMember -Group "Remote Desktop Users"
+# Get-LocalGroup | ForEach-Object { $group = $_; Write-Host "`nGroup: $($group.Name)"; Get-LocalGroupMember -Group $group.Name | Select Name, PrincipalSource } # List all groups/members
 ```
 
-Check Running Services:
+Services:
 ```powershell
 Get-Service | Where-Object {$_.Status -eq "Running"} | Sort-Object DisplayName | Format-Table Name, DisplayName, Status
+Get-CimInstance -ClassName Win32_Service | Select-Object Name, DisplayName, State, StartMode, PathName | Sort-Object Name | Format-Table -Wrap
 ```
 
-Check Firewall Status:
+Firewall:
 ```powershell
-Get-NetFirewallProfile | Format-Table Name, Enabled
-Get-NetFirewallRule -Direction Inbound -Action Allow -Enabled True | Where-Object {$_.DisplayName -notlike "Core Networking*"} | Sort-Object DisplayName | Format-Table Name, DisplayName, Description, Profile, Enabled
+Get-NetFirewallProfile | Format-Table Name, Enabled, DefaultInboundAction, DefaultOutboundAction
+Get-NetFirewallRule -Direction Inbound -Action Allow -Enabled True | Where-Object {$_.DisplayName -notlike "Core Networking*"} | Sort-Object DisplayName | Format-Table Name, DisplayName, Description, Profile, Enabled -AutoSize
 ```
 
-Check Shared Folders:
+Shares:
 ```powershell
 Get-SmbShare | Format-Table Name, Path, ScopeName
-Get-SmbShareAccess -Name * | Format-Table Name, AccountName, AccessControlType, AccessRight
+# Get-SmbShare | ForEach-Object { Write-Host "`nShare: $($_.Name)"; Get-SmbShareAccess -Name $_.Name } # Show Share Permissions
 ```
 
-Check Startup Programs (Registry Run Keys):
+Persistence:
 ```powershell
-Get-CimInstance -ClassName Win32_StartupCommand | Select-Object Name, Command, Location, User | Format-List
-# Check specific keys directly
-Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run"
-Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
-# Add WoW6432Node paths if needed
+Get-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run'
+Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
+Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled'} | Format-Table TaskPath, TaskName, State, Author
+Get-ChildItem "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+Get-ChildItem "$env:ALLUSERSPROFILE\Microsoft\Windows\Start Menu\Programs\Startup"
 ```
 
-Check Scheduled Tasks (Basic List):
+System Info:
 ```powershell
-Get-ScheduledTask | Where-Object {$_.State -ne "Disabled"} | Select TaskName, TaskPath, State, Author | Format-Table -AutoSize
+Get-ComputerInfo | Select-Object OsName, OsVersion, CsName, CsUserName # Basic OS Info
+(Get-MpComputerStatus).RealTimeProtectionEnabled # Defender Status
+(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').EnableLUA # UAC Status
 ```
+
+---
+*Remember: Document changes meticulously, check scoring engine often, and always prioritize the README!*

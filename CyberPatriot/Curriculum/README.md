@@ -1,15 +1,15 @@
-# CyberPatriot Training Curriculum
+# CyberPatriot Training Curriculum (25-26 Season)
 
-This directory contains a structured 12-week curriculum for preparing teams for the CyberPatriot competition, covering Windows, Linux, Cisco networking, and competition strategy.
+This directory outlines a structured 12-week+ curriculum designed to prepare Grissom JROTC cadets for the CyberPatriot competition, covering Windows, Linux, Cisco networking, incident response, and competition strategy.
 
 ## Curriculum Overview
 
-The training program progressively builds skills from basic concepts to advanced techniques. Each week includes:
--   **Learning Objectives**: Specific skills and knowledge cadets will gain.
--   **Topics Covered**: Key areas of focus for the week.
--   **Activities/Exercises**: References to hands-on practice in other directories (`../Exercises/`, `../Cisco/PacketTracer_Scenarios/`).
--   **Assessment**: References to relevant quizzes (`../Quizzes/`).
--   **Resources**: Links to relevant Guides (`../Windows/Guides/`, `../Linux/Guides/`, `../Cisco/Guides/`), Checklists (`../Checklists/`), or external materials.
+The program builds skills progressively. Each week typically includes:
+-   **Learning Objectives**: Specific skills cadets should master.
+-   **Topics Covered**: Key theoretical and practical areas.
+-   **Activities/Exercises**: References to hands-on practice (`../Exercises/`, `../Cisco/PacketTracer_Scenarios/`, `../VM-Setup/`). **Using VM-Setup scenarios early and often is critical.**
+-   **Assessment**: References to relevant quizzes (`../Quizzes/Quiz-Files/`).
+-   **Resources**: Links to relevant Guides (`../Windows/Guides/`, etc.), Checklists (`../Checklists/`), or external materials.
 
 ## Directory Index
 
@@ -18,111 +18,115 @@ Curriculum/
 ├── README.md                   # This file
 ├── Week01/
 │   ├── README.md               # Objectives, Topics, Activities for Week 1
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 1 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 1 Quiz (Create if missing)
 ├── Week02/
 │   ├── README.md               # Objectives, Topics, Activities for Week 2
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 2 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 2 Quiz (Create if missing)
 ├── Week03/
 │   ├── README.md               # Objectives, Topics, Activities for Week 3
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 3 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 3 Quiz (Create if missing)
 ├── Week04/
 │   ├── README.md               # Objectives, Topics, Activities for Week 4
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 4 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 4 Quiz (Create if missing)
 ├── Week05/
 │   ├── README.md               # Objectives, Topics, Activities for Week 5
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 5 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 5 Quiz (Create if missing)
 ├── Week06/
 │   ├── README.md               # Objectives, Topics, Activities for Week 6
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 6 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 6 Quiz (Create if missing)
 ├── Week07/
 │   ├── README.md               # Objectives, Topics, Activities for Week 7
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 7 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 7 Quiz (Create if missing)
 ├── Week08/
 │   ├── README.md               # Objectives, Topics, Activities for Week 8
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 8 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 8 Quiz (Create if missing)
 ├── Week09/
 │   ├── README.md               # Objectives, Topics, Activities for Week 9
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 9 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 9 Quiz (Create if missing)
 ├── Week10/
 │   ├── README.md               # Objectives, Topics, Activities for Week 10
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 10 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 10 Quiz (Create if missing)
 ├── Week11/
 │   ├── README.md               # Objectives, Topics, Activities for Week 11
-│   └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 11 Quiz review
-└── Week12/
-    ├── README.md               # Objectives, Topics, Activities for Week 12
-    └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 12 Quiz review
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 11 Quiz (Create if missing)
+├── Week12/
+│   ├── README.md               # Objectives, Topics, Activities for Week 12
+│   └── Quiz_Solutions.md       # Mentor notes/review points for Week 12 Quiz (Create if missing)
+└── ... (Potential additional weeks or specialized topics)
 ```
+*(Note: Ensure all referenced `README.md` and `Quiz_Solutions.md` files exist within their respective `WeekXX` folders. Create basic placeholders if needed.)*
 
--   `Quiz_Solutions.md` are placeholders for mentors to potentially store notes or links related to reviewing quizzes assigned that week, not the actual quiz answers (which reside in `../Quizzes/Solutions/`).
--   All referenced files are unique and tailored for CyberPatriot cadet training.
+## Recommended Schedule (Adaptable)
 
-## Recommended Schedule
-
-*(Based on Phase descriptions in main README)*
+*(Based on 3 Phases)*
 
 ### Phase 1: Fundamentals (Weeks 1-4)
--   **Week 1**: Competition Overview, Ethics, Windows Basics (GUI, Users, Tools)
--   **Week 2**: Linux Fundamentals (CLI Basics, Users, Permissions, `apt`)
--   **Week 3**: Networking Fundamentals (OSI/TCP-IP, IP Addressing) & Cisco Basics (IOS Intro, Packet Tracer)
--   **Week 4**: Security Principles (CIA Triad, Least Privilege), User Account Management (Win/Lin Policies)
+-   **Week 1**: Intro to CyberPatriot, Ethics, Competition Structure, Windows Basics (GUI Navigation, User Accounts, Core Tools like Task Manager, Event Viewer).
+-   **Week 2**: Linux Fundamentals (CLI Navigation, File System, Users/Groups, Permissions, `apt` package management).
+-   **Week 3**: Networking Fundamentals (OSI/TCP-IP Models, IP Addressing/Subnetting), Intro to Cisco IOS & Packet Tracer Interface.
+-   **Week 4**: Core Security Principles (CIA Triad, Least Privilege, etc.), Basic User Account Security (Win/Lin Password Policies, Group Management).
 
 ### Phase 2: Intermediate Skills (Weeks 5-8)
--   **Week 5**: Windows System Hardening (Policies, Services, Firewall, Defender)
--   **Week 6**: Linux System Hardening (UFW, SSH, Services, Permissions)
--   **Week 7**: Network Security (ACLs, Basic Switch Security) & Firewall Configuration (Win/Lin)
--   **Week 8**: Introduction to Scripting (PowerShell & Bash Basics for Auditing) & Baselining Concepts (Meld Intro)
+-   **Week 5**: Windows System Hardening (Local Security Policy, Services Management, Windows Defender Firewall/Antivirus basics).
+-   **Week 6**: Linux System Hardening (UFW Firewall, SSH Security (`sshd_config`), Service Management (`systemctl`), File Permissions Deep Dive).
+-   **Week 7**: Network Security Concepts (ACL Theory, Basic Switch Security), Firewall Configuration Practice (Win/Lin).
+-   **Week 8**: Introduction to Scripting for Auditing (PowerShell & Bash basics for checking users, services, tasks), Introduction to Baselining (Concepts & Meld Tool). **Start using VM-Setup scenarios.**
 
-### Phase 3: Advanced Techniques & Strategy (Weeks 9-12)
--   **Week 9**: Advanced Windows Security (Registry, Auditing, Forensics Intro) & VM Setup Usage
--   **Week 10**: Advanced Linux Security (PAM, Logging, Forensics Intro) & VM Setup Usage
--   **Week 11**: Advanced Networking (VLANs, More ACLs) & Packet Tracer Scenarios
--   **Week 12**: Competition Strategies (Workflow, Roles, Time Management), Forensics Review, Mock Competition Debrief
+### Phase 3: Advanced Techniques & Strategy (Weeks 9-12+)
+-   **Week 9**: Advanced Windows Security (Registry Forensics (Run Keys), Auditing Configuration, Basic Log Analysis, Persistence Mechanisms). Practice with Windows VM-Setup.
+-   **Week 10**: Advanced Linux Security (PAM Configuration, System Logging (`journalctl`, `/var/log`), Cron Jobs, SUID/SGID, Persistence Mechanisms). Practice with Linux VM-Setup.
+-   **Week 11**: Advanced Networking (VLANs, More Complex ACLs), Cisco Hardening Techniques, Packet Tracer Scenario Practice.
+-   **Week 12**: Competition Strategy (Workflow Refinement, Roles, Time Management, Scoring Engine Dynamics), Forensics Question Hunting Techniques, Mock Competition & AAR.
+-   **Post-Week 12**: Focus on full mock competitions, advanced scenario analysis, team communication refinement, and addressing specific weaknesses identified in AARs.
 
 ## Using This Curriculum
 
 ### For Mentors
-1.  Review the `README.md` for the upcoming week.
-2.  Prepare necessary VMs (`../VM-Setup/`), Packet Tracer files (`../Cisco/PacketTracer_Scenarios/`), quizzes (`../Quizzes/`), and exercises (`../Exercises/`).
-3.  Adapt the content based on team progress and experience.
-4.  Facilitate discussions and hands-on activities.
-5.  Review quiz/exercise results and provide feedback using `Quiz_Solutions.md` for notes and `../Quizzes/Solutions/` for answers.
+1.  Review the `README.md` for the upcoming week(s).
+2.  Prepare required resources: VMs (`../VM-Setup/`), Packet Tracer files (`../Cisco/PacketTracer_Scenarios/`), quizzes (`../Quizzes/Quiz-Files/`), exercises (`../Exercises/`).
+3.  Adapt content based on cadet progress and competition focus shifts.
+4.  Lead discussions, guide hands-on labs, and emphasize the *why*.
+5.  Review cadet work, using `Quiz_Solutions.md` for notes and `../Quizzes/Solutions/` for formal answers.
 
 ### For Cadets
-1.  Review the objectives and topics for the week in the corresponding `WeekXX/README.md`.
-2.  Actively participate in exercises and discussions.
-3.  Complete assigned quizzes and practice tasks.
-4.  Ask questions and seek clarification.
-5.  Utilize the Guides, Checklists, and Resources directories for self-study.
+1.  Review weekly objectives and topics in `WeekXX/README.md`.
+2.  Engage actively in labs, exercises, and discussions.
+3.  Complete assigned quizzes and practice tasks diligently.
+4.  Ask questions! Understand the concepts, don't just follow steps.
+5.  Utilize Guides, Checklists, and Resources for self-study and reinforcement.
 
 ## Materials Required
--   Workstations with Virtualization Software (VirtualBox, VMware)
--   Windows 10/11 Pro/Enterprise VM image (clean base)
--   Ubuntu 22.04 LTS Desktop/Server VM image (clean base)
--   Cisco Packet Tracer (latest version recommended)
--   Access to this GitHub repository
--   Internet access
+-   Workstations capable of running Virtualization Software (VirtualBox recommended, VMware acceptable).
+-   Clean Base VM Images: Windows (e.g., 10/11 Pro/Enterprise), Linux (Ubuntu 22.04 LTS Desktop recommended). **Keep snapshots of clean installs!**
+-   Cisco Packet Tracer (Latest version from NetAcad).
+-   Access to this GitHub repository (cloned locally recommended).
+-   Internet access (for research, updates where allowed).
+-   Meld (or similar diff tool) installed on host or within VMs.
 
 ## Adapting the Curriculum
-Feel free to adjust the pace, add supplementary materials, or modify exercises to suit your team's specific needs and learning style.
+This is a template. Adjust the pace, depth, and order based on team experience, available time, and specific competition trends. Add supplementary materials or guest speakers where beneficial.
 
 ## Tracking Progress
-Use quiz results (`../Quizzes/`), exercise completion (`../Exercises/`), and participation in mock competitions to gauge understanding and identify areas needing more focus.
+Monitor cadet understanding via:
+-   Quiz scores (`../Quizzes/`).
+-   Exercise completion and quality (`../Exercises/`).
+-   Performance in mock competitions (`../VM-Setup/` scenarios).
+-   Active participation and questions asked.
+-   Ability to explain concepts and justify actions.
 
 ## Reference Templates
-Utilize templates from `../Resources/Templates/` for documentation during practice:
+Encourage use of templates from `../Resources/Templates/` during all practice sessions:
 -   [Incident Response Report Template](../Resources/Templates/Incident_Response_Report_Template.md)
 -   [Change Log Template](../Resources/Templates/Change_Log_Template.md)
 -   [Team Workflow Checklist](../Resources/Templates/Team_Workflow_Checklist.md)
 -   [Forensics Question Response Template](../Resources/Templates/Forensics_Question_Response_Template.md)
 
 ## Additional Resources
--   [CyberPatriot Official Training Materials](https://www.uscyberpatriot.org/competition/training-materials)
--   [Windows Security Guides](../Windows/Guides/)
--   [Linux Security Guides](../Linux/Guides/)
--   [Cisco Networking Guides](../Cisco/Guides/)
--   [Security Checklists](../Checklists/)
--   [Reference Sheets](../Resources/References/)
+-   [CyberPatriot Official Training Materials](https://www.uscyberpatriot.org/competition/training-materials) (Use as supplementary)
+-   [Internal Guides](../Windows/Guides/, ../Linux/Guides/, ../Cisco/Guides/)
+-   [Internal Checklists](../Checklists/)
+-   [Internal Reference Sheets](../Resources/References/)
+-   Online resources (e.g., Stack Exchange, vendor documentation, security blogs - use critically).
 
 ---
-*This directory and all referenced files are unique and tailored for CyberPatriot cadet training. If you find a missing file, create it using the format above.*
+*This curriculum structure and all referenced files are uniquely tailored for Grissom JROTC CyberPatriot training. Ensure all linked files exist and are maintained.*

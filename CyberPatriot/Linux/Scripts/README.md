@@ -1,33 +1,50 @@
-# Linux Security Scripts for CyberPatriot
+# Linux Security Scripts for CyberPatriot (Bash)
 
-This directory contains unique Bash scripts designed for automating security checks, auditing, and hardening tasks commonly needed in CyberPatriot competitions on Linux (Ubuntu/Mint) systems.
+This directory contains unique Bash scripts designed for security auditing and reconnaissance on Linux systems (primarily Ubuntu/Debian) during CyberPatriot competitions. **Scripts focus on safe information gathering to guide manual hardening efforts.**
 
-**Disclaimer:** Always understand what a script does before running it, especially with `sudo`. Test scripts thoroughly on practice VMs first. Incorrect script usage can break system functionality or lead to point deductions.
+**Disclaimer:** Understand each script before execution. Test thoroughly in practice VMs. Use scripts to speed up reconnaissance, not as a replacement for understanding. **Always prioritize the competition README over script output.**
 
-## Example Scripts
+## Scripting Philosophy for CyberPatriot
 
-Detailed examples and explanations can be found in the [**Examples/**](Examples/README.md) subdirectory. Some examples include:
+-   **Read-Only First:** Prioritize scripts that gather information without making changes. Use commands like `cat`, `ls`, `ss`, `ps`, `systemctl status`, `grep`, `find`, `awk`. Avoid commands like `rm`, `chmod`, `userdel` within audit scripts.
+-   **Targeted Information:** Scripts should collect specific, relevant security data (users, services, ports, cron jobs, permissions, etc.).
+-   **Baseline-Friendly Output:** Format output consistently (e.g., sorted lists, clear headers) to make comparison with `diff` tools (like Meld) easier. Use `echo` for headers. Redirect command output (`>`).
+-   **Efficiency:** Automate repetitive checks to save time.
+-   **Safety:** Avoid commands that could disrupt required services or violate competition rules. Run non-privileged commands where possible; use `sudo` only when necessary for specific commands (e.g., `sudo ss -tulpn`, `sudo find / -perm ...`).
+-   **Clarity:** Comment scripts well to explain their purpose and commands used.
 
--   `Quick_User_Audit.sh`: Lists users, groups, sudoers, and flags suspicious accounts.
--   `Service_Checker.sh`: Shows running/enabled services and listening ports, flags insecure ones.
--   `File_Permission_Scanner.sh`: Finds world-writable files/dirs and SUID/SGID binaries.
--   `Firewall_Status_Reporter.sh`: Checks UFW status and lists rules.
--   `ssh_hardening_check.sh`: Audits `/etc/ssh/sshd_config` against common hardening recommendations.
+## Available Scripts (Examples - Create/Update as needed)
+
+-   **`audit_users_sudo.sh`** (Placeholder - Create if missing)
+    *   *Purpose:* Lists local users (from `/etc/passwd`), checks for UID 0 accounts, lists members of the `sudo` group, and checks `/etc/sudoers` and `/etc/sudoers.d/` for configurations.
+    *   *Output:* Console output summarizing users, UID 0 accounts, and sudo configuration details. Requires `sudo` to read sudoers files accurately.
+-   **`check_listening_services.sh`** (Placeholder - Create if missing)
+    *   *Purpose:* Uses `ss` to list all listening TCP and UDP ports and the associated processes. Helps identify potentially unnecessary network services.
+    *   *Output:* Formatted list of listening ports, protocols, and process names/PIDs. Requires `sudo` for full process information.
+-   **`find_suspicious_files.sh`** (Placeholder - Create if missing)
+    *   *Purpose:* Searches for common suspicious file types or locations, such as world-writable files/directories, SUID/SGID binaries in non-standard locations, and potentially large media files (if specified).
+    *   *Output:* Lists potentially suspicious files/directories found. Requires `sudo` for full filesystem scan.
+-   **`check_common_persistence_linux.sh`** (Placeholder - Create if missing)
+    *   *Purpose:* Checks common Linux persistence locations: user crontabs, system cron directories (`/etc/cron.*`, `/etc/crontab`), enabled `systemd` services/timers (user/system), and common shell startup files.
+    *   *Output:* Lists entries found in common persistence locations. Requires `sudo` for system-level checks.
 
 ## How to Use
 
-1.  Transfer the script to the target Linux machine.
-2.  Make the script executable: `chmod +x script_name.sh`.
-3.  Run the script: `./script_name.sh` (or `sudo ./script_name.sh` if it requires root privileges).
-4.  Review the output carefully.
+1.  Transfer the script(s) to the target Linux VM.
+2.  Make the script executable: `chmod +x script_name.sh`
+3.  Run the script. Some scripts may require `sudo` for full functionality: `./script_name.sh` or `sudo ./script_name.sh`
+4.  **Analyze the output carefully.** Use the findings to inform your investigation and hardening actions based on the competition README.
 
 ## Contribution
 
-Develop new scripts for common CyberPatriot tasks (e.g., checking PAM configuration, auditing log files for specific events, automating basic hardening steps). Ensure scripts are well-commented, robust, and focus on information gathering or safe configuration changes. Use tools like `shellcheck` to validate scripts.
+Develop new scripts focusing on:
+-   **Targeted Auditing:** Checking specific configurations (e.g., SSH settings, PAM password policies, UFW rules), searching logs for specific event patterns.
+-   **Safe Information Gathering:** Avoid scripts that make changes. Focus on reporting system state.
+-   **Clarity & Comments:** Ensure scripts are well-commented. Use tools like `shellcheck` to validate syntax and suggest improvements.
+-   **Uniqueness:** Tailor scripts for CyberPatriot scenarios, avoiding direct copies of generic online scripts.
 
 ---
-
-*All scripts are unique and designed for CyberPatriot training. Refer to the [Examples/](Examples/README.md) directory for specific script details.*
+*All scripts are unique and designed for Grissom JROTC CyberPatriot training. Test thoroughly before use.*
 
 ## Directory Structure
 

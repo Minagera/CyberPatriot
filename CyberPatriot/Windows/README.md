@@ -1,39 +1,34 @@
-# Windows Security Training Materials
+# Windows Security Training Materials (25-26 Season)
 
-This directory contains unique training materials specifically designed for securing Windows systems (Windows 11/Server focus) within the context of the CyberPatriot competition. The emphasis is on incident response, hardening, and forensic analysis.
-
-**Always start by reading the README file in each subdirectory.**
+This directory centralizes resources for mastering Windows security within the CyberPatriot competition context, focusing on Windows 10/11 and potentially Windows Server editions.
 
 ## Directory Index
 
--   [**Checklists/**](Checklists/README.md)
-    *   Actionable checklists for quickly securing Windows systems during competition, covering users, policies, services, firewall, and more.
--   [**Exercises/**](Exercises/README.md)
-    *   Hands-on practice scenarios simulating common Windows vulnerabilities and misconfigurations found in CyberPatriot.
 -   [**Guides/**](Guides/README.md)
-    *   Detailed guides covering fundamental and advanced Windows security topics, tools, and techniques relevant to the competition. Organized into Basic and Advanced sections.
--   [**Quizzes/**](Quizzes/README.md)
-    *   Quizzes to test understanding of Windows security fundamentals and system hardening techniques, mirroring the types of knowledge needed for CyberPatriot. (Links to main Quizzes directory)
+    *   Contains `Basic/` and `Advanced/` guides covering fundamental concepts (User Management, Permissions, Basic Tools) to more complex topics (Registry, GPO, Auditing, Advanced Forensics). **Uniquely tailored for CP scenarios.**
+-   [**Checklists/**](../Checklists/Windows/README.md)
+    *   **Link to the main Windows checklist.** Provides a rapid hardening workflow, emphasizing README priority and actionable steps.
+-   [**Exercises/**](../Exercises/Windows/README.md) (Create if missing)
+    *   Hands-on labs and scenarios specifically designed to practice Windows hardening, vulnerability remediation, and forensic investigation skills.
 -   [**Scripts/**](Scripts/README.md)
-    *   Unique PowerShell scripts for automating common security checks, auditing tasks (users, services, startup items), and potentially safe hardening procedures specific to CyberPatriot scenarios.
+    *   Unique PowerShell scripts for automating security auditing (users, services, startup items, policies) and potentially safe, targeted configuration checks relevant to CyberPatriot. **Focus on reconnaissance and verification.**
 -   [**VM-Setup/**](VM-Setup/README.md)
-    *   Provides scripts (`enterprise-workstation-setup.ps1`) and documentation for creating compromised Windows virtual machine environments for incident response training, simulating the core CyberPatriot competition experience.
+    *   Crucial resources for creating compromised Windows VM environments (`enterprise-workstation-setup.ps1`) simulating realistic CyberPatriot incident response challenges.
 
 ---
 
-## CyberPatriot Competition Tips for Windows
+## CyberPatriot Competition Tips for Windows (Unique Focus)
 
--   **Read the README:** Always start by thoroughly reading the competition README file. It contains critical information about required services, authorized users, prohibited actions, and forensic questions. *It overrides general best practices.*
--   **User Accounts:** Focus on removing unauthorized users, securing existing accounts (especially administrators), disabling the Guest account, and enforcing strong password policies via Local Security Policy (`secpol.msc`) or GPO. Check group memberships carefully (Administrators, Remote Desktop Users).
--   **Security Policies:** Configure Local Security Policy (`secpol.msc`) settings for passwords, account lockout, auditing (enable success/failure for Logon Events, Policy Change, Object Access, Privilege Use), user rights assignment (limit risky rights), and security options (UAC, interactive logon messages).
--   **Windows Features:** Ensure Windows Defender Antivirus is active, updated, and running scans. Ensure Windows Defender Firewall is enabled and configured correctly for all profiles (Domain, Private, Public) - block unnecessary inbound connections. Apply necessary Windows Updates if network access is permitted and time allows.
--   **Services & Applications:** Disable unnecessary/risky services (e.g., Remote Registry, Telnet, SNMP) via `services.msc` and uninstall unauthorized applications or prohibited software (e.g., games, hacking tools, unauthorized remote access tools) via Settings > Apps. Check service permissions and recovery options.
--   **File System & Shares:** Review permissions on critical directories (e.g., `C:\Windows`, `C:\Program Files`). Check network shares (`compmgmt.msc` -> Shared Folders) and remove unnecessary shares or overly permissive access (like 'Everyone'). Disable SMBv1 (`Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol`).
--   **Persistence:** Hunt for malware persistence mechanisms: Registry Run keys (HKLM/HKCU `Software\Microsoft\Windows\CurrentVersion\Run`), Scheduled Tasks (`taskschd.msc`), Startup Folders, malicious Services.
--   **Forensics:** Carefully search Desktop, Documents, Downloads, and common system locations (`C:\Users`, `C:\Windows\Temp`) for answers to forensic questions, often hidden in text files, images, or system configurations/logs. Check Event Viewer (`eventvwr.msc`) for relevant logs (Security - Event ID 4624/4625 for logons, System, Application).
--   **Documentation:** Keep a clear log of all changes made (user added/removed, service disabled, policy changed, software removed). Use templates from `../Resources/Templates/`. This helps troubleshoot if something breaks and aids in answering forensic questions.
--   **Baselining:** If possible, compare running processes (`tasklist`), services (`Get-Service`), scheduled tasks (`schtasks`), and startup items (`Get-CimInstance Win32_StartupCommand`) against a known-good baseline or initial scan.
+-   **README is LAW:** Always start by dissecting the competition README. It dictates authorized users/services, prohibited actions, scoring tasks, and forensic clues. **It overrides generic best practices.** Document required items immediately.
+-   **User Account Hygiene:** Prioritize identifying and removing unauthorized accounts (check `lusrmgr.msc`, `net user`, PowerShell). Secure *all* remaining accounts with strong, unique passwords (document them!). Disable the Guest account (SID S-1-5-32-546). Rename Admin/Guest *only if* README allows. Scrutinize `Administrators` and `Remote Desktop Users` group memberships relentlessly. Apply Least Privilege.
+-   **Policy Enforcement (`secpol.msc` / GPO):** Configure robust Password Policies (length, complexity, history, age), Account Lockout Policies, and detailed Audit Policies (Logon Success/Failure, Account Management Success/Failure are critical). Set appropriate User Rights Assignments (deny Guest network/local/RDP logon). Configure Security Options (UAC enabled, NTLMv2 only, logon banner).
+-   **Windows Security Stack:** Ensure Windows Defender Antivirus is active, updated (if possible), and consider running a quick scan. Verify Windows Defender Firewall is enabled for ALL profiles (Domain, Private, Public) with default inbound block. Carefully review/create rules based *only* on README requirements.
+-   **Service & Application Control:** Disable unnecessary/risky services (`services.msc`, `Get-Service` - e.g., Telnet, Remote Registry, Fax) *after* confirming they aren't required by the README. Uninstall unauthorized software (games, P2P, hacking tools unless permitted, unknown apps) via Settings > Apps or `Get-Package`. Investigate services with suspicious paths or descriptions.
+-   **Persistence Hunting:** Actively hunt for malware persistence: Registry Run/RunOnce keys (HKLM/HKCU `Software\Microsoft\Windows\CurrentVersion\Run`), Scheduled Tasks (`taskschd.msc`, `schtasks`), Startup Folders (User/All Users), malicious/hijacked Services, WMI event subscriptions (advanced).
+-   **File System & Shares:** Review NTFS permissions on critical directories (`C:\Windows`, `C:\Users`). Remove overly permissive access (e.g., `Everyone`, `Users` Full Control). Check Network Shares (`fsmgmt.msc`, `Get-SmbShare`), remove unnecessary ones, and secure required shares with specific Share/NTFS permissions (Least Privilege). Disable SMBv1 if allowed (`Disable-WindowsOptionalFeature`). Check `C:\Windows\System32\drivers\etc\hosts` for redirects.
+-   **Forensic Investigation:** Treat forensic questions as high-priority. Search common locations (Desktop, Docs, Downloads, Temp, Recycle Bin) and user profiles. Analyze Event Logs (`eventvwr.msc`) filtering by time, Event IDs (4624/25 Logon, 4720 User Create, 4732 Group Add, 7045 Service Install, 4688 Process Create w/ Command Line auditing enabled), and keywords from questions. Use `findstr` or `Select-String` for file content searches.
+-   **Documentation & Verification:** Maintain a meticulous Change Log (`../Resources/Templates/Change_Log_Template.md`). Regularly check the scoring engine to confirm points awarded/lost after changes. Use documentation to revert harmful changes.
+-   **Baselining:** Where feasible, use PowerShell commands (`Get-LocalUser`, `Get-Service`, `schtasks /query`, `Get-ItemProperty` for Run keys) at the *start* to capture an initial state. Compare later outputs or use Meld to spot differences quickly.
 
 ---
-
-*All materials in this directory are unique and designed for CyberPatriot training. Use the README files within each subdirectory for more specific guidance.*
+*All materials are uniquely developed for Grissom JROTC CyberPatriot. Use READMEs in subdirectories for specifics.*
