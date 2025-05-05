@@ -1,220 +1,108 @@
 # Using Meld for CyberPatriot: A Baselining Guide
 
-## Introduction to Meld and Baselining
-
-One of the most powerful strategies mentioned by CyberPatriot National Champion Akshay involves using a tool called **Meld** for baselining. As he explains:
-
-> "Another powerful tool our team used was Meld, which is a visually based diffing and merging tool for files and directories that works on both Linux and Windows. To effectively use Meld, my team meticulously incorporated entire default filesystems into our script, and enhanced its security by implementing our carefully tailored, secure configurations. During competitions, all of our config hardening was done through Meld."
-
-This guide will help you understand what Meld is, why it's so effective for CyberPatriot, and how to incorporate it into your team's competition strategy.
+This guide explains how to use Meld, a visual diff and merge tool, as part of a baselining strategy for CyberPatriot competitions. Baselining is a powerful technique for quickly identifying unauthorized changes and vulnerabilities.
 
 ## What is Meld?
 
-Meld is a visual diff and merge tool that helps you compare:
+Meld is a graphical tool that helps you compare:
 - Individual text files
 - Entire directories
-- Version-controlled projects
+- Version-controlled projects (less relevant for basic CP baselining)
 
-It provides a clear, color-coded interface that makes it easy to spot differences between files or directories. This makes it perfect for identifying changes between a clean system and a potentially compromised one.
+It highlights differences line-by-line or file-by-file, making it easy to spot modifications, additions, or deletions between two versions.
+
+[Meld Website](https://meldmerge.org/) - Available for Linux, Windows, and macOS.
 
 ## Why Baselining Works in CyberPatriot
 
-Baselining is the process of comparing a known-good configuration to the competition image to identify differences. This approach is extremely effective in CyberPatriot because:
+Baselining involves comparing the state of the competition image against a known-good baseline. This baseline could be:
+1.  A clean, uncompromised version of the same operating system.
+2.  Output from scanning/auditing scripts run immediately at the start of the competition *before* making changes.
+3.  Documentation or checklists representing a secure configuration.
 
-1. **It reveals hidden vulnerabilities** that might not be obvious from checklists
-2. **It identifies attacker changes** like modified configuration files
-3. **It helps find persistence mechanisms** such as added users or changed permissions
-4. **It saves time** by focusing your attention on what's actually different
+This approach is effective because it:
+-   **Reveals hidden changes:** Spots modified configuration files, added users/groups, or changed permissions that might be missed by checklists alone.
+-   **Identifies attacker actions:** Highlights files dropped by attackers, persistence mechanisms added, or services misconfigured.
+-   **Saves time:** Focuses attention directly on the differences, rather than checking every possible setting.
+-   **Finds subtle issues:** Can uncover unexpected changes in less common configuration files or scripts.
 
-## Installing Meld
+## How to Use Meld for Baselining
 
-### On Ubuntu/Debian:
-```bash
-sudo apt update
-sudo apt install meld
-```
+The core idea is to generate comparable text-based outputs from both the **Clean Baseline VM** and the **Competition Image VM**, then use Meld to compare these outputs.
 
-### On Windows:
-1. Download the installer from the [Meld website](https://meldmerge.org/)
-2. Run the installer and follow the prompts
-3. Launch Meld from the Start menu
+### Step 1: Prepare Your Baseline
+- Have a clean, updated VM of the OS typically used in competition (e.g., Ubuntu 22.04, Windows 10/11). Snapshot this clean state.
+- Alternatively, run audit scripts *immediately* on the competition image before making changes and save the output as your "initial state" baseline.
 
-## Setting Up Baseline Files
+### Step 2: Generate Output on Both VMs
+Run commands or scripts on *both* the clean VM and the competition VM to capture system state. Save the output to text files with clear names (e.g., `clean_users.txt`, `comp_users.txt`).
 
-To effectively use Meld, you need clean baseline files to compare against:
+**Example Outputs to Generate:**
 
-### For Linux:
-1. Create a clean installation of the same distribution used in competition (Ubuntu, Debian, etc.)
-2. Save copies of important configuration files:
-   ```bash
-   # Create a baseline directory
-   mkdir -p ~/baseline/etc
-   
-   # Copy important configuration files
-   cp /etc/passwd ~/baseline/etc/
-   cp /etc/group ~/baseline/etc/
-   cp /etc/ssh/sshd_config ~/baseline/etc/ssh/
-   cp /etc/pam.d/common-password ~/baseline/etc/pam.d/
-   # Add more critical configuration files
-   ```
+**Linux:**
+-   User list: `cat /etc/passwd | sort > users.txt`
+-   Group list: `cat /etc/group | sort > groups.txt`
+-   Sudoers: `sudo cat /etc/sudoers > sudoers.txt ; sudo ls /etc/sudoers.d/ > sudoers_d.txt`
+-   Running Services: `systemctl list-units --type=service --state=running > running_services.txt`
+-   Listening Ports: `sudo ss -tulpn > listening_ports.txt`
+-   Cron jobs (system): `ls /etc/cron.* > cron_system.txt`
+-   Cron jobs (user - run for relevant users): `crontab -l > user_cron.txt`
+-   Installed Packages: `apt list --installed > installed_packages.txt`
+-   SSH Config: `cat /etc/ssh/sshd_config > sshd_config.txt`
+-   PAM Config (example): `cat /etc/pam.d/common-password > common-password.txt`
+-   SUID Files: `sudo find / -perm /4000 -type f 2>/dev/null > suid_files.txt`
 
-3. Generate lists of key system attributes:
-   ```bash
-   # List of installed packages
-   dpkg --get-selections > ~/baseline/packages.txt
-   
-   # List of enabled services
-   systemctl list-unit-files --state=enabled > ~/baseline/enabled-services.txt
-   
-   # List of users and groups
-   getent passwd > ~/baseline/passwd.txt
-   getent group > ~/baseline/group.txt
-   
-   # List of SUID/SGID files
-   find / -type f \( -perm -4000 -o -perm -2000 \) 2>/dev/null > ~/baseline/suid_sgid_files.txt
-   
-   # List of world-writable files
-   find / -type f -perm -o+w 2>/dev/null | grep -v "/proc/" | grep -v "/sys/" > ~/baseline/world_writable_files.txt
-   ```
+**Windows (PowerShell):**
+-   Users: `Get-LocalUser | Format-List | Out-File users.txt`
+-   Groups: `Get-LocalGroup | Format-List | Out-File groups.txt`
+-   Admin Members: `Get-LocalGroupMember -Group Administrators | Format-List | Out-File admin_members.txt`
+-   Running Services: `Get-Service | Where-Object {$_.Status -eq 'Running'} | Format-List | Out-File running_services.txt`
+-   Firewall Rules (Enabled): `Get-NetFirewallRule -Enabled True | Format-List | Out-File firewall_rules.txt`
+-   Scheduled Tasks: `Get-ScheduledTask | Format-List | Out-File scheduled_tasks.txt`
+-   Registry Run Keys:
+    ```powershell
+    Get-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run' | Out-File run_keys_hklm.txt
+    Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' | Out-File run_keys_hkcu.txt
+    # Add Wow6432Node paths if needed
+    ```
+-   Installed Programs: `Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-List | Out-File installed_programs.txt`
 
-### For Windows:
-1. Create a clean installation of the same Windows version used in competition
-2. Export registry keys for comparison:
-   ```powershell
-   # Export startup items
-   reg export "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" baseline_run.reg
-   
-   # Export services
-   reg export "HKLM\SYSTEM\CurrentControlSet\Services" baseline_services.reg
-   
-   # Export users
-   wmic useraccount list full > baseline_users.txt
-   
-   # Export groups and members
-   net localgroup > baseline_groups.txt
-   ```
+### Step 3: Transfer Output Files
+Transfer the generated text files from both VMs to a single machine where Meld is installed (e.g., using shared folders, USB drive, or SCP). Organize them into `CleanOutput` and `CompOutput` directories.
 
-3. Save baseline configuration settings:
-   ```powershell
-   # Export firewall rules
-   netsh advfirewall export "baseline_firewall.wfw"
-   
-   # Export scheduled tasks
-   schtasks /query /fo LIST > baseline_tasks.txt
-   ```
-
-## Using Meld During Competition
-
-### Basic File Comparison:
-1. Launch Meld
-2. Select "File Comparison" mode
-3. Choose your baseline file (left side)
-4. Choose the competition system's file (right side)
-5. Meld will highlight differences in color:
-   - Red: Deleted lines (present in baseline, missing in competition)
-   - Green: Added lines (not in baseline, present in competition)
-   - Blue: Changed lines (content modified)
-
-### Directory Comparison:
-1. Launch Meld
-2. Select "Directory Comparison" mode
-3. Choose your baseline directory (left side)
-4. Choose the competition system's directory (right side)
-5. Meld will show different files in color and allow you to drill down
+### Step 4: Compare with Meld
+1.  Open Meld.
+2.  Choose "Directory comparison".
+3.  Select the `CleanOutput` directory as the first directory and `CompOutput` as the second.
+4.  Click "Compare".
+5.  Meld will show files that are different, added, or removed.
+6.  Double-click on a differing file (e.g., `users.txt`) to see a line-by-line comparison highlighting the changes (e.g., added unauthorized users).
+7.  Analyze the differences to identify potential security issues or forensic clues.
 
 ## Practical CyberPatriot Examples
 
 ### Example 1: Finding Unauthorized Users
-Compare `/etc/passwd` (Linux) or export user lists (Windows) to identify:
-- Unauthorized user accounts added by attackers
-- Modified UID/GID values (Linux)
-- Users added to privileged groups
+- Compare `users.txt` (Linux: `/etc/passwd`, Win: `Get-LocalUser`).
+- Look for extra lines in the competition output = added users.
+- Compare `admin_members.txt` (Win) or check UID 0 / sudo group membership differences (Linux).
 
 ### Example 2: Identifying Service Changes
-Compare service configurations to find:
-- New services added by attackers
-- Modified service parameters
-- Services with weak configurations
+- Compare `running_services.txt`.
+- Extra services running on the competition image might be malicious or unnecessary.
+- Missing services might indicate tampering or required services being stopped.
+- Compare config files like `sshd_config.txt` for specific parameter changes (e.g., `PermitRootLogin yes`).
 
-### Example 3: Finding Configuration Weaknesses
-Compare security configurations to identify:
-- Weakened SSH settings
-- Disabled security features
-- Modified access controls
-
-## Advanced Meld Usage
-
-### Creating Secure Baselines
-You can create "hardened" baselines with security improvements already applied. This allows you to:
-1. Identify what's different in the competition image
-2. Easily apply your hardened configurations
-3. Verify the changes match your secure baseline
-
-### Automated Comparison Script
-This simple script automates the process of comparing critical files:
-
-```bash
-#!/bin/bash
-# Automated baseline comparison for Linux
-
-BASELINE_DIR="$HOME/baseline"
-OUTPUT_DIR="$HOME/differences"
-
-# Create output directory
-mkdir -p $OUTPUT_DIR
-
-# Compare passwd file
-meld $BASELINE_DIR/etc/passwd /etc/passwd
-
-# Compare SSH config
-meld $BASELINE_DIR/etc/ssh/sshd_config /etc/ssh/sshd_config
-
-# Compare installed packages
-dpkg --get-selections > /tmp/current_packages.txt
-meld $BASELINE_DIR/packages.txt /tmp/current_packages.txt
-
-# Compare enabled services
-systemctl list-unit-files --state=enabled > /tmp/current_services.txt
-meld $BASELINE_DIR/enabled-services.txt /tmp/current_services.txt
-
-# Compare SUID/SGID files
-find / -type f \( -perm -4000 -o -perm -2000 \) 2>/dev/null > /tmp/current_suid_sgid.txt
-meld $BASELINE_DIR/suid_sgid_files.txt /tmp/current_suid_sgid.txt
-
-# Compare world-writable files
-find / -type f -perm -o+w 2>/dev/null | grep -v "/proc/" | grep -v "/sys/" > /tmp/current_world_writable.txt
-meld $BASELINE_DIR/world_writable_files.txt /tmp/current_world_writable.txt
-```
-
-## Integrating Meld into Your Competition Strategy
-
-To use Meld most effectively in CyberPatriot:
-
-1. **Pre-Competition Preparation**:
-   - Create clean baselines for each OS you might encounter
-   - Create hardened baselines with your security improvements
-   - Organize baseline files logically by category
-   - Practice using Meld to find intentional differences
-
-2. **During Competition**:
-   - Begin with a quick review of the README
-   - Immediately run baseline comparisons on critical files
-   - Use findings to create a priority list of issues to fix
-   - Apply your hardened configurations via Meld
-   - Document all differences you find for forensic questions
-
-3. **Post-Competition Analysis**:
-   - Note which differences corresponded to vulnerabilities
-   - Update your baseline approach for the next round
-   - Add any new critical files to your comparison set
+### Example 3: Finding Persistence Mechanisms
+- Compare `scheduled_tasks.txt` (Win) or `user_cron.txt` / `cron_system.txt` (Linux). Look for new entries.
+- Compare `run_keys_hklm.txt` / `run_keys_hkcu.txt` (Win). Look for new entries.
+- Compare `suid_files.txt` (Linux). Look for unexpected binaries with the SUID bit set.
 
 ## Conclusion
 
-The baselining approach using Meld was a key factor in Akshay's team winning multiple national championships. By incorporating this strategy into your CyberPatriot preparation, you'll be able to:
+Baselining with Meld (or similar diff tools like `diff` on Linux) is a powerful technique that complements traditional checklists. It helps you:
+- Quickly pinpoint deviations from a known-good state.
+- Identify attacker modifications and persistence.
+- Focus remediation efforts effectively.
+- Save valuable time during the competition.
 
-1. Quickly identify security issues and unauthorized changes
-2. Apply consistent, secure configurations to all systems
-3. Find subtle vulnerabilities that might be missed with checklists
-4. Save valuable time during competition
-
-Remember, the true nature of CyberPatriot is incident response and remediation. Meld helps you excel at both by providing clear visibility into what's changed on a system and helping you apply proper fixes efficiently.
+Practice generating these outputs and using Meld to become proficient before competition day. Remember that the quality of your baseline determines the effectiveness of this strategy.

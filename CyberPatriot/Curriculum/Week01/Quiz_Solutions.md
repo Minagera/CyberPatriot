@@ -26,4 +26,25 @@
 
 -   [../Quizzes/Solutions/Windows_Security_Fundamentals_Quiz_Solution.md](../Quizzes/Solutions/Windows_Security_Fundamentals_Quiz_Solution.md)
 
+# Week 1 Quiz Review Notes (Mentor Use Only)
+
+## Quiz: Windows Security Fundamentals (Introductory Questions)
+
+**Link to Official Solutions:** [../Quizzes/Solutions/Windows_Security_Fundamentals_Quiz_Solution.md](../Quizzes/Solutions/Windows_Security_Fundamentals_Quiz_Solution.md)
+
+**Key Concepts to Reinforce:**
+- Difference between Standard User and Administrator.
+- Purpose of basic tools like Task Manager and Event Viewer.
+- Importance of reading the CyberPatriot Rules Book.
+- Basic command prompt usage (`ipconfig`).
+
+**Common Mistakes/Areas for Clarification:**
+- [Mentor: Add notes here based on cadet performance]
+- Confusion about where to find specific settings.
+- Misunderstanding the role of the scoring engine.
+
+**Discussion Points:**
+- Real-world implications of ethical hacking.
+- How basic Windows knowledge applies to security.
+
 *(This file is a placeholder for mentor notes during quiz review, not the actual answers.)*

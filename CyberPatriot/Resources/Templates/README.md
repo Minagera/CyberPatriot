@@ -1,28 +1,24 @@
-# Competition Templates
+# CyberPatriot Documentation Templates
 
-This directory contains templates to help CyberPatriot teams with documentation and workflow during practice and competition rounds. Using templates promotes consistency and saves time.
+This directory provides templates for common documentation tasks during CyberPatriot competitions. Using templates ensures consistency and saves valuable time.
 
-## Template Index
+## Available Templates
 
 -   [**Change_Log_Template.md**](Change_Log_Template.md)
-    *   A simple markdown table to track changes made to systems (Time, System, Change Made, User, Reason, Success/Issues).
+    *   For tracking every modification made to the systems (user changes, service changes, policy updates, software removal, etc.). Essential for troubleshooting and potential scoring verification.
 -   [**Incident_Response_Report_Template.md**](Incident_Response_Report_Template.md)
-    *   A basic structure for documenting findings during an incident response scenario (Summary, Timeline, Systems Affected, Findings, Actions Taken, Recommendations). Useful for practice debriefs.
+    *   A more formal template for summarizing findings, actions taken, and recommendations, simulating a real-world report (useful for practice/debrief).
+-   [**Team_Workflow_Checklist.md**](Team_Workflow_Checklist.md)
+    *   A high-level checklist for the team to follow during the competition (Read README, Baseline, Users, etc.). Adaptable version of strategies discussed elsewhere.
 -   [**Forensics_Question_Response_Template.md**](Forensics_Question_Response_Template.md)
-    *   A template for organizing answers to forensic questions, including the question, the answer, and the evidence/location where the answer was found.
--   [**Team_Workflow_Checklist_Template.md**](Team_Workflow_Checklist_Template.md)
-    *   A checklist outlining key phases and tasks for a competition round (e.g., Read README, Initial Scan, User Audit, Service Hardening, Forensics, Final Review).
+    *   A structured template for answering the forensic questions provided in the competition README, including space for the question, answer, and evidence/justification.
 
 ## How to Use
 
-1.  Copy the desired template at the beginning of a practice session or competition round.
-2.  Fill it out as you work through the scenario.
-3.  Adapt the templates to your team's specific workflow.
-4.  Use digital versions (e.g., shared documents) or print them out.
-
-## Contribution
-
-Suggest improvements to existing templates or create new ones that could benefit a CyberPatriot team's process (e.g., Network Diagram Template, Role Assignment Sheet).
+1.  Review these templates *before* the competition.
+2.  Adapt them slightly if needed for your team's workflow.
+3.  Have digital or printed copies ready at the start of the competition.
+4.  Fill them out diligently *during* the competition. The Change Log is particularly critical.
 
 ---
-*All templates are designed to be simple starting points for CyberPatriot teams.*
+*Consistent documentation is key to avoiding mistakes and ensuring all forensic points are captured.*

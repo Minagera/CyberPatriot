@@ -1,60 +1,64 @@
 # User Account Security Quiz
 
-## Overview
-
-This quiz tests your knowledge of user account security across Windows, Linux, and Cisco.  
-It covers user management, privilege escalation, password policy, and auditing.
-
-**Time Allowed**: 20 minutes  
-**Total Points**: 30  
-**Passing Score**: 24 points (80%)
+**Instructions:** Choose the best answer for multiple-choice questions. Provide short answers where requested.
 
 ## Multiple Choice
 
-1. Which command lists all users on a Linux system?
-   - A. whoami
-   - B. cat /etc/passwd
-   - C. ls -l
-   - D. sudo
+1.  In Windows, which built-in tool is primarily used to manage local users and groups?
+    A) `secpol.msc`
+    B) `services.msc`
+    C) `lusrmgr.msc`
+    D) `eventvwr.msc`
 
-2. What is the minimum recommended password length for CyberPatriot?
-   - A. 6
-   - B. 8
-   - C. 12
-   - D. 4
+2.  On a Linux system (like Ubuntu), which command is used to change a user's password?
+    A) `chpasswd`
+    B) `passwd`
+    C) `userpasswd`
+    D) `setpass`
 
-3. Which Windows group has full system privileges?
-   - A. Users
-   - B. Administrators
-   - C. Guests
-   - D. Power Users
+3.  What is the principle of least privilege?
+    A) Granting users the highest possible privileges.
+    B) Granting users only the permissions necessary to perform their tasks.
+    C) Disabling all user accounts except the administrator.
+    D) Setting all passwords to "password".
 
-4. What is the risk of leaving the Guest account enabled?
-   - A. No risk
-   - B. Allows anonymous access
-   - C. Improves security
-   - D. Increases performance
+4.  In Linux, which file typically contains hashed user passwords?
+    A) `/etc/passwd`
+    B) `/etc/group`
+    C) `/etc/shadow`
+    D) `/etc/sudoers`
 
-5. Which tool audits user rights in Windows?
-   - A. Task Manager
-   - B. Local Security Policy
-   - C. Paint
-   - D. Notepad
+5.  Which Windows group typically has the highest level of system access?
+    A) Users
+    B) Power Users
+    C) Administrators
+    D) Remote Desktop Users
 
-## True/False
+6.  What does the command `sudo` typically do in Linux?
+    A) Switch user
+    B) Shut down the system
+    C) Execute a command as another user (usually root)
+    D) Show user documentation
 
-6. All users should have administrator rights. (False)
-7. Password complexity should be enforced. (True)
-8. Group memberships can affect user privileges. (True)
-9. Disabling unused accounts improves security. (True)
-10. User security is only important on servers. (False)
+7.  Disabling the Guest account is generally considered a good security practice because:
+    A) It saves disk space.
+    B) It prevents unauthenticated or anonymous access.
+    C) It makes the system run faster.
+    D) It is required by law.
+
+8.  In Linux, what does the permission `rwxr-x---` (750) mean for a file?
+    A) Owner: RWX, Group: R-X, Other: ---
+    B) Owner: RWX, Group: R--, Other: ---
+    C) Owner: R--, Group: W--, Other: X--
+    D) Owner: RWX, Group: RWX, Other: RWX
 
 ## Short Answer
 
-11. How do you check group membership for a user in Linux?
-12. Why should you document user security changes?
-13. What is privilege escalation?
-14. How can you verify password policy enforcement?
-15. Name one tool to audit user accounts in Windows.
+9.  Why is it important to enforce a strong password policy (complexity, length, history, age)?
+    *(Provide a brief explanation)*
 
-*Answers are available in the Solutions directory for mentors.*
+10. In Windows, besides the `Administrators` group, what other group membership might grant a user significant remote access capabilities that should be reviewed?
+    *(Name one specific group)*
+
+---
+*(End of Quiz)*

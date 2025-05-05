@@ -1,56 +1,36 @@
-# CyberPatriot Curriculum: Week 1 - Introduction & Windows Basics
+# Week 1: Competition Overview, Ethics, Windows Basics
 
 ## Learning Objectives
-
--   Understand the goals and format of the CyberPatriot competition.
--   Discuss ethical behavior and rules of engagement.
--   Navigate the Windows Desktop environment (Windows 10/11).
--   Identify and use common Windows administrative tools (Settings, Control Panel, Task Manager, Computer Management).
--   Understand basic local user and group concepts in Windows.
+- Understand the CyberPatriot competition format, rules, and scoring.
+- Discuss ethical behavior in cybersecurity competitions and the real world.
+- Navigate the Windows GUI (File Explorer, Settings, Control Panel).
+- Identify basic system information (OS version, hostname, IP address).
+- Understand user accounts and basic user management concepts in Windows.
+- Learn about common Windows administrative tools (Task Manager, Event Viewer, Services).
 
 ## Topics Covered
+- CyberPatriot Introduction (Structure, Platforms, Scoring Engine)
+- Ethics in Cybersecurity (AFA Code of Conduct)
+- Windows Desktop Environment (Navigation, Key Locations)
+- Basic Windows Commands (`ipconfig`, `hostname`, `systeminfo`)
+- Introduction to Windows User Accounts (Standard vs. Administrator)
+- Overview of Common Tools:
+    - Task Manager
+    - Event Viewer (`eventvwr.msc`)
+    - Services (`services.msc`)
+    - Computer Management (`compmgmt.msc`)
 
-1.  **CyberPatriot Overview:**
-    *   What is CyberPatriot? (Mission, structure, platforms)
-    *   Competition rounds (scoring, images, READMEs, time limits)
-    *   Team roles (initial discussion)
-2.  **Ethics and Rules:**
-    *   Importance of ethical conduct.
-    *   Review key competition rules (prohibited actions, external resources).
-3.  **Windows Desktop Navigation:**
-    *   Start Menu, Settings vs. Control Panel.
-    *   File Explorer (showing hidden files, file extensions).
-    *   Basic command prompt (`cmd`) and PowerShell usage (`ipconfig`, `net user`).
-4.  **Core Windows Tools Introduction:**
-    *   Task Manager (Processes, Performance, Startup).
-    *   Computer Management (`compmgmt.msc`): Local Users and Groups, Event Viewer (brief mention), Services (brief mention), Disk Management.
-    *   Settings App: System, Apps, Accounts, Update & Security.
-5.  **Windows Local Users & Groups:**
-    *   Concept of users vs. groups.
-    *   Administrator vs. Standard User privileges.
-    *   Viewing users/groups via Computer Management.
-    *   Concept of the Administrators group.
-
-## Activities & Exercises
-
--   **Discussion:** Team introductions, initial thoughts on roles. Review competition rules.
--   **Hands-on:**
-    *   Explore Windows Settings and Control Panel.
-    *   Practice using Task Manager to view processes.
-    *   Use Computer Management to view local users and groups (identify Administrator, Guest, your user).
-    *   Run basic commands: `ipconfig /all`, `net user`, `net localgroup Administrators`.
--   **Reference:** [../Windows/Guides/Basic/README.md](../Windows/Guides/Basic/README.md) (Focus on GUI tools and user concepts)
+## Activities/Exercises
+- Explore the Windows interface on a practice VM.
+- Use basic command prompt commands to gather system information.
+- Locate and open common administrative tools.
+- Review the CyberPatriot Rules Book.
+- **Exercise:** [Basic Windows Familiarization](../Exercises/Windows/Basic_Windows_Familiarization.md) (Placeholder - To be created)
 
 ## Assessment
-
--   **Quiz:** [../Quizzes/Quiz-Files/Windows_Security_Fundamentals_Quiz.md](../Quizzes/Quiz-Files/Windows_Security_Fundamentals_Quiz.md) (Assign questions related to tools and basic user concepts).
--   **Informal:** Observe participation and ability to navigate Windows tools.
+- **Quiz:** [Windows Security Fundamentals Quiz](../Quizzes/Quiz-Files/Windows_Security_Fundamentals_Quiz.md) (Focus on introductory questions)
 
 ## Resources
-
--   CyberPatriot Rules Book (Current Season)
--   Windows 10/11 Practice VM
--   [../Windows/Guides/Basic/README.md](../Windows/Guides/Basic/README.md)
-
----
-*Mentor Notes: Emphasize the importance of reading the README in competitions. Start building familiarity with core tools.*
+- [CyberPatriot Rules Book](https://www.uscyberpatriot.org/competition/rules-book)
+- [Windows Basic Navigation Guide](../Windows/Guides/Basic/Windows_Navigation_Guide.md) (Placeholder - To be created)
+- [Introduction to Windows Tools](../Windows/Guides/Basic/Windows_Tools_Introduction.md) (Placeholder - To be created)

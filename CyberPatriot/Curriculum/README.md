@@ -7,9 +7,9 @@ This directory contains a structured 12-week curriculum for preparing teams for 
 The training program progressively builds skills from basic concepts to advanced techniques. Each week includes:
 -   **Learning Objectives**: Specific skills and knowledge cadets will gain.
 -   **Topics Covered**: Key areas of focus for the week.
--   **Activities/Exercises**: References to hands-on practice in other directories (Exercises, PacketTracer_Scenarios).
--   **Assessment**: References to relevant quizzes (Quizzes directory).
--   **Resources**: Links to relevant Guides, Checklists, or external materials.
+-   **Activities/Exercises**: References to hands-on practice in other directories (`../Exercises/`, `../Cisco/PacketTracer_Scenarios/`).
+-   **Assessment**: References to relevant quizzes (`../Quizzes/`).
+-   **Resources**: Links to relevant Guides (`../Windows/Guides/`, `../Linux/Guides/`, `../Cisco/Guides/`), Checklists (`../Checklists/`), or external materials.
 
 ## Directory Index
 
@@ -54,7 +54,6 @@ Curriculum/
     └── Quiz_Solutions.md       # Placeholder for Mentor notes on Week 12 Quiz review
 ```
 
--   Each week's `README.md` details the plan for that session.
 -   `Quiz_Solutions.md` are placeholders for mentors to potentially store notes or links related to reviewing quizzes assigned that week, not the actual quiz answers (which reside in `../Quizzes/Solutions/`).
 -   All referenced files are unique and tailored for CyberPatriot cadet training.
 
@@ -84,13 +83,13 @@ Curriculum/
 
 ### For Mentors
 1.  Review the `README.md` for the upcoming week.
-2.  Prepare necessary VMs, Packet Tracer files, quizzes, and exercises.
+2.  Prepare necessary VMs (`../VM-Setup/`), Packet Tracer files (`../Cisco/PacketTracer_Scenarios/`), quizzes (`../Quizzes/`), and exercises (`../Exercises/`).
 3.  Adapt the content based on team progress and experience.
 4.  Facilitate discussions and hands-on activities.
-5.  Review quiz/exercise results and provide feedback.
+5.  Review quiz/exercise results and provide feedback using `Quiz_Solutions.md` for notes and `../Quizzes/Solutions/` for answers.
 
 ### For Cadets
-1.  Review the objectives and topics for the week.
+1.  Review the objectives and topics for the week in the corresponding `WeekXX/README.md`.
 2.  Actively participate in exercises and discussions.
 3.  Complete assigned quizzes and practice tasks.
 4.  Ask questions and seek clarification.
@@ -108,7 +107,7 @@ Curriculum/
 Feel free to adjust the pace, add supplementary materials, or modify exercises to suit your team's specific needs and learning style.
 
 ## Tracking Progress
-Use quiz results, exercise completion, and participation in mock competitions to gauge understanding and identify areas needing more focus.
+Use quiz results (`../Quizzes/`), exercise completion (`../Exercises/`), and participation in mock competitions to gauge understanding and identify areas needing more focus.
 
 ## Reference Templates
 Utilize templates from `../Resources/Templates/` for documentation during practice:

@@ -1,37 +1,31 @@
-# General Quiz Files
+# CyberPatriot Quiz Files Index
 
-This directory contains the actual quiz files (questions and scenarios) for CyberPatriot training.
+This directory contains the markdown files for various quizzes covering CyberPatriot topics.
 
-## Quiz Index
+## Available Quizzes
 
 -   [**User_Account_Security_Quiz.md**](User_Account_Security_Quiz.md)
-    *   Tests knowledge of user management, privilege escalation, and account security across Windows and Linux.
+    *   Covers user/group management, permissions, password policies, and privilege escalation concepts across Windows and Linux.
 -   [**Incident_Response_Quiz.md**](Incident_Response_Quiz.md)
-    *   Practices incident response steps, basic forensics concepts, and investigation skills relevant to CyberPatriot scenarios.
+    *   Focuses on the incident response lifecycle, identifying indicators of compromise, basic forensic principles, and documentation.
 -   [**Competition_Strategy_Quiz.md**](Competition_Strategy_Quiz.md)
-    *   Assesses understanding of workflow, teamwork, time management, and best practices for CyberPatriot competitions.
--   [**VM_Setup_Scenario.md**](VM_Setup_Scenario.md)
-    *   Placeholder for a scenario that might involve investigating a pre-configured VM, potentially more of an exercise than a traditional quiz.
+    *   Tests understanding of effective CyberPatriot competition workflow, team roles, time management, the importance of the README, and scoring engine interaction.
+-   [**VM_Setup_Scenario_Quiz.md**](VM_Setup_Scenario_Quiz.md)
+    *   (Placeholder) May involve analyzing hypothetical outputs from VM setup scripts or identifying vulnerabilities based on script descriptions. More like a mini-exercise.
 -   [**Windows_Security_Fundamentals_Quiz.md**](Windows_Security_Fundamentals_Quiz.md)
-    *   Covers Windows basics, security tools (Defender, Firewall), Event Viewer, user management GUI/commands.
+    *   Covers basic Windows navigation, tools (Task Manager, Event Viewer), user account concepts, and simple commands (`ipconfig`). Suitable for beginners.
 -   [**Windows_System_Hardening_Quiz.md**](Windows_System_Hardening_Quiz.md)
-    *   Covers Windows Local Security Policy, auditing, service hardening, registry awareness, firewall concepts.
+    *   Focuses on securing Windows systems: Local Security Policy, services, Windows Defender Firewall/Antivirus, user rights, auditing, and common hardening tasks.
 -   [**Linux_Security_Fundamentals_Quiz.md**](Linux_Security_Fundamentals_Quiz.md)
-    *   Covers Linux CLI, permissions, user management commands, package management, service status checks.
+    *   Covers basic Linux CLI commands (`ls`, `cd`, `pwd`, `grep`), user/group concepts, file permissions (`chmod`), and package management (`apt`). Suitable for beginners.
 -   [**Linux_System_Hardening_Quiz.md**](Linux_System_Hardening_Quiz.md)
-    *   Covers Linux services (systemd), UFW firewall, SSH hardening, PAM/password policies, SUID/SGID risks.
+    *   Focuses on securing Linux systems: UFW firewall, SSH configuration (`sshd_config`), service management (`systemctl`), `sudoers`, PAM, logging, and file permissions.
 -   [**Cisco_IOS_Basics_Quiz.md**](Cisco_IOS_Basics_Quiz.md)
-    *   Covers Cisco CLI modes, basic `show` commands, configuration saving, hostname, banners.
+    *   Covers fundamental Cisco IOS concepts: command modes (user EXEC, privileged EXEC, global config), basic commands (`show`, `configure terminal`, `interface`), hostname, passwords.
 -   [**Cisco_Security_Quiz.md**](Cisco_Security_Quiz.md)
-    *   Covers `enable secret`, line security, SSH configuration concepts, ACL types/purpose, port security concepts.
+    *   Focuses on securing Cisco devices: `enable secret`, console/VTY passwords, SSH configuration, disabling Telnet/HTTP, basic ACL concepts. Mirrors the official Cisco Quiz format.
 -   [**Cisco_Packet_Tracer_Quiz.md**](Cisco_Packet_Tracer_Quiz.md)
-    *   Covers Packet Tracer interface usage, connecting devices, accessing CLI, simulation vs. real-time mode.
-
-## How to Use
-
--   Attempt each quiz before reviewing the solutions.
--   Quizzes are unique and designed for CyberPatriot cadet training.
--   Focus on applying concepts to potential competition scenarios.
+    *   Tests understanding of interpreting network topologies in Packet Tracer, identifying connectivity issues, and applying basic configurations within the tool.
 
 ---
-*All quizzes are unique and tailored for CyberPatriot training.*
+*Refer to the corresponding file in the `../Solutions/` directory for answer keys (Mentor access recommended).*
