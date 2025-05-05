@@ -2,34 +2,43 @@
 
 ## Scenario
 
-You have received a Windows 11 VM with several security issues. Your task is to identify and remediate vulnerabilities using basic Windows security tools.
+You have been given access to a Windows workstation that was recently used by an intern. Your task is to perform basic security checks and address any immediate issues found.
 
 ## Objectives
 
-- Identify unauthorized user accounts
-- Enable and configure Windows Defender
-- Apply all pending Windows updates
-- Configure basic firewall rules
-- Document all changes made
+-   Identify and manage local user accounts.
+-   Review basic password and lockout policies.
+-   Identify and remove unauthorized or unnecessary software.
+-   Check the status of Windows Firewall and Defender Antivirus.
 
 ## Tasks
 
-1. Review the list of user accounts and remove any unauthorized users.
-2. Open Windows Defender and ensure real-time protection is enabled.
-3. Run Windows Update and install all available updates.
-4. Open Windows Firewall and create a rule to block inbound traffic on port 23 (Telnet).
-5. Document each change in the provided change log template.
+1.  **User Account Review:**
+    *   List all local user accounts.
+    *   Identify any unauthorized or suspicious accounts (e.g., "test", "temp", "hacker").
+    *   Disable the Guest account.
+    *   Ensure the built-in Administrator account has a strong password (you may need to reset it).
+    *   Check the membership of the Administrators group and remove any unauthorized users.
+2.  **Basic Policy Check:**
+    *   Open Local Security Policy (`secpol.msc`).
+    *   Check the current settings for Minimum Password Length and Password Complexity. Are they adequate?
+    *   Check the Account Lockout Threshold. Is it configured?
+3.  **Software Audit:**
+    *   Open Apps & Features (Settings > Apps).
+    *   Identify and list any software that seems unauthorized or unnecessary for a standard workstation (e.g., games, peer-to-peer file sharing, hacking tools, multiple web browsers).
+    *   (Simulated) Uninstall one piece of unauthorized software.
+4.  **Basic Security Feature Check:**
+    *   Check the status of Windows Defender Firewall for the Public and Private profiles. Is it enabled?
+    *   Check the status of Windows Defender Antivirus. Is Real-time protection enabled?
 
-## Scoring
+## Deliverables
 
-- Each correctly remediated vulnerability: 2 points
-- Complete documentation: 5 points
+-   List of unauthorized users found and action taken.
+-   List of unauthorized software identified.
+-   Status of basic security policies and features checked.
 
 ## Hints
 
-- Use the Windows Security app for Defender settings.
-- Use `net user` in Command Prompt to list accounts.
-- Check the Event Viewer for security logs.
+-   Use `net user`, `net localgroup Administrators`, `secpol.msc`, `services.msc`, `wf.msc`, and Settings.
 
----
-*This exercise is unique and designed for CyberPatriot cadet training.*
+*(This is a placeholder exercise. Content should be expanded with more specific details and potentially a corresponding VM setup.)*

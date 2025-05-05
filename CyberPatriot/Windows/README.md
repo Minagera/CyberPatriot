@@ -1,72 +1,43 @@
 # Windows Security Training Materials
 
-This directory contains training materials, exercises, and resources for the Windows portion of the CyberPatriot competition. The content covers Windows 11 and Windows Server 2025 security hardening techniques and best practices.
+This directory contains all training materials related to securing Microsoft Windows systems (focusing on Windows 11 and recent Server versions) for the CyberPatriot competition.
 
-## Directory Structure
+## Directory Index
 
-```
-Windows/
-├── Guides/                 # Educational guides for Windows security
-│   ├── Basic/              # Fundamental Windows security concepts
-│   ├── Intermediate/       # More advanced security configurations
-│   └── Advanced/           # Complex security implementations
-│
-├── Exercises/              # Hands-on Windows security exercises
-│
-├── Scripts/                # PowerShell scripts for Windows hardening
-│   ├── Templates/          # Script templates for cadets to modify
-│   ├── Examples/           # Example scripts for reference
-│   └── Solutions/          # Solution scripts (mentor access only)
-│
-├── Quizzes/                # Assessment materials
-│   ├── Quiz-Files/         # Quiz questions in various formats
-│   └── Solutions/          # Answer keys for quizzes
-│
-└── VM-Setup/               # Instructions for setting up Windows VMs
-```
+### [Checklists/](Checklists/README.md)
+Links to the detailed Windows checklist in the main `Checklists/Windows/` directory. Emphasizes critical steps like user account management, security policy configuration, service hardening, and reviewing the competition README first.
 
-## Getting Started
+### [Exercises/](Exercises/README.md)
+Offers hands-on practice scenarios designed to simulate CyberPatriot challenges on Windows. Includes exercises for basic security tasks and more advanced system hardening.
 
-1. Set up a Windows VM using [VM-Setup](./VM-Setup)
-2. Review [Guides/Basic](./Guides/Basic) for foundational security concepts
-3. Complete introductory exercises
-4. Explore script examples for automation
+### [Guides/](Guides/README.md)
+Provides in-depth guides covering fundamental and advanced Windows security topics, including user management, Group Policy, registry hardening, and common competition scenarios.
+-   **[Basic/](Guides/Basic/README.md)**: Covers foundational Windows security concepts.
+-   **[Advanced/](Guides/Advanced/README.md)**: Explores more complex topics like registry security and advanced policy settings.
 
-## Learning Path
+### [Quizzes/](Quizzes/README.md)
+Includes quizzes to test understanding of Windows security fundamentals and system hardening techniques, mirroring the types of knowledge needed for CyberPatriot.
 
-1. User account management and password policies
-2. Windows Update and patch management
-3. Windows Defender and security tools
-4. Windows Firewall configuration
-5. Service hardening and application security
-6. Advanced topics: Group Policy, Registry security, auditing
+### [Scripts/](Scripts/README.md)
+Contains unique PowerShell scripts for automating common security checks, auditing tasks, and hardening procedures specific to CyberPatriot scenarios.
 
-## CyberPatriot Competition Tips
+### [VM-Setup/](VM-Setup/README.md)
+Provides scripts and documentation for creating compromised Windows virtual machine environments for incident response training, simulating the core CyberPatriot competition experience.
 
-- Always read the competition README file first
-- Use checklists to ensure you don't miss critical steps
-- Focus on high-value items: user accounts, updates, Defender, Firewall, services
-- Document your changes for troubleshooting and reporting
+---
 
-## Windows Security Fundamentals
+## CyberPatriot Competition Tips for Windows
 
-- User Account Security (accounts, passwords, rights, admin)
-- System Security (updates, Defender, Firewall, services)
-- Application Security (software restrictions, browser, malware removal)
-- Policy-Based Security (Local Security Policy, Group Policy, templates)
-- Monitoring and Auditing (event logs, audit policies)
+-   **Read the README:** Always start by thoroughly reading the competition README file. It contains critical information about required services, authorized users, prohibited actions, and forensic questions.
+-   **User Accounts:** Focus on removing unauthorized users, securing existing accounts (especially administrators), disabling the guest account, and enforcing strong password policies via Local Security Policy or GPO.
+-   **Security Policies:** Configure Local Security Policy (`secpol.msc`) settings for passwords, account lockout, auditing, user rights assignment, and security options according to best practices or README specifics.
+-   **Windows Features:** Ensure Windows Defender Antivirus is active and updated, Windows Defender Firewall is enabled and configured correctly (check all profiles: Domain, Private, Public), and necessary Windows Updates are applied (if network access is permitted and time allows).
+-   **Services & Applications:** Disable unnecessary/risky services (e.g., Remote Registry, Telnet, SNMP) via `services.msc` and uninstall unauthorized applications or prohibited software (e.g., games, hacking tools, unauthorized remote access tools) via Settings > Apps.
+-   **File System & Shares:** Review permissions on critical directories (e.g., `C:\Windows`, `C:\Program Files`). Check network shares (`compmgmt.msc` -> Shared Folders) and remove unnecessary shares or overly permissive access (like 'Everyone'). Disable SMBv1 if possible.
+-   **Forensics:** Carefully search Desktop, Documents, Downloads, and common system locations for answers to forensic questions, often hidden in text files, images, or system configurations/logs. Check Event Viewer (`eventvwr.msc`) for relevant logs (Security, System, Application).
+-   **Documentation:** Keep a clear log of all changes made (user added/removed, service disabled, policy changed, software removed). This helps troubleshoot if something breaks and aids in report writing.
+-   **Baselining:** If possible, compare running processes, services, scheduled tasks, and startup items against a known-good baseline.
 
-## Scripting and Automation
+---
 
-The Scripts directory contains PowerShell scripts for:
-- Automating security checks
-- Hardening system components
-- Auditing security settings
-- Performing system inventory
-
-## Additional Resources
-
-- [Microsoft Security Documentation](https://docs.microsoft.com/en-us/security/)
-- [CIS Windows Benchmarks](https://www.cisecurity.org/benchmark/microsoft_windows_desktop/)
-- [NIST Security Guidelines](https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-123.pdf)
-- [CyberPatriot Windows Training Materials](https://www.uscyberpatriot.org/competition/training-materials/windows)
+*All materials in this directory are unique and designed for CyberPatriot training. Use the README files within each subdirectory for more specific guidance.*

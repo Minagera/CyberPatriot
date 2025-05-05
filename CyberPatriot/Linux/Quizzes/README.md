@@ -1,34 +1,30 @@
 # Linux Security Quizzes
 
-This directory contains quiz files and solutions for CyberPatriot Linux training.
+This directory contains quizzes focused on Linux (Ubuntu/Mint) security concepts, commands, configuration, and hardening relevant to CyberPatriot.
 
-- Use `Quiz-Files/` for practice questions.
-- Use `Solutions/` for answer keys.
-- Quizzes are designed to reinforce key Linux security concepts and competition skills.
+## Quiz Index
 
-## Structure
-
-- **Quiz-Files/**:  
-  - Multiple choice, true/false, short answer, and scenario-based questions  
-  - Designed to reinforce concepts from guides and exercises
-
-- **Solutions/**:  
-  - Mentor-only answer keys and explanations  
-  - Use for grading and review after quiz completion
+-   [**Linux_Security_Fundamentals_Quiz.md**](Linux_Security_Fundamentals_Quiz.md)
+    *   Covers: Basic commands (`ls`, `cd`, `pwd`, `cat`, `grep`, `find`), user/group management (`useradd`, `usermod`, `passwd`), file permissions (chmod, chown), package management (`apt`), service status (`systemctl`).
+-   [**Linux_System_Hardening_Quiz.md**](Linux_System_Hardening_Quiz.md)
+    *   Covers: UFW configuration, SSH hardening (`sshd_config`), password policies (PAM, `login.defs`), disabling services, SUID/SGID permissions, log file locations, cron jobs.
 
 ## How to Use
 
-1. Attempt quizzes after completing related exercises or guides.
-2. Work individually or as a team.
-3. Review solutions with a mentor after finishing.
-4. Use quizzes for team practice and competition preparation.
+1.  Attempt the quiz questions without referring to notes initially.
+2.  Review your answers using the corresponding solution guides (located in the main `Quizzes/Solutions/` directory) or by consulting the Linux Guides and Checklists.
+3.  Identify areas needing further study or practice.
 
-## Example Quiz Topics
+## Contribution
 
-- User and group management
-- File permissions and ownership
-- Service hardening and firewall configuration
-- Security auditing and log analysis
-- Incident response and forensics
+Create new quizzes covering specific Linux topics (e.g., specific service configuration like Apache/Nginx, advanced `find` usage, log analysis techniques, basic shell scripting for security). Ensure questions are clear, relevant to CyberPatriot, and include a corresponding solution file.
 
-*Quizzes are unique and designed for CyberPatriot training. Try writing your own questions and share with your team!*
+## Additional Resources
+
+-   [CyberPatriot Training Materials](https://www.uscyberpatriot.org/competition/training-materials) (Check for Linux resources)
+-   [Ubuntu Server Guide - Security](https://ubuntu.com/server/docs/security)
+-   [Linux Journey](https://linuxjourney.com/)
+
+---
+
+*All quizzes are unique and tailored for CyberPatriot training.*

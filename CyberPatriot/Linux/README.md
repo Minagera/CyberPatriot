@@ -1,5 +1,7 @@
 # Linux Security Training Materials
 
+This directory contains training materials for securing Linux systems (focusing on Ubuntu and Linux Mint distributions) within the CyberPatriot competition context.
+
 ## Directory Structure
 
 ```
@@ -150,51 +152,63 @@ Learning to use these scripts will help you work more efficiently during competi
 
 ## Directory Index
 
-### Guides/
-- **Basic/**: User management, permissions, sudo, password policies, login security, group management, and common CyberPatriot scenarios.
-  - `README.md`: Overview and step-by-step user security
-  - `Linux_User_Management.md`: In-depth user management
-- **Intermediate/**: Service hardening, firewall, auditing, malware removal, prioritized hardening, and common competition tasks.
-  - `README.md`: System hardening, service security, audit, and automation
-- **Advanced/**: SELinux/AppArmor, kernel hardening, advanced auditing, forensics, threat hunting, and advanced CyberPatriot strategies.
-  - `README.md`: Advanced security, forensics, and threat hunting
+### [Checklists/](Checklists/README.md)
+Links to the detailed Linux checklist in the main `Checklists/Linux/` directory. Covers user accounts, permissions, services, firewall, updates, and forensics.
 
-### Exercises/
-- `README.md`: Linux Security Challenge scenario, workflow, scoring, hints, and documentation guidance
-- `Solutions/`: Mentor-only reference solutions for each exercise
+### [Exercises/](Exercises/README.md)
+Hands-on practice scenarios simulating CyberPatriot challenges on Linux, including basic hardening, service configuration, and forensic investigation.
 
-### Scripts/
-- **Templates/**:
-  - `secure_user_add.sh`, `audit_services.sh`, `find_world_writable.sh`, `ufw_hardening.sh`, `ssh_hardening.sh`, `user_management_template.sh`
-- **Examples/**:
-  - `Quick_User_Audit.sh`, `Service_Checker.sh`, `File_Permission_Scanner.sh`, `Firewall_Status_Reporter.sh`, `secure_user_add.sh`, `audit_services.sh`, `find_world_writable.sh`, `ufw_hardening.sh`, `ssh_hardening.sh`
-- **Solutions/**:
-  - `linux_challenge_solution.sh`, `automated_hardening_solution.sh`
+### [Guides/](Guides/README.md)
+In-depth guides on Linux security fundamentals and advanced topics relevant to the competition.
+-   **[Basic/](Guides/Basic/README.md)**: Core concepts like user management, permissions, basic commands, package management (apt).
+-   **[Advanced/](Guides/Advanced/README.md)**: Deeper dives into services (systemd), firewall (UFW), SSH hardening, PAM, logging, and common vulnerabilities.
 
-### Quizzes/
-- `README.md`: Quiz usage and structure
-- **Quiz-Files/**:
-  - `README.md`: Quiz instructions
-  - `sample_quiz.md`: Example quiz on Linux security
-- **Solutions/**:
-  - `README.md`: Mentor-only answer keys
-  - `sample_quiz_solutions.md`: Answers for sample quiz
+### [Quizzes/](Quizzes/README.md)
+Quizzes testing knowledge of Linux commands, security concepts, configuration files, and hardening techniques.
 
-### VM-Setup/
-- `README.md`: Scenario overview, setup instructions, customization, troubleshooting, and license
-- `corporate-server-breach.sh`: Unique scenario generator for a compromised Ubuntu server
-- `cyberpatriot_linux_vm_setup.sh`: Alternate scenario generator for instructors
-- `ubuntu_vm_setup.sh`: Simple, unique Ubuntu setup script for practice
-- `Linux_Security_Challenge.zip`: Downloadable VM image for hands-on practice
-- `Linux_Security_Challenge.zip.README.md`: Placeholder/readme for the VM image
+### [Scripts/](Scripts/README.md)
+Unique Bash scripts for automating security checks, audits, and common hardening tasks on Linux systems. Includes examples for user audits, service checks, finding world-writable files, etc.
+
+### [VM-Setup/](VM-Setup/README.md)
+Scripts and documentation for creating compromised Linux virtual machine environments (Ubuntu/Mint) for realistic incident response training.
+
+---
+
+## CyberPatriot Competition Tips for Linux
+
+-   **Read the README:** This is always the first and most critical step. Identify required users, services, prohibited actions, and forensic questions.
+-   **User Accounts:**
+    *   Use `cat /etc/passwd` and `cat /etc/group` to identify users/groups.
+    *   Remove unauthorized users (`sudo userdel -r [username]`).
+    *   Change weak passwords (`sudo passwd [username]`).
+    *   Check for users with UID 0 (`awk -F: '($3 == 0)' /etc/passwd`).
+    *   Review sudoers (`sudo cat /etc/sudoers`, `sudo ls /etc/sudoers.d/`) and remove unauthorized users from the `sudo` or `wheel` group (`sudo deluser [username] sudo`).
+    *   Disable unused accounts (`sudo passwd -l [username]`).
+-   **Password Policy:** Configure PAM (`/etc/pam.d/common-password`) for complexity and `/etc/login.defs` for aging. Install `libpam-pwquality` if needed.
+-   **Services (`systemctl`):**
+    *   List running services (`systemctl list-units --type=service --state=running`).
+    *   List listening ports (`sudo ss -tulpn`).
+    *   Disable unnecessary/insecure services (e.g., `telnet`, `vsftpd` if not required, `apache2` if not required) using `sudo systemctl disable --now [service-name]`.
+    *   Check service configurations (e.g., `/etc/ssh/sshd_config`, `/etc/apache2/apache2.conf`). Harden SSH (disable root login, use keys, change port if allowed).
+-   **Firewall (UFW):**
+    *   Ensure UFW is installed (`sudo apt install ufw`).
+    *   Enable it (`sudo ufw enable`).
+    *   Check status (`sudo ufw status verbose`).
+    *   Allow required services/ports (e.g., `sudo ufw allow ssh`, `sudo ufw allow http`) and deny others. Default deny incoming (`sudo ufw default deny incoming`).
+-   **Updates:** Run `sudo apt update && sudo apt upgrade -y` if allowed by README and time permits.
+-   **Permissions:**
+    *   Find world-writable files/directories (`find / -type d -perm -0002 -ls`, `find / -type f -perm -0002 -ls`). Correct permissions (`chmod o-w [file/dir]`).
+    *   Find SUID/SGID files (`find / -perm /6000 -type f -ls`). Investigate and remove SUID/SGID bit if unnecessary (`chmod -s [file]`).
+-   **Forensics:** Use `find`, `grep`, `cat`, `ls -la` to search for files mentioned in the README, check logs (`/var/log/`), examine cron jobs (`crontab -l`, `/etc/cron.*`), check shell history (`history`, `~/.bash_history`).
+-   **Documentation:** Log all changes made.
 
 ---
 
 ## Reference Files
 
-- **[../Resources/References/Linux_Security_Reference.md](../Resources/References/Linux_Security_Reference.md)**: Quick reference for user management, permissions, services, firewall, and forensics.
-- **[../Checklists/Linux/README.md](../Checklists/Linux/README.md)**: Competition checklist for Ubuntu/Mint hardening.
-- **[../Resources/Core_Security_Principles.md](../Resources/Core_Security_Principles.md)**: Core security principles for CyberPatriot.
+-   **[../Resources/References/Linux_Security_Reference.md](../Resources/References/Linux_Security_Reference.md)**: Quick reference for user management, permissions, services, firewall, and forensics.
+-   **[../Checklists/Linux/README.md](../Checklists/Linux/README.md)**: Competition checklist for Ubuntu/Mint hardening.
+-   **[../Resources/Core_Security_Principles.md](../Resources/Core_Security_Principles.md)**: Core security principles for CyberPatriot.
 
 ---
 

@@ -1,17 +1,20 @@
-# Tools & Automation Scripts
+# CyberPatriot Tools & Utilities
 
-This directory contains unique scripts and utilities to help automate security checks, baselining, and scenario generation for CyberPatriot training.
+This directory is a placeholder for potential future tools, scripts, or conceptual guides related to automation, baselining aids, or scenario generation that might be useful across platforms or for training setup.
 
-## Available Tools
+**Note:** Platform-specific audit/hardening scripts should reside in the respective `Windows/Scripts/` or `Linux/Scripts/` directories.
 
-- **Baseline_Comparison_Script.sh**: Compares a clean and competition system to identify changes.
-- **Quick_Security_Audit.ps1**: Runs a fast security audit on Windows systems.
-- **Scenario_Randomizer.py**: Generates randomized practice scenarios for team drills.
+## Potential Future Content
 
-## How to Use
+-   **Automated Baselining Concepts/Scripts:** Guides or example scripts (e.g., using PowerShell or Bash to export configurations like user lists, service states, installed packages) to facilitate comparison with tools like Meld.
+    *   [**Baselining_Export_Examples.md**](Baselining_Export_Examples.md) (Placeholder)
+-   **Scenario Randomizer Concepts:** Ideas or simple scripts to help instructors randomize elements within VM setup scripts (e.g., pick random usernames from a list, slightly vary vulnerabilities).
+    *   [**Scenario_Randomization_Ideas.md**](Scenario_Randomization_Ideas.md) (Placeholder)
+-   **Cross-Platform Audit Script Concepts:** Ideas for scripts that might attempt to gather similar information (e.g., user lists) from both Windows and Linux using appropriate native commands.
 
-- Review each script's comments and instructions before running.
-- Test scripts in a safe environment before using in competition.
-- Adapt scripts to your team's workflow and scenario needs.
+## Contribution
 
-*Automation can save time and help you catch issues you might otherwise miss!*
+If you develop tools or scripts that aid in CyberPatriot training setup, baselining, or have cross-platform utility beyond simple auditing, consider adding them here with clear documentation.
+
+---
+*This directory currently serves as a placeholder for potential future resources.*

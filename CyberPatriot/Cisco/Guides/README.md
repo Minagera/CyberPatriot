@@ -463,3 +463,33 @@ This directory contains step-by-step guides for configuring and securing Cisco d
 - [Advanced Guide](./Advanced/README.md): Advanced security, monitoring, and forensics.
 
 *All guides are unique and tailored for CyberPatriot cadet training.*
+
+# Cisco IOS Security Guides
+
+This directory contains guides explaining Cisco IOS configuration and security concepts relevant to CyberPatriot.
+
+## Guide Index
+
+-   [**Basic_IOS_Commands.md**](Basic_IOS_Commands.md)
+    *   Covers: Accessing CLI modes (User EXEC, Privileged EXEC, Global Config), basic navigation (`?`, tab completion), hostname, saving configuration (`copy run start`).
+-   [**Device_Hardening_Guide.md**](Device_Hardening_Guide.md)
+    *   Covers: `enable secret`, console/VTY line security (`password`, `login`, `exec-timeout`), `service password-encryption`, MOTD banner, disabling HTTP server, CDP.
+-   [**SSH_Configuration_Guide.md**](SSH_Configuration_Guide.md)
+    *   Covers: Steps to enable SSH (`ip domain-name`, `crypto key generate rsa`, `username`, `line vty`, `login local`, `transport input ssh`), disabling Telnet.
+-   [**ACL_Guide.md**](ACL_Guide.md)
+    *   Covers: Standard vs. Extended ACLs, numbered vs. named ACLs, syntax (`access-list`, `ip access-list`), wildcard masks, application (`ip access-group`), verification (`show access-lists`).
+-   [**VLAN_Security_Guide.md**](VLAN_Security_Guide.md)
+    *   Covers: VLAN creation, assigning ports to VLANs (`switchport access vlan`), trunking (`switchport mode trunk`), native VLAN, basic switchport security (`switchport port-security`).
+
+## How to Use
+
+-   Read these guides to understand the concepts and commands needed for the exercises and competition.
+-   Use them as a reference when configuring devices in Packet Tracer or real equipment.
+
+## Contribution
+
+Create new guides covering topics like basic routing protocols (RIP, OSPF, EIGRP) security, DHCP configuration/snooping, NTP security, or advanced switch security features. Ensure guides are clear, accurate, and provide practical examples.
+
+---
+
+*All guides are unique and tailored for CyberPatriot training.*

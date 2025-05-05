@@ -1,177 +1,65 @@
 # Comprehensive CyberPatriot Training Guide
 
+This repository provides a structured and comprehensive set of resources designed for training high school JROTC cadets for the Air Force Association's CyberPatriot National Youth Cyber Defense Competition. It incorporates strategies focused on incident response, system hardening, and forensic analysis across Windows, Linux, and Cisco platforms.
+
+**Always start by reading the README file in each directory to understand its contents and navigation.**
+
 ## Directory Reference
 
-This repository is organized into several tiers. Each tier contains a `README.md` file that explains its structure, purpose, and reference points.  
-**Always start by reading the README in each directory to understand its contents and navigation.**
-
-- [Curriculum/](../Curriculum/README.md): Weekly training plans, objectives, and resources.
-- [Windows/](../Windows/README.md): Windows security guides, checklists, exercises, scripts, and quizzes.
-- [Linux/](../Linux/README.md): Linux security guides, checklists, exercises, scripts, and quizzes.
-- [Cisco/](../Cisco/README.md): Cisco networking guides, checklists, exercises, Packet Tracer scenarios, and scripts.
-- [Checklists/](../Checklists/README.md): Centralized security checklists for all platforms.
-- [Resources/](../Resources/README.md): Templates, references, and tools for documentation and automation.
-- [Meld/](../Meld/README.md): Baselining and comparison guides.
-- [Sponsorships/](../Sponsorships/README.md): Templates and info for program support.
-- [Team_Resources/](../Team_Resources/): Team strategy, workflow, and documentation templates.
-
----
-
-# Comprehensive CyberPatriot Training Guide
-
-This guide incorporates the key insights from Akshay's "How To Win CyberPatriot" document along with practical training strategies for your CyberPatriot cadets.
+-   [**Curriculum/**](Curriculum/README.md): Structured weekly training plans, objectives, exercises, and quizzes.
+-   [**Windows/**](Windows/README.md): Guides, checklists, exercises, scripts, quizzes, and VM setup resources specific to Windows (Windows 11/Server).
+-   [**Linux/**](Linux/README.md): Guides, checklists, exercises, scripts, quizzes, and VM setup resources specific to Linux (Ubuntu/Mint).
+-   [**Cisco/**](Cisco/README.md): Guides, checklists, exercises, and Packet Tracer resources specific to Cisco IOS networking.
+-   [**Checklists/**](Checklists/README.md): Centralized, actionable security checklists for rapid hardening during competition.
+-   [**Exercises/**](Exercises/README.md): Hands-on practice scenarios simulating competition challenges across all platforms.
+-   [**Quizzes/**](Quizzes/README.md): Assessment tools to test knowledge of security concepts, tools, and procedures.
+-   [**Resources/**](Resources/README.md): Reusable templates, command references, core security principles, and tools.
+-   [**VM-Setup/**](VM-Setup/README.md): Scripts and guides for creating vulnerable virtual machine environments for realistic practice.
+-   [**Team_Resources/**](Team_Resources/README.md): Guides and templates for competition strategy, team roles, workflow, and communication.
+-   [**Meld/**](Meld/README.md): Guides on using baselining techniques with tools like Meld for effective vulnerability discovery.
+-   [**Sponsorships/**](Sponsorships/README.md): Templates and information for seeking program support and funding.
 
 ## Understanding CyberPatriot: The Correct Perspective
 
-CyberPatriot is not simply a system hardening competition. Instead, it's best defined as:
-
-> An incident response and remediation competition where teams step into the role of a corporate incident response team that has inherited a business computer network in the aftermath of a cyber-attack on the company's servers. During the competition, teams work to uncover forensic data around the incident, reverse malicious or extraneous changes made by the threat actors, and further harden the system to protect it from future threats.
-
-This definition shifts the focus from merely collecting and applying hardening techniques to understanding attack vectors, persistence mechanisms, and forensic artifacts - skills closely aligned with real-world cybersecurity roles.
+CyberPatriot is best defined as an **incident response and remediation competition**. Teams inherit compromised systems and must:
+1.  Identify unauthorized changes and security issues.
+2.  Find and analyze forensic artifacts.
+3.  Remove attacker persistence mechanisms.
+4.  Apply security hardening to prevent future attacks.
+This requires a deeper understanding than simply applying fixes from a list.
 
 ## Training Approach
 
-### 1. Develop the Security Mindset
-
-Rather than treating CyberPatriot like a "gotta catch 'em all" vulnerability hunt, teach cadets to develop a fundamental security mindset:
-
-- **Research security principles**, not just specific fixes
-- **Understand system internals** and how attackers might exploit them
-- **Learn to baseline** a clean system and compare it to compromised ones
-- **Respect the challenge** by doing things the "right way" rather than taking shortcuts
-
-### 2. Focus on Operating System Familiarity
-
-Develop deep knowledge of operating system mechanics:
-
-#### Linux:
-- User/group management and /etc/passwd, /etc/shadow, /etc/group
-- Pluggable Authentication Modules (PAM)
-- Package management (APT/DNF)
-- Systemd services
-- CRON jobs
-- File permissions and ownership
-- System logging
-
-#### Windows:
-- User management and authentication
-- Registry structure and important keys
-- Group Policy and Local Security Policy
-- Service management
-- Task Scheduler
-- Windows Defender
-- Event logs
-
-### 3. Research-Driven Preparation
-
-Research should occur before, during, and after each competition:
-
-#### Critical Services to Research:
-- HTTP/S: Apache2, IIS
-- DNS: Windows DNS, Bind9
-- Remote Management: OpenSSH, RDP
-- Database: MySQL/MariaDB, MSSQL
-- Mail: Exchange, Postfix
-- File Sharing: FTP, SMB
-- Identity Management: Active Directory
-
-### 4. Baselining Strategy
-
-The most effective approach to finding vulnerabilities:
-
-1. **Create clean baselines** of systems and configurations
-2. **Compare competition images** to these baselines
-3. **Identify deviations** that may represent vulnerabilities or compromises
-
-Tools like **Meld** (visual diff tool) can be invaluable for comparing configuration files.
-
-### 5. Effective Team Composition
-
-Optimal team structure:
-- 2 Windows specialists
-- 1 Linux specialist
-- 1 Linux/Extra Challenge competitor
-- 1 dedicated Cisco competitor
-- 1 "Jack of All Trades" (likely substitute)
-
-### 6. The Competition "Gameplan"
-
-Develop a structured approach for each competition round:
-
-1. Analyze the README and forensic questions
-2. Fix potential issues that could affect tools or scripts
-3. Perform comprehensive baselining to identify abnormalities
-4. Manage users and groups according to requirements
-5. Hunt for backdoors and malware
-6. Update the system
-7. Manage packages and services
-8. Apply system hardening (PAM, sysctl, etc.)
-9. Secure critical services
-10. Fix file and directory permissions
+1.  **Develop the Security Mindset:** Focus on *why* security measures work, not just *what* they are. Understand attacker motivations and techniques.
+2.  **Focus on Operating System Familiarity:** Build deep knowledge of Windows (Registry, GPO, Services, Event Logs) and Linux (Users, PAM, Systemd, Cron, Permissions, Logs).
+3.  **Research-Driven Preparation:** Learn about common services (HTTP, DNS, SSH, RDP, SQL, Mail, SMB) and how to secure them *before* the competition.
+4.  **Baselining Strategy:** Master comparing competition images to known-good configurations to quickly spot deviations. Use tools like Meld.
+5.  **Effective Team Composition:** Assign roles (Windows, Linux, Cisco, Documentation/Forensics, Orchestrator) but encourage cross-training.
+6.  **The Competition "Gameplan":** Develop a repeatable workflow: Read README -> Baseline -> Users/Groups -> Backdoors/Malware -> Updates -> Services -> Hardening -> Permissions -> Forensics -> Verify Score.
 
 ## Training Resources
 
-### 1. Incident Response Training VMs
-
-The provided VM setup scripts create realistic post-attack scenarios that teach cadets to:
-- Identify and remove attacker persistence mechanisms
-- Analyze forensic artifacts to understand attack methods
-- Secure vulnerable services and configurations
-- Apply proper security measures to prevent future breaches
-
-These VMs align with the actual CyberPatriot competition format - they're not just systems that need hardening, but systems that have been compromised and need investigation and remediation.
-
-### 2. Cisco Network Training
-
-The Cisco packet tracer scenarios focus on:
-- Identifying and mitigating network vulnerabilities
-- Securing network devices and services
-- Implementing secure routing and access controls
-- Troubleshooting security issues
-
-### 3. Team Building Activities
-
-To build cohesion and enhance teamwork:
-- Schedule regular team meetings (2-3 hours weekly)
-- Create a shared task management system
-- Establish shared, organized repositories for scripts and checklists
-- Conduct post-competition reviews to improve processes
+-   **Incident Response Training VMs:** Use the `VM-Setup` scripts to create realistic post-breach scenarios.
+-   **Cisco Packet Tracer Scenarios:** Practice network hardening, ACLs, and secure configurations in `Cisco/PacketTracer_Scenarios/`.
+-   **Checklists & References:** Utilize materials in `Checklists/` and `Resources/References/` for quick access during practice and competition.
+-   **Quizzes & Exercises:** Reinforce learning with materials in `Quizzes/` and `Exercises/`.
 
 ## Implementation Schedule
 
-### Pre-Competition (Summer/Early Fall)
-1. Team formation and role assignments
-2. Operating system and service fundamentals training
-3. Introduction to baselining techniques
-4. Development of initial scripts and checklists
-
-### Initial Training Phase
-1. Work with basic-level VMs to understand fundamental security concepts
-2. Practice with Cisco packet tracer scenarios
-3. Develop and refine competition "gameplan"
-4. Participate in practice rounds
-
-### Advanced Training Phase
-1. Work with intermediate and advanced VMs that simulate real attacks
-2. Practice baselining and malware/backdoor identification
-3. Refine scripts and processes for consistency
-4. Conduct timed practice competitions
+-   **Phase 1 (Fundamentals):** OS Basics, Networking, Security Principles, User Management.
+-   **Phase 2 (Intermediate):** System Hardening (Win/Lin), Firewall Config, Basic Scripting.
+-   **Phase 3 (Advanced):** Advanced Security (Win/Lin), Advanced Networking/Packet Tracer, Competition Strategy, Mock Competitions.
 
 ## Continuous Improvement
 
-After each competition round:
-1. Review performance and identify knowledge gaps
-2. Research services or vulnerabilities that were challenging
-3. Update scripts and checklists
-4. Practice with similar scenarios to reinforce learning
+-   Conduct after-action reviews following each practice/competition round.
+-   Identify knowledge gaps and areas for improvement.
+-   Update checklists, scripts, and documentation based on lessons learned.
+-   Research unfamiliar vulnerabilities or services encountered.
 
 ## Conclusion
 
-Success in CyberPatriot comes from:
-1. Understanding the true nature of the competition (incident response)
-2. Developing a structured approach rather than just collecting fixes
-3. Building deep knowledge of operating systems and security principles
-4. Creating effective team dynamics and processes
-5. Practicing with realistic scenarios that match the competition format
+Success in CyberPatriot requires a blend of technical skill, strategic thinking, effective teamwork, and a commitment to continuous learning. This repository provides the foundation for building a highly competitive team.
 
-By following this guide, your CyberPatriot team will develop the skills needed for success in both the competition and future cybersecurity careers.
+---
+*All materials in this repository are intended to be unique and specifically tailored for CyberPatriot training. Contributions and improvements are welcome.*

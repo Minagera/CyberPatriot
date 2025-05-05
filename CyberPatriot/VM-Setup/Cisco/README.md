@@ -1,29 +1,27 @@
-# Cisco Packet Tracer Setup for CyberPatriot
+# Cisco Packet Tracer Setup Information
 
-This directory contains instructions and scenarios for setting up Cisco Packet Tracer for CyberPatriot training.
+This directory provides guidance related to setting up the environment for Cisco networking exercises within CyberPatriot training.
 
-## Quick Start
+## Packet Tracer Software
 
-1. Download and install Cisco Packet Tracer (latest version recommended).
-2. Open the scenarios in the `PacketTracer_Scenarios/` directory.
-3. Follow the scenario instructions to build and secure the network topology.
+CyberPatriot Cisco challenges are typically performed using **Cisco Packet Tracer**. Ensure all team members have a compatible version installed. Packet Tracer can usually be downloaded for free via the Cisco Networking Academy website ([www.netacad.com](https://www.netacad.com/)). Check the current CyberPatriot season rules for any specific version requirements.
 
-## Scenario Files
+## Scenario Files (.pkt)
 
-- **Basic_Network_Security.pkt**: Practice device hardening and basic configuration.
-- **Advanced_Network_Security.pkt**: Advanced scenario with VLANs, ACLs, and attack mitigation.
-- **ACL_Challenge.pkt**: Focused scenario for practicing access control lists.
+The actual practice scenarios are provided as Packet Tracer files (`.pkt`). These files contain pre-built network topologies, device configurations (often incomplete or insecure), and specific instructions or scoring elements.
+
+**Scenario files for this program are located in:**
+[**../../Cisco/PacketTracer_Scenarios/**](../../Cisco/PacketTracer_Scenarios/)
+
+Refer to the `README.md` file within that directory for a list and description of available scenarios.
 
 ## Usage
 
-- Open each .pkt file in Packet Tracer.
-- Read the scenario description and requirements.
-- Build out the network topology and apply security configurations.
-- Test connectivity and verify security controls.
+1.  Install Cisco Packet Tracer.
+2.  Download `.pkt` files from the `Cisco/PacketTracer_Scenarios/` directory.
+3.  Open the `.pkt` file in Packet Tracer.
+4.  Follow the instructions provided within the Packet Tracer scenario (often in the yellow notes) and/or the corresponding exercise file in `../../Cisco/Exercises/`.
+5.  Use the Packet Tracer interface and device CLIs to complete the required configuration and security tasks.
 
-## Troubleshooting
-
-- Ensure you are using the correct Packet Tracer version for the scenario files.
-- If a scenario fails to load, update Packet Tracer or download the latest scenario files.
-
-*All scenarios are unique and designed for CyberPatriot training only.*
+---
+*Focus training on common IOS commands, device hardening, SSH configuration, ACLs, and basic switch security as outlined in the main Cisco directory resources.*

@@ -1,18 +1,28 @@
-# Documentation & Workflow Templates
+# Competition Templates
 
-This directory contains templates to help you document your work, report findings, and manage your workflow during CyberPatriot competitions.
+This directory contains templates to help CyberPatriot teams with documentation and workflow during practice and competition rounds. Using templates promotes consistency and saves time.
 
-## Available Templates
+## Template Index
 
-- **Incident_Response_Report_Template.md**: For documenting findings and remediation steps during a competition.
-- **Change_Log_Template.md**: For tracking all changes made to systems.
-- **Team_Workflow_Checklist.md**: For managing team roles and task assignments.
-- **Forensics_Question_Response_Template.md**: For answering competition forensics questions in a structured way.
+-   [**Change_Log_Template.md**](Change_Log_Template.md)
+    *   A simple markdown table to track changes made to systems (Time, System, Change Made, User, Reason, Success/Issues).
+-   [**Incident_Response_Report_Template.md**](Incident_Response_Report_Template.md)
+    *   A basic structure for documenting findings during an incident response scenario (Summary, Timeline, Systems Affected, Findings, Actions Taken, Recommendations). Useful for practice debriefs.
+-   [**Forensics_Question_Response_Template.md**](Forensics_Question_Response_Template.md)
+    *   A template for organizing answers to forensic questions, including the question, the answer, and the evidence/location where the answer was found.
+-   [**Team_Workflow_Checklist_Template.md**](Team_Workflow_Checklist_Template.md)
+    *   A checklist outlining key phases and tasks for a competition round (e.g., Read README, Initial Scan, User Audit, Service Hardening, Forensics, Final Review).
 
 ## How to Use
 
-1. Copy the relevant template to your working directory or shared team folder.
-2. Fill out the template as you work through the competition image.
-3. Submit completed documentation as required by your team or instructor.
+1.  Copy the desired template at the beginning of a practice session or competition round.
+2.  Fill it out as you work through the scenario.
+3.  Adapt the templates to your team's specific workflow.
+4.  Use digital versions (e.g., shared documents) or print them out.
 
-*Well-documented work is critical for scoring and for learning from each competition round!*
+## Contribution
+
+Suggest improvements to existing templates or create new ones that could benefit a CyberPatriot team's process (e.g., Network Diagram Template, Role Assignment Sheet).
+
+---
+*All templates are designed to be simple starting points for CyberPatriot teams.*

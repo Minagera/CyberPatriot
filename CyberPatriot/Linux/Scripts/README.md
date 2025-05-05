@@ -1,6 +1,33 @@
-# Linux Security Scripts
+# Linux Security Scripts for CyberPatriot
 
-This directory contains scripts to automate, audit, and harden Linux systems for CyberPatriot training.
+This directory contains unique Bash scripts designed for automating security checks, auditing, and hardening tasks commonly needed in CyberPatriot competitions on Linux (Ubuntu/Mint) systems.
+
+**Disclaimer:** Always understand what a script does before running it, especially with `sudo`. Test scripts thoroughly on practice VMs first. Incorrect script usage can break system functionality or lead to point deductions.
+
+## Example Scripts
+
+Detailed examples and explanations can be found in the [**Examples/**](Examples/README.md) subdirectory. Some examples include:
+
+-   `Quick_User_Audit.sh`: Lists users, groups, sudoers, and flags suspicious accounts.
+-   `Service_Checker.sh`: Shows running/enabled services and listening ports, flags insecure ones.
+-   `File_Permission_Scanner.sh`: Finds world-writable files/dirs and SUID/SGID binaries.
+-   `Firewall_Status_Reporter.sh`: Checks UFW status and lists rules.
+-   `ssh_hardening_check.sh`: Audits `/etc/ssh/sshd_config` against common hardening recommendations.
+
+## How to Use
+
+1.  Transfer the script to the target Linux machine.
+2.  Make the script executable: `chmod +x script_name.sh`.
+3.  Run the script: `./script_name.sh` (or `sudo ./script_name.sh` if it requires root privileges).
+4.  Review the output carefully.
+
+## Contribution
+
+Develop new scripts for common CyberPatriot tasks (e.g., checking PAM configuration, auditing log files for specific events, automating basic hardening steps). Ensure scripts are well-commented, robust, and focus on information gathering or safe configuration changes. Use tools like `shellcheck` to validate scripts.
+
+---
+
+*All scripts are unique and designed for CyberPatriot training. Refer to the [Examples/](Examples/README.md) directory for specific script details.*
 
 ## Directory Structure
 

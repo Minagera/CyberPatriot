@@ -212,3 +212,38 @@ Exercises/
 ---
 
 **All files and directories referenced above are present and unique for CyberPatriot training.**
+
+# Linux Security Exercises
+
+This directory contains hands-on exercises for practicing Linux security skills relevant to CyberPatriot, focusing on Ubuntu/Mint distributions.
+
+## Exercise Index
+
+-   [**Linux_Security_Basics_Exercise.md**](Linux_Security_Basics_Exercise.md)
+    *   Focus: User/group management commands, basic file permissions, finding files, checking service status.
+-   [**Linux_Security_Hardening_Exercise.md**](Linux_Security_Hardening_Exercise.md)
+    *   Focus: Configuring UFW firewall, hardening SSH, setting password policies (PAM/login.defs), disabling services, checking for world-writable files.
+-   [**Linux_Forensics_Investigation.md**](Linux_Forensics_Investigation.md)
+    *   Focus: Searching logs (`/var/log/`), analyzing `.bash_history`, checking cron jobs, finding specific files based on scenario questions.
+
+## How to Use
+
+1.  Obtain the corresponding Linux VM image (if applicable, see `VM-Setup`).
+2.  Read the exercise scenario and objectives.
+3.  Perform the tasks using the Linux command line.
+4.  Refer to the Guides and Checklists for assistance.
+5.  Compare your results with the solution guide (if available).
+
+## Contribution
+
+Create new exercises covering topics like AppArmor/SELinux basics, log analysis with tools, specific service hardening (Apache, MySQL), or script analysis. Ensure clear objectives, tasks, and optionally, solutions.
+
+## Additional Resources
+
+-   [CyberPatriot Training Materials](https://www.uscyberpatriot.org/competition/training-materials) (Check for Linux resources)
+-   [Ubuntu Security Documentation](https://ubuntu.com/security/docs)
+-   [Linux Command Line Basics](https://linuxcommand.org/)
+
+---
+
+*All exercises are unique and tailored for CyberPatriot training.*

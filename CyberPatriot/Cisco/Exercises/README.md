@@ -1,11 +1,36 @@
-# Cisco Security Exercises
+# Cisco Networking Exercises
 
-Practice hands-on Packet Tracer and CLI-based scenarios to build your skills for CyberPatriot.
+This directory contains hands-on exercises for practicing Cisco IOS configuration and security, often designed for use with Cisco Packet Tracer.
 
-- Each exercise simulates a common competition challenge.
-- Document your solutions and compare with mentor-provided answers in the Solutions directory.
+## Exercise Index
 
-*All exercises are unique and designed for CyberPatriot training.*
+-   [**Basic_Device_Hardening_Exercise.md**](Basic_Device_Hardening_Exercise.md)
+    *   Focus: Setting hostname, enable secret, console/VTY passwords, MOTD banner, encrypting passwords. Requires a basic router/switch topology in Packet Tracer.
+-   [**SSH_Configuration_Exercise.md**](SSH_Configuration_Exercise.md)
+    *   Focus: Configuring SSH for secure remote access, disabling Telnet. Requires Packet Tracer.
+-   [**Standard_ACL_Exercise.md**](Standard_ACL_Exercise.md)
+    *   Focus: Creating and applying standard numbered ACLs to permit/deny traffic based on source IP. Requires a multi-network topology in Packet Tracer.
+-   [**Extended_ACL_Exercise.md**](Extended_ACL_Exercise.md)
+    *   Focus: Creating and applying extended named ACLs to filter based on source/destination IP and port numbers. Requires Packet Tracer.
+-   [**Switch_Port_Security_Exercise.md**](Switch_Port_Security_Exercise.md)
+    *   Focus: Configuring basic switchport security features (sticky MAC, violation modes). Requires a switch and PCs in Packet Tracer.
+
+## How to Use
+
+1.  Download and install Cisco Packet Tracer (version compatibility may be required).
+2.  Open the `.pkt` file associated with the exercise (if provided in `PacketTracer_Scenarios/`) or build the topology described.
+3.  Follow the tasks outlined in the exercise `.md` file.
+4.  Use Cisco IOS commands to configure the devices.
+5.  Verify your configuration using `show` commands, `ping`, etc.
+6.  Refer to the Guides and Checklists for command syntax and concepts.
+
+## Contribution
+
+Create new exercises covering topics like VLANs, trunking, routing protocols (basic RIP/OSPF/EIGRP security), DHCP snooping, or more complex ACL scenarios. Provide clear instructions and ideally a corresponding `.pkt` file.
+
+---
+
+*All exercises are unique and tailored for CyberPatriot training.*
 
 ## Structure
 

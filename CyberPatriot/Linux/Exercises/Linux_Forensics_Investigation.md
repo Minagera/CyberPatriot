@@ -258,3 +258,55 @@ After completing this forensic investigation exercise:
 2. Implement detection measures for similar attacks
 3. Develop incident response procedures based on lessons learned
 4. Practice with more advanced forensic techniques and tools like Volatility for memory analysis
+
+# Linux Forensics Investigation Exercise
+
+## Scenario
+
+A Linux server shows signs of suspicious activity. You need to investigate logs and system artifacts to answer specific questions about what happened.
+
+## Objectives
+
+-   Practice searching system logs for specific events.
+-   Analyze user command history.
+-   Investigate cron jobs for persistence.
+-   Use `find` and `grep` effectively for forensic searches.
+
+## Forensic Questions (Example)
+
+*(These questions would typically be provided within the exercise or a scenario README, based on pre-planted artifacts in a VM)*
+
+1.  Which user account successfully logged in via SSH most recently, according to `/var/log/auth.log`?
+2.  An attacker ran the command `nc -lp 1337`. What is the timestamp associated with this command in the root user's bash history?
+3.  A suspicious cron job was added to run daily. What command does this cron job execute? (Check `/etc/cron.d/`, `/etc/crontab`, user crontabs)
+4.  A file containing sensitive credentials named `user_creds.bak` was hidden somewhere in the `/opt` directory. What is its full path?
+5.  What IP address attempted to log in as user 'admin' (which doesn't exist) and failed, according to `/var/log/auth.log`?
+
+## Tasks
+
+1.  **Log Analysis (`/var/log/`):**
+    *   Use `grep`, `zgrep` (for compressed logs), `less`, `tail`, `awk` to search relevant logs like `auth.log` (logins, sudo), `syslog` (general messages), `ufw.log` (firewall), potentially application logs (e.g., `/var/log/apache2/access.log`).
+    *   Filter by keywords (usernames, IP addresses, process names), timestamps, and event types (e.g., "Accepted password", "Failed password", "session opened").
+2.  **Command History Review:**
+    *   Check the current user's history (`history`).
+    *   Check saved history files (`~/.bash_history`, `/root/.bash_history`). Use `cat` or `less` and `grep`. Remember history files might be cleared or manipulated.
+3.  **Cron Job Investigation:**
+    *   List system-wide cron jobs (`ls -l /etc/cron.*`, `cat /etc/crontab`).
+    *   Check for files in `/etc/cron.d/`.
+    *   Check user-specific crontabs (`sudo crontab -l -u [username]`).
+4.  **File System Search:**
+    *   Use `find` with various options (`-name`, `-iname` (case-insensitive), `-type`, `-user`, `-group`, `-mtime`, `-size`) to locate files based on question details.
+    *   Use `grep -r` to search for specific text content within files recursively.
+
+## Deliverables
+
+-   Answers to the specific forensic questions, citing the evidence (e.g., log line, command history entry, cron job definition, file path).
+
+## Hints
+
+-   Log files can be large; use `grep` and `less` effectively.
+-   Timestamps in logs are critical. Note the system's timezone (`timedatectl`).
+-   Attackers may try to hide files using leading dots (`.`), common names, or placing them in unexpected directories.
+-   History files only record commands executed in interactive shells and can be incomplete.
+
+*(This is a placeholder exercise. Requires a VM with pre-planted artifacts corresponding to the forensic questions.)*

@@ -1,98 +1,83 @@
 # CyberPatriot VM-Setup Directory Index
 
-This directory contains all setup scripts, scenario generators, and documentation for preparing Windows, Linux, and Cisco Packet Tracer virtual machines for CyberPatriot training and competition practice.
+This directory contains all setup scripts, scenario generators, and documentation for preparing Windows, Linux, and Cisco Packet Tracer virtual environments for CyberPatriot training and competition practice. The goal is to create realistic scenarios that mimic the challenges faced in actual competitions, focusing on incident response and remediation.
 
 ## Directory Structure
 
 ```
 VM-Setup/
-├── Windows/
-│   ├── README.md
-│   ├── enterprise-workstation-setup.ps1
-│   ├── Windows_Security_Exercise.zip
-│   └── Windows_Security_Exercise.zip.README.md
-│
-├── Linux/
-│   ├── README.md
-│   ├── corporate-server-breach.sh
-│   ├── cyberpatriot_linux_vm_setup.sh
-│   ├── Linux_Security_Challenge.zip
-│   └── Linux_Security_Challenge.zip.README.md
-│
-├── Cisco/
-│   ├── README.md
-│   └── PacketTracer_Scenarios/
-│       ├── Basic_Network_Security.pkt
-│       ├── Advanced_Network_Security.pkt
-│       ├── ACL_Challenge.pkt
-│       └── README.md
+├── README.md               # This file - Overview and Index
+├── Windows/                # Windows VM Setup Resources
+│   ├── README.md           # Detailed guide for Windows scenario setup
+│   └── enterprise-workstation-setup.ps1 # PowerShell script for scenario generation
+├── Linux/                  # Linux VM Setup Resources
+│   ├── README.md           # Detailed guide for Linux scenario setup
+│   ├── corporate-server-breach.sh # Bash script for scenario generation
+│   └── cyberpatriot_linux_vm_setup.sh # Alternative customizable setup script
+└── Cisco/                  # Cisco Packet Tracer Setup Information
+    └── README.md           # Guide pointing to Cisco Packet Tracer Scenarios
 ```
-
----
+*(Note: Actual Packet Tracer `.pkt` files reside in `../Cisco/PacketTracer_Scenarios/`)*
 
 ## Windows VM-Setup
 
-- **README.md**: Full instructions for setting up Windows incident response scenarios.
-- **enterprise-workstation-setup.ps1**: PowerShell script to create a compromised Windows VM with hidden persistence, disabled security features, and scoring system.
-- **Windows_Security_Exercise.zip**: Downloadable VM image for hands-on practice.
-- **Windows_Security_Exercise.zip.README.md**: Placeholder/readme for the VM image.
+-   **[Windows/README.md](Windows/README.md)**: Full instructions for using the PowerShell script to create a compromised Windows VM.
+-   **[Windows/enterprise-workstation-setup.ps1](Windows/enterprise-workstation-setup.ps1)**: PowerShell script that adds users, weakens security, adds persistence, and creates forensic artifacts including a README.
 
 ---
 
 ## Linux VM-Setup
 
-- **README.md**: Detailed guide for setting up Linux security scenarios.
-- **corporate-server-breach.sh**: Bash script to create a post-breach Linux VM with multiple vulnerabilities, backdoors, and forensic artifacts.
-- **cyberpatriot_linux_vm_setup.sh**: Alternate scenario generator for instructors.
-- **Linux_Security_Challenge.zip**: Downloadable VM image for hands-on practice.
-- **Linux_Security_Challenge.zip.README.md**: Placeholder/readme for the VM image.
+-   **[Linux/README.md](Linux/README.md)**: Detailed guide for using the Bash scripts to create a post-breach Linux VM.
+-   **[Linux/corporate-server-breach.sh](Linux/corporate-server-breach.sh)**: Bash script implementing a specific "Corporate Server Breach" scenario.
+-   **[Linux/cyberpatriot_linux_vm_setup.sh](Linux/cyberpatriot_linux_vm_setup.sh)**: Alternative Bash script with more customizable variables for instructors.
 
 ---
 
 ## Cisco Packet Tracer Setup
 
-- **README.md**: Instructions for installing and configuring Cisco Packet Tracer.
-- **PacketTracer_Scenarios/**: Directory containing .pkt files and scenario README.
-  - **Basic_Network_Security.pkt**: Device hardening and basic configuration.
-  - **Advanced_Network_Security.pkt**: VLANs, ACLs, and advanced security.
-  - **ACL_Challenge.pkt**: Access control list practice.
-  - **README.md**: Descriptions and usage for each scenario.
+-   **[Cisco/README.md](Cisco/README.md)**: Provides guidance on using Cisco Packet Tracer for network scenario training.
+-   Packet Tracer scenario files (`.pkt`) are located in the main Cisco directory: **[../Cisco/PacketTracer_Scenarios/](../Cisco/PacketTracer_Scenarios/)**. These files contain pre-built network topologies with specific configuration and security challenges.
 
 ---
 
 ## Usage Instructions
 
-1. **Choose your platform** (Windows, Linux, or Cisco).
-2. **Read the README.md** in the relevant subdirectory for setup steps.
-3. **Run the provided setup script** (as Administrator/root for Windows/Linux).
-4. **Take a VM snapshot** after setup for repeatable practice.
-5. **Distribute the VM or Packet Tracer file** to cadets for training.
-6. **Follow the competition-style README** generated on the desktop for scenario instructions.
+1.  **Choose your platform** (Windows or Linux for VM setup).
+2.  **Navigate to the platform subdirectory** (e.g., `VM-Setup/Windows/`).
+3.  **Read the `README.md`** in that subdirectory for detailed setup steps.
+4.  **Prepare a clean base VM** of the appropriate OS (Win 10/11 or Ubuntu 22.04 recommended). **Snapshot the clean state.**
+5.  **Run the provided setup script** (`.ps1` or `.sh`) **as Administrator/root** on the clean VM.
+6.  **Review script output and logs** for errors.
+7.  **Snapshot the VM** in its compromised state after the script finishes. This is the snapshot to distribute to cadets.
+8.  For Cisco, download Packet Tracer and use the `.pkt` files from `../Cisco/PacketTracer_Scenarios/`.
 
 ---
 
 ## Customization
 
-- All setup scripts are designed for instructor modification.
-- Adjust usernames, passwords, IPs, and scenario difficulty as needed.
-- Add or remove vulnerabilities to tailor the challenge for your team.
-- Update scenario README files to match your training objectives.
+-   All setup scripts (`.ps1`, `.sh`) are designed for instructor modification.
+-   Edit the scripts to adjust usernames, passwords, IPs, persistence methods, services, and scenario difficulty.
+-   Modify the content of the competition-style README files generated by the scripts to match your training objectives.
 
 ---
 
 ## Troubleshooting
 
-- If a script fails, check for correct OS version, sufficient disk space, and network connectivity.
-- Review the log files generated by each setup script for error details.
-- Use VM snapshots to quickly reset to a clean state.
-- For Packet Tracer, ensure you are using the correct version for the provided .pkt files.
+-   Ensure scripts are run with appropriate privileges (Administrator/root).
+-   Verify the base VM OS version is compatible with the script.
+-   Check script logs (`C:\setup_log_cyberpatriot.txt` or `/var/log/cyberpatriot_setup.log`) for error details.
+-   Ensure network connectivity if scripts need to download packages or run updates.
+-   Use VM snapshots to quickly revert to a clean or initial compromised state.
+-   For Packet Tracer, ensure you are using a compatible version.
 
 ---
 
 ## Contribution
 
-- If you create new scenarios or improve existing scripts, contribute them back to the repository.
-- All files must be unique and tailored for CyberPatriot training.
+-   If you create new scenarios or significantly improve existing scripts, please contribute them back.
+-   Ensure any new scenarios align with the CyberPatriot incident response focus.
+-   All files must be unique and tailored for CyberPatriot training.
 
 ---
 
